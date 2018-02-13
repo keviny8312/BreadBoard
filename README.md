@@ -1,3 +1,3 @@
 # BreadBoard
 CMSC 355 - Final Project
-dont touch my stuff. leab me alone plz
+FIles included  in this repository all go towrads the completion of the CMSC 355 final app design.
