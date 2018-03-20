@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BreadBoard</string>
+
+    <string name="loginButton">Login</string>
+    <string name="loginEmail">Email</string>
+    <string name="loginPassword">Password</string>
+    <string name="or">or&#8230;</string>
+    <string name="createNewAccount">Create new account</string>
+
+    <string name="logoDescription">logo</string>
+
 </resources>

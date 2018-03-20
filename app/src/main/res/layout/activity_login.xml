@@ -22,20 +22,20 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/teacher_login"
+        android:id="@+id/BteacherLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:text="Teacher"
-        app:layout_constraintBottom_toTopOf="@+id/student_login"
-        app:layout_constraintLeft_toLeftOf="@+id/student_login"
-        app:layout_constraintRight_toRightOf="@+id/student_login"
+        app:layout_constraintBottom_toTopOf="@+id/BstudentLogin"
+        app:layout_constraintLeft_toLeftOf="@+id/BstudentLogin"
+        app:layout_constraintRight_toRightOf="@+id/BstudentLogin"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
     <Button
-        android:id="@+id/student_login"
+        android:id="@+id/BstudentLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="98dp"
@@ -55,7 +55,7 @@
         android:layout_marginLeft="2dp"
         android:text="Login As:"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/teacher_login"
+        app:layout_constraintBottom_toTopOf="@+id/BteacherLogin"
         app:layout_constraintLeft_toLeftOf="@+id/imageView"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1" />

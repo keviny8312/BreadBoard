@@ -14,6 +14,7 @@
         android:layout_height="130dp"
         android:layout_marginBottom="43dp"
         android:layout_marginTop="32dp"
+        android:contentDescription="@string/logoDescription"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,15 +44,16 @@
                 android:id="@+id/email_icon_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/logoDescription"
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <EditText
                 android:id="@+id/email_field_student"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="@string/loginEmail"
                 android:inputType="textEmailAddress" />
         </LinearLayout>
 
@@ -64,15 +66,16 @@
                 android:id="@+id/password_icon_student"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/logoDescription"
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <EditText
                 android:id="@+id/password_field_student"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/loginPassword"
                 android:inputType="textPassword" />
 
         </LinearLayout>
@@ -83,18 +86,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
-        android:text="Login"
+        android:text="@string/loginButton"
         app:layout_constraintBottom_toTopOf="@+id/login_alternative_student"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
     <Button
-        android:id="@+id/student_create_new_account_button"
+        android:id="@+id/BcreateNewAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Create new account"
+        android:text="@string/createNewAccount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,8 +110,8 @@
         android:layout_marginBottom="27dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:text="or..."
-        app:layout_constraintBottom_toTopOf="@+id/student_create_new_account_button"
+        android:text="@string/or"
+        app:layout_constraintBottom_toTopOf="@+id/BcreateNewAccount"
         app:layout_constraintStart_toStartOf="@+id/student_login_button"
         app:layout_constraintTop_toBottomOf="@+id/student_login_button" />
 
