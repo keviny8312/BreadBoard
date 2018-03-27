@@ -22,6 +22,5 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(LoginActivity.this, studentLogin.class);
             startActivity(i);
         }
-
     }
 }
