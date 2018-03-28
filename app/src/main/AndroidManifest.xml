@@ -16,10 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".teacherLogin"/>
-        <activity android:name=".studentLogin"/>
-        <activity android:name=".newStudentAccount"/>
-        <activity android:name=".newTeacherAccount"/>
+        <activity android:name=".teacherLogin" />
+        <activity android:name=".studentLogin" />
+        <activity android:name=".newStudentAccount" />
+        <activity android:name=".newTeacherAccount" />
+        <activity android:name=".createNewQuiz" />
+        <activity android:name=".TeacherHome" />
+        <activity android:name=".addQuestions"></activity>
     </application>
 
 </manifest>
