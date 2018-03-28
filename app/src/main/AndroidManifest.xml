@@ -22,7 +22,10 @@
         <activity android:name=".newTeacherAccount" />
         <activity android:name=".createNewQuiz" />
         <activity android:name=".TeacherHome" />
-        <activity android:name=".addQuestions"></activity>
+        <activity android:name=".addQuestions" />
+        <activity android:name=".quizConfirmation" />
+        <activity android:name=".settingsPage" />
+        <activity android:name=".changeEmail"></activity>
     </application>
 
 </manifest>
