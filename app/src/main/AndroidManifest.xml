@@ -28,7 +28,9 @@
         <activity android:name=".changeEmail" />
         <activity android:name=".changePassword" />
         <activity android:name=".changeFontSize" />
-        <activity android:name=".QuizInformation"></activity>
+        <activity android:name=".QuizInformation" />
+        <activity android:name=".modifyQuiz" />
+        <activity android:name=".modifyQuestions"></activity>
     </application>
 
 </manifest>
