@@ -25,7 +25,10 @@
         <activity android:name=".addQuestions" />
         <activity android:name=".quizConfirmation" />
         <activity android:name=".settingsPage" />
-        <activity android:name=".changeEmail"></activity>
+        <activity android:name=".changeEmail" />
+        <activity android:name=".changePassword" />
+        <activity android:name=".changeFontSize" />
+        <activity android:name=".QuizInformation"></activity>
     </application>
 
 </manifest>
