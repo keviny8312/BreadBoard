@@ -13,6 +13,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class newStudentAccount extends AppCompatActivity {
 
@@ -24,11 +29,11 @@ public class newStudentAccount extends AppCompatActivity {
         setContentView(R.layout.activity_new_student_account);
 
         if(getIntent().hasExtra("email")) {
-            EditText e = (EditText)findViewById(R.id.student_email_nac);
+            EditText e = findViewById(R.id.student_email_nac);
             e.setText(getIntent().getStringExtra("email"));
         }
         if(getIntent().hasExtra("pass")) {
-            EditText p = (EditText)findViewById(R.id.student_password_nac);
+            EditText p = findViewById(R.id.student_password_nac);
             p.setText(getIntent().getStringExtra("pass"));
         }
 
@@ -37,10 +42,16 @@ public class newStudentAccount extends AppCompatActivity {
     public void onButtonClick(View v) {
         if(v.getId() == R.id.cna_student) {
             //create acct in firebase
-            EditText e = (EditText)findViewById(R.id.student_email_nac);
-            EditText p = (EditText)findViewById(R.id.student_password_nac);
-            String email = e.getText().toString();
-            String pass = e.getText().toString();
+            EditText n = findViewById(R.id.student_name_nac);
+            EditText e = findViewById(R.id.student_email_nac);
+            EditText p = findViewById(R.id.student_password_nac);
+            EditText q = findViewById(R.id.student_init_quiz);
+
+            final String name = n.getText().toString();
+            final String email = e.getText().toString();
+            final String pass = p.getText().toString();
+            final String group = "STUDENT";
+            final String quiz = q.getText().toString();
 
             mAuth = FirebaseAuth.getInstance();
             mAuth.createUserWithEmailAndPassword(email, pass)
@@ -52,7 +63,12 @@ public class newStudentAccount extends AppCompatActivity {
                                 //Log.d(TAG, "createUserWithEmail:success");
                                 Toast.makeText(newStudentAccount.this, "Account created!",
                                         Toast.LENGTH_SHORT).show();
+
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference ref = database.getReference("users/" + user.getUid());
+                                ref.setValue(new User(name, email, group));
+
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
