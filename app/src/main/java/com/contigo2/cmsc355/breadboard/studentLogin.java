@@ -30,8 +30,8 @@ public class studentLogin extends AppCompatActivity {
             // need to carry over email and password fields if they typed it in
 
             Intent i = new Intent(studentLogin.this, newStudentAccount.class);
-            EditText userEmail = (EditText)findViewById(R.id.email_field_student);
-            EditText userPass = (EditText)findViewById(R.id.password_field_student);
+            EditText userEmail = findViewById(R.id.email_field_student);
+            EditText userPass = findViewById(R.id.password_field_student);
             String email = userEmail.getText().toString();
             String pass = userPass.getText().toString();
             i.putExtra("email", email);
@@ -40,10 +40,10 @@ public class studentLogin extends AppCompatActivity {
         }
 
         if(v.getId() == R.id.BstudentLogin) {
-            EditText e = (EditText)findViewById(R.id.email_field_student);
-            EditText p = (EditText)findViewById(R.id.password_field_student);
+            EditText e = findViewById(R.id.email_field_student);
+            EditText p = findViewById(R.id.password_field_student);
             String email = e.getText().toString();
-            String pass = e.getText().toString();
+            String pass = p.getText().toString();
 
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -55,6 +55,9 @@ public class studentLogin extends AppCompatActivity {
                                 Toast.makeText(studentLogin.this, "Login successful!",
                                         Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                //Intent i new Intent(studentLogin.this, ) // make a student home page kevin !!!!!!
+
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.

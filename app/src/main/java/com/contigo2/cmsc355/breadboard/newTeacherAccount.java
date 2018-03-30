@@ -1,5 +1,6 @@
 package com.contigo2.cmsc355.breadboard;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,6 +65,9 @@ public class newTeacherAccount extends AppCompatActivity {
                                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("users/" + user.getUid());
                                 ref.setValue(new User(name, email, group));
+
+                                Intent i = new Intent(newTeacherAccount.this, TeacherHome.class);
+                                startActivity(i);
 
                                 //updateUI(user);
                             } else {

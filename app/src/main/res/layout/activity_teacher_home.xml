@@ -11,6 +11,7 @@
         android:id="@+id/CNQ_BTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onButtonClick"
         android:text="Create New Quiz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

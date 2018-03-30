@@ -8,7 +8,7 @@
     tools:context="com.contigo2.cmsc355.breadboard.settingsPage">
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/changeEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Email"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.32" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/changePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Password"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.537" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/changeFontSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Font Size"
