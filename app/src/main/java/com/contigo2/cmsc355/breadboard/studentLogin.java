@@ -30,10 +30,10 @@ public class studentLogin extends AppCompatActivity {
             // need to carry over email and password fields if they typed it in
 
             Intent i = new Intent(studentLogin.this, newStudentAccount.class);
-            EditText userEmail = findViewById(R.id.email_field_student);
-            EditText userPass = findViewById(R.id.password_field_student);
-            String email = userEmail.getText().toString();
-            String pass = userPass.getText().toString();
+            EditText e = findViewById(R.id.email_field_student);
+            EditText p = findViewById(R.id.password_field_student);
+            String email = e.getText().toString();
+            String pass = p.getText().toString();
             i.putExtra("email", email);
             i.putExtra("pass", pass);
             startActivity(i);
