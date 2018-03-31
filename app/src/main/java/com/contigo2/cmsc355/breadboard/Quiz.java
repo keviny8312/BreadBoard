@@ -2,26 +2,34 @@ package com.contigo2.cmsc355.breadboard;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Quiz {
+public class Quiz implements Serializable{
     private String name, dueDate, code;
     private int numQuestions;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
     Quiz() {
-        name = "default_name";
-        dueDate = "default_due_date";
-        code = "default_code";
-        questions = new ArrayList<>();
+        this.name = "default_name";
+        this.dueDate = "default_due_date";
+        this.code = "default_code";
+        this.numQuestions = 0;
     }
 
-    Quiz(String n, String dd, String c, int num) {
-        name = n;
-        dueDate = dd;
-        code = c;
-        numQuestions = num;
+    Quiz(String name, String dueDate) {
+        this.name = name;
+        this.dueDate = dueDate;
+        this.code = "this should've been modified by now";
+        this.numQuestions = 0;
+    }
+
+    Quiz(String name, String dueDate, String code, int numQuestions) {
+        this.name = name;
+        this.dueDate = dueDate;
+        this.code = code;
+        this.numQuestions = numQuestions;
     }
 
     public String getName() {
@@ -47,7 +55,7 @@ public class Quiz {
 
     public void addQuestion(QuizQuestion q) {
         questions.add(q);
-        //numQuestions++;
+        numQuestions++;
     }
 
     public void submitQuizToDatabase(DatabaseReference myRef) {

@@ -45,6 +45,7 @@ public class studentLogin extends AppCompatActivity {
             String email = e.getText().toString();
             String pass = p.getText().toString();
 
+            mAuth = FirebaseAuth.getInstance();
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override

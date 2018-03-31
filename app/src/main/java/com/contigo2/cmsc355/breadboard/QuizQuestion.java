@@ -1,6 +1,8 @@
 package com.contigo2.cmsc355.breadboard;
 
-public class QuizQuestion {
+import java.io.Serializable;
+
+public class QuizQuestion implements Serializable{
     private String question;
     private String[] answers;
     private int numAnswers;
@@ -10,7 +12,7 @@ public class QuizQuestion {
         question = "default_question";
         answers = new String[]{"ans1", "ans2", "ans3", "ans4"};
         numAnswers = 4;
-        correct = 1;
+        correct = 1;    //TODO multiple correct answers (just make this an arraylist or something)
     }
 
     QuizQuestion(String q, String a[], int n, int c) {

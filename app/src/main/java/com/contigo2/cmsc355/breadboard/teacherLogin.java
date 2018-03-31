@@ -38,12 +38,13 @@ public class teacherLogin extends AppCompatActivity {
             startActivity(i);
         }
 
-        if(v.getId() == R.id.BstudentLogin) {
-            EditText e = findViewById(R.id.email_field_student);
-            EditText p = findViewById(R.id.password_field_student);
+        if(v.getId() == R.id.BteacherLogin) {
+            EditText e = findViewById(R.id.email_field_teacher);
+            EditText p = findViewById(R.id.password_field_teacher);
             String email = e.getText().toString();
             String pass = p.getText().toString();
 
+            mAuth = FirebaseAuth.getInstance();
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -53,7 +54,7 @@ public class teacherLogin extends AppCompatActivity {
                                 //Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(teacherLogin.this, "Login successful!",
                                         Toast.LENGTH_SHORT).show();
-                                FirebaseUser user = mAuth.getCurrentUser();
+                                //FirebaseUser user = mAuth.getCurrentUser();
 
                                 Intent i = new Intent(teacherLogin.this, TeacherHome.class);
                                 startActivity(i);
