@@ -16,10 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".teacherLogin" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".studentLogin" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".newStudentAccount" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".newTeacherAccount" android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".teacherLogin"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".studentLogin"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".newStudentAccount"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".newTeacherAccount"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".createNewQuiz" />
         <activity android:name=".TeacherHome" />
         <activity android:name=".addQuestions" />
@@ -30,7 +38,10 @@
         <activity android:name=".changeFontSize" />
         <activity android:name=".QuizInformation" />
         <activity android:name=".modifyQuiz" />
-        <activity android:name=".modifyQuestions"></activity>
+        <activity android:name=".modifyQuestions" />
+        <activity android:name=".questionStatistics" />
+        <activity android:name=".quizStatistics" />
+        <activity android:name=".quizConfirmationNumbers"></activity>
     </application>
 
 </manifest>

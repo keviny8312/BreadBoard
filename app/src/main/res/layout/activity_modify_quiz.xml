@@ -9,14 +9,15 @@
 
     <LinearLayout
         android:id="@+id/linearLayout8"
-        android:layout_width="340dp"
-        android:layout_height="170dp"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798">
+        app:layout_constraintVertical_bias="0.717">
 
         <RadioGroup
             android:id="@+id/Choices"
@@ -25,7 +26,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="75dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -34,17 +35,18 @@
                     android:layout_height="85dp" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/ImmediatelyField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Immediately" />
+                    android:text="Immediately"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="75dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -53,13 +55,13 @@
                     android:layout_height="85dp" />
 
                 <EditText
-                    android:id="@+id/editText4"
-                    android:layout_width="match_parent"
+                    android:id="@+id/modifyDueDateField"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:hint="New Due Date"
+                    android:inputType="date" />
 
             </LinearLayout>
         </RadioGroup>
@@ -118,24 +120,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/showAnswers"
-        android:layout_width="136dp"
-        android:layout_height="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Show Answers:"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout7"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout7"
-        app:layout_constraintTop_toBottomOf="@+id/quizTimeLimit"
-        app:layout_constraintVertical_bias="0.478" />
+    <TextView
+        android:id="@+id/showAnswersField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Answers"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"></LinearLayout>
+    <Button
+        android:id="@+id/setActiveBTN"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:text="Set Active"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.589" />
+
+    <Button
+        android:id="@+id/setInactiveBTN"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:text="Set Inactive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767" />
+
+    <Button
+        android:id="@+id/submitChangesBTNModifyQuiz"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="Submit Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <Button
+        android:id="@+id/modifyQuestionsModifyQuiz"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Modify Questions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.934" />
 
 </android.support.constraint.ConstraintLayout>
