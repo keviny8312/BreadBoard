@@ -8,5 +8,15 @@
     <string name="createNewAccount">Create new account</string>
 
     <string name="logoDescription">logo</string>
+    <string name="warningText">Warning:</string>
+    <string name="confirmSubmission">Confirm Submission</string>
+    <string name="returnToDash">Return to Dashboard</string>
+    <string name="timeWarning">You have 5 minutes remaining to finish the quiz!</string>
+    <string name="clickToContinue">Click to Continue</string>
+    <string name="quizSubmitted">Quiz Submitted Successfully!</string>
+    <string name="confirmCodeIs">Your confirmation code is...</string>
+    <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
+
+
 
 </resources>

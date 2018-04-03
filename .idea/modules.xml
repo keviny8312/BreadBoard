@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BreadBoard.iml" filepath="$PROJECT_DIR$/BreadBoard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BreadBoard.iml" filepath="$PROJECT_DIR$/.idea/BreadBoard.iml" />
+      <module fileurl="file://C:\aeEEEEEEEEEEEEEEEE\aeEEEEEEEEEEEEEEE2\BreadBoard\BreadBoard.iml" filepath="C:\aeEEEEEEEEEEEEEEEE\aeEEEEEEEEEEEEEEE2\BreadBoard\BreadBoard.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
