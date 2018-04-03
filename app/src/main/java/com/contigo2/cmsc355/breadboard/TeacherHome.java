@@ -44,8 +44,37 @@ public class TeacherHome extends ListActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(TeacherHome.this, "button " + position + " pressed",
-                        Toast.LENGTH_SHORT).show();
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
+                final int pos = position;
+
+                DatabaseReference quizRef = database.getReference("/users/" + user.getUid() + "/quizzes");
+                ValueEventListener getQuizzes = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        int i = 0;
+                        for (DataSnapshot codeSnapshot: dataSnapshot.getChildren()) {
+                            if(i == pos) {
+                                String quizCode = codeSnapshot.getKey();
+
+                                Intent toQuizInfo = new Intent(TeacherHome.this, QuizInformation.class);
+                                toQuizInfo.putExtra("quizCode", quizCode);
+                                startActivity(toQuizInfo);
+                                break;
+                            }
+                            else i++;
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        // fndbsgyivfeksh
+                    }
+                };
+                quizRef.addListenerForSingleValueEvent(getQuizzes);
+
+
             }
         });
 
@@ -60,16 +89,6 @@ public class TeacherHome extends ListActivity {
         if(v.getId() == R.id.testButton) {
             updateQuizList();
         }
-
-
-
-
-
-
-        //LayoutInflater inflater = TeacherHome.this.getLayoutInflater();
-        //View rowView = inflater.inflate
-        //deleteButton = (Button)rowView.findViewById(R.id.delete_bn);
-
 
     }
 
