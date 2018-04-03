@@ -1,21 +1,22 @@
 package com.contigo2.cmsc355.breadboard;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class QuizQuestion implements Serializable{
     private String question;
     private String[] answers;
     private int numAnswers;
-    private int correct;
+    private ArrayList<Integer> correct;
 
     QuizQuestion() {
         question = "default_question";
         answers = new String[]{"ans1", "ans2", "ans3", "ans4"};
         numAnswers = 4;
-        correct = 1;    //TODO multiple correct answers (just make this an arraylist or something)
+        correct = new ArrayList<>();
     }
 
-    QuizQuestion(String q, String a[], int n, int c) {
+    QuizQuestion(String q, String a[], int n, ArrayList<Integer> c) {
         question = q;
         answers = a;
         numAnswers = n;
@@ -26,8 +27,12 @@ public class QuizQuestion implements Serializable{
         return question;
     }
 
-    public int getCorrectAnswer() {
-        return correct;
+    public String getCorrectAnswers() {
+        String ans = "";
+        for(int i = 0; i < correct.size(); i++) {
+            ans += correct.get(i);
+        }
+        return ans;
     }
 
     public int getNumAnswers() {
@@ -50,8 +55,8 @@ public class QuizQuestion implements Serializable{
         answers = a;
     }
 
-    public void setCorrect(int c) {
-        correct = c;
+    public void addCorrect(int c) {
+        correct.add(c);
     }
 
 }
