@@ -30,7 +30,8 @@
         <activity android:name=".changeFontSize" />
         <activity android:name=".QuizInformation" />
         <activity android:name=".modifyQuiz" />
-        <activity android:name=".modifyQuestions"></activity>
+        <activity android:name=".modifyQuestions" />
+        <activity android:name=".AboutApp"></activity>
     </application>
 
 </manifest>
