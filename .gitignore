@@ -2,6 +2,8 @@
 .gradle
 /local.properties
 
+app/build/
+
 # IntelliJ
 .idea/*
 
