@@ -7,26 +7,29 @@
     <string name="or">or&#8230;</string>
     <string name="createNewAccount">Create new account</string>
 
-    <string name="numQuestions">Number of Questions: </string>
-    <string name="quizName">Quiz Name: </string>
-    <string name="className">Class: </string>
-    <string name="timeLimit">Time Limit: </string>
-    <string name="dueDate">Due Date: </string>
+    <string name="numQuestions">Number of Questions: %1$s</string>
+    <string name="quizName">Quiz Name: %1$s</string>
+    <string name="quizNameBlank">Quiz Name</string>
+    <string name="className">Class: %1$s</string>
+    <string name="classNameBlank">Class Name</string>
+    <string name="timeLimit">Time Limit: %1$s</string>
+    <string name="timeLimitBlank">Time Limit (Optional)</string>
+    <string name="dueDate">Due Date: %1$s</string>
+    <string name="dueDateBlank">Due Date</string>
     <string name="Bdelete">Delete</string>
-    <string name="Bquestions">Questions</string>
+    <string name="Bgrades">Grades</string>
     <string name="Bmodify">Modify</string>
     <string name="Bstats">Stats</string>
-
-    <string name="Bitchstat">Stats $1%s</string>
 
     <string name="logoDescription">logo</string>
     <string name="warningText">Warning:</string>
     <string name="confirmSubmission">Confirm Submission</string>
+    <string name="quizInformation">Quiz Information</string>
     <string name="returnToDash">Return to Dashboard</string>
     <string name="timeWarning">You have 5 minutes remaining to finish the quiz!</string>
     <string name="clickToContinue">Click to Continue</string>
     <string name="quizSubmitted">Quiz Submitted Successfully!</string>
-    <string name="confirmCodeIs">Your confirmation code is...</string>
+    <string name="confirmCodeIs">Your confirmation code is&#8230;</string>
     <string name="takeQuiz">Take Quiz</string>
     <string name="score">Score: </string>
     <string name="answerKey">View Answer Key</string>
@@ -66,6 +69,7 @@
     <string name="showAnswers">Show Answers</string>
     <string name="immediately">Immediately</string>
     <string name="after">After: </string>
+    <string name="addQuestions">Add Questions</string>
 
     <string name="loginAs">Login As: </string>
     <string name="student">Student</string>

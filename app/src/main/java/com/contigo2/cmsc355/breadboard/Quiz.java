@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class Quiz implements Serializable{
-    private String name, dueDate, code;
+    private String name, dueDate, code, time, className;
     private int numQuestions;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
@@ -25,21 +25,27 @@ public class Quiz implements Serializable{
         this.name = "default_name";
         this.dueDate = "default_due_date";
         this.code = "default_code";
+        this.className = "default_class";
         this.numQuestions = 0;
+        this.time = "0";
     }
 
     Quiz(String name, String dueDate) {
         this.name = name;
         this.dueDate = dueDate;
-        this.code = "this should've been modified by now";
+        this.code = "default_code";
+        this.className = "default_class";
         this.numQuestions = 0;
+        this.time = "0";
     }
 
-    Quiz(String name, String dueDate, String code, int numQuestions) {
+    Quiz(String name, String dueDate, String className, String time) {
         this.name = name;
         this.dueDate = dueDate;
-        this.code = code;
-        this.numQuestions = numQuestions;
+        this.code = "default_code";
+        this.className = className;
+        this.numQuestions = 0;
+        this.time = time;
     }
 
     public String getName() {
@@ -58,6 +64,14 @@ public class Quiz implements Serializable{
         return numQuestions;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
     public QuizQuestion getQuestion(int i) {
         if(i > numQuestions) return null;
         else return questions.get(i);
@@ -69,44 +83,14 @@ public class Quiz implements Serializable{
     }
 
     public void submitQuizToDatabase(DatabaseReference myRef) {
-        // myRef = /quiz
-
-        /*
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-        FirebaseDatabase qDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference quizNumRef = qDatabase.getReference("/quiz/" + user.getUid());
-        DatabaseReference actualQuizNum = quizNumRef.child("quizNum");
-
-        ValueEventListener quizNumListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int currentQuizNum = dataSnapshot.getValue(Integer.class);
-                currentQuizNum++;
-
-                Map<String, Object> setQuizNum = new HashMap<>();
-                setQuizNum.put("quizNum", currentQuizNum);
-
-                quizNumRef.updateChildren(setQuizNum);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // fsdbhkds
-            }
-        };
-        actualQuizNum.addListenerForSingleValueEvent(quizNumListener);
-
-        // forgive the ugly mess above its all just to retrieve and modify one value
-
-        */
-
         Map<String, Object> values = new HashMap<>();
 
         myRef = myRef.child("/" + this.getCode());
             values.put("name", this.getName());
             values.put("code", this.getCode());
             values.put("due date", this.getDueDate());
+            values.put("time", this.getTime());
+            values.put("className", this.getClassName());
             values.put("num questions", Integer.toString(this.getNumQuestions()));
             myRef.updateChildren(values);
             // question info
@@ -131,7 +115,7 @@ public class Quiz implements Serializable{
         DatabaseReference quizRef = qDatabase.getReference("users/" + user.getUid() + "/quizzes");
 
         Map<String, Object> addQuiz = new HashMap<>();
-        addQuiz.put(this.getCode(), this.getName());    // this is so so so bad im sorry
+        addQuiz.put(this.getCode(), this.getName());
         quizRef.updateChildren(addQuiz);
     }
 
