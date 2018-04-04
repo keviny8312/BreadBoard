@@ -30,6 +30,8 @@
     <string name="takeQuiz">Take Quiz</string>
     <string name="score">Score: </string>
     <string name="answerKey">View Answer Key</string>
+    <string name="answerKeyHeader">Answer Key</string>
+    <string name="answerSelected">Answer Selected</string>
 
     <string name="addQuestion">Adding Questions</string>
     <string name="question">Question</string>
@@ -64,7 +66,6 @@
     <string name="showAnswers">Show Answers</string>
     <string name="immediately">Immediately</string>
     <string name="after">After: </string>
-    <string name="addQuestions">Add Questions</string>
 
     <string name="loginAs">Login As: </string>
     <string name="student">Student</string>
@@ -90,6 +91,8 @@
     <string name="hours">x hours</string>
     <string name="percentSign">%</string>
     <string name="returnToQuizStats">Return to Quiz Stats</string>
+    <string name="returnToQuizDetails">Return to Quiz Details</string>
+    <string name="returnToQuiz">Return to Quiz</string>
 
     <string name="confirmCode">Example Confirmation Code</string>
 
@@ -110,16 +113,13 @@
 
     <string name="setting">Settings</string>
 
-
-
-
-
-
     <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
 
     <string name="QuestionNumber">Question </string>
     <string name="TimeRemaining">Time Remaining:  </string>
     <string name="QuizHeader">Quiz </string>
+    <string name="SubmitQuiz">Submit Quiz </string>
+    <string name="CorrectAnswer">Correct Answer </string>
     <string name="EnterQuestion">Enter the Question...  </string>
 
 
