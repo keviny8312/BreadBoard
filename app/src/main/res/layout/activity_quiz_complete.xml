@@ -49,10 +49,9 @@
         app:layout_constraintVertical_bias="0.402" />
 
     <TextView
-        android:id="@+id/quizCodeField"
+        android:id="@+id/quizConfirmationField"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:text="@string/confirmCode"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,5 +1,6 @@
 package com.contigo2.cmsc355.breadboard;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,13 +55,11 @@ public class newStudentAccount extends AppCompatActivity {
             final String quiz = q.getText().toString();
 
             mAuth = FirebaseAuth.getInstance();
-            mAuth.createUserWithEmailAndPassword(email, pass)
+            Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                //Log.d(TAG, "createUserWithEmail:success");
                                 Toast.makeText(newStudentAccount.this, "Account created!",
                                         Toast.LENGTH_SHORT).show();
 
@@ -69,13 +68,13 @@ public class newStudentAccount extends AppCompatActivity {
                                 DatabaseReference ref = database.getReference("users/" + user.getUid());
                                 ref.setValue(new User(name, email, group));
 
-                                //updateUI(user);
+                                Intent i = new Intent(newStudentAccount.this, StudentHome.class);
+                                i.putExtra("quizCode", quiz);
+                                startActivity(i);
+
                             } else {
-                                // If sign in fails, display a message to the user.
-                                //Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(newStudentAccount.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
                             }
 
                             // ...

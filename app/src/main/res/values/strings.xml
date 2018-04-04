@@ -59,7 +59,7 @@
     <string name="selectFontSize">Select Font Size</string>
     <string name="exampleText">Example Text</string>
 
-    <string name="changePW">Change Passoword</string>
+    <string name="changePW">Change Password</string>
     <string name="enterOldPW">Enter Old Password</string>
     <string name="enterNewPW">Enter New Password</string>
     <string name="confirmNewPW">Confirm New Password</string>
@@ -101,7 +101,7 @@
     <string name="confirmCode">Example Confirmation Code</string>
 
     <string name="quizCreateSucc">Quiz Created Successfully</string>
-    <string name="quizCodeIs">Your Quiz Code is...</string>
+    <string name="quizCodeIs">Your Quiz Code is&#8230;</string>
     <string name="optionalGrade">Optional Grade</string>
 
     <string name="quizConfirmNumbers">Quiz Confirmation Numbers</string>
@@ -109,7 +109,6 @@
     <string name="confirmNumbers">Confirmation Numbers</string>
 
     <string name="quizInfo">Quiz Information</string>
-
 
     <string name="quizStats">Quiz Statistics</string>
     <string name="sortBy">Sort By: </string>
@@ -119,12 +118,16 @@
 
     <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
 
-    <string name="QuestionNumber">Question </string>
+    <string name="enterNewQuizCode">Enter New Quiz Code</string>
+    <string name="newQuizCode">New Quiz Code...</string>
+
+    <string name="QuestionNumber">Question: </string>
+    <string name="CurrentQuestionNum">%1$d/</string>
     <string name="TimeRemaining">Time Remaining:  </string>
     <string name="QuizHeader">Quiz </string>
     <string name="SubmitQuiz">Submit Quiz </string>
     <string name="CorrectAnswer">Correct Answer </string>
-    <string name="EnterQuestion">Enter the Question...  </string>
+    <string name="EnterQuestion">Enter the Question&#8230;</string>
 
 
 </resources>

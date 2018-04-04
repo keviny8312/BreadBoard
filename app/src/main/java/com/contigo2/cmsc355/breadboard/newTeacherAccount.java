@@ -57,8 +57,7 @@ public class newTeacherAccount extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                //Log.d(TAG, "createUserWithEmail:success");
+
                                 Toast.makeText(newTeacherAccount.this, "Account created!",
                                         Toast.LENGTH_SHORT).show();
 
@@ -66,21 +65,19 @@ public class newTeacherAccount extends AppCompatActivity {
                                 DatabaseReference ref = database.getReference("users/" + user.getUid());
                                 ref.setValue(new User(name, email, group));
 
+                                /*
                                 HashMap<String, Integer> quizNum = new HashMap<>();
                                 quizNum.put("quizNum", 0);
                                 ref = database.getReference("quiz/" + user.getUid());
                                 ref.setValue(quizNum);
+                                */
 
                                 Intent i = new Intent(newTeacherAccount.this, TeacherHome.class);
                                 startActivity(i);
 
-                                //updateUI(user);
                             } else {
-                                // If sign in fails, display a message to the user.
-                                //Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(newTeacherAccount.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
                             }
 
                             // ...

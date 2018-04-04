@@ -78,7 +78,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/quizTimeLimit2"
+                android:id="@+id/quizTimeLimit"
                 android:layout_width="84dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -121,7 +121,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit2"
+                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.442" />
 
@@ -134,7 +134,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit2"
+                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.442" />
         </LinearLayout>
@@ -154,7 +154,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit2"
+                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.442" />
 
@@ -167,7 +167,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit2"
+                app:layout_constraintStart_toStartOf="@+id/quizTimeLimit"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.442" />
         </LinearLayout>

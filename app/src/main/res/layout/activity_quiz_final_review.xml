@@ -64,18 +64,16 @@ tools:context=".quizFinalReview">
 
                 <TextView
                     android:id="@+id/Answer1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/a1" />
+                    android:layout_width="59dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                <EditText
-                    android:id="@+id/answerText1"
+                <TextView
+                    android:id="@+id/question1"
                     android:layout_width="237dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/question"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -86,18 +84,16 @@ tools:context=".quizFinalReview">
 
                 <TextView
                     android:id="@+id/Answer2"
-                    android:layout_width="36dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/a2" />
+                    android:layout_width="59dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                <EditText
-                    android:id="@+id/answerText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/question2"
+                    android:layout_width="235dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/question"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -109,17 +105,15 @@ tools:context=".quizFinalReview">
                 <TextView
                     android:id="@+id/Answer3"
                     android:layout_width="36dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/a3" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                <EditText
-                    android:id="@+id/answerText3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/question3"
+                    android:layout_width="212dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/question"
                     android:inputType="textPersonName" />
 
             </LinearLayout>
@@ -132,17 +126,15 @@ tools:context=".quizFinalReview">
                 <TextView
                     android:id="@+id/Answer4"
                     android:layout_width="37dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/a4" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-                <EditText
-                    android:id="@+id/answerText4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:id="@+id/question4"
+                    android:layout_width="216dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="@string/question"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -150,7 +142,7 @@ tools:context=".quizFinalReview">
     </LinearLayout>
 
     <Button
-        android:id="@+id/finishQuiz"
+        android:id="@+id/returnToQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
@@ -163,7 +155,7 @@ tools:context=".quizFinalReview">
         app:layout_constraintVertical_bias="0.969" />
 
     <Button
-        android:id="@+id/nextQuestion"
+        android:id="@+id/submitQuiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
