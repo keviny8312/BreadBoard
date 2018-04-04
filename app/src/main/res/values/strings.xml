@@ -73,7 +73,45 @@
     <string name="modifyQuestions">Modify Questions</string>
     <string name="finishModifyQuestions">Finish Modifications</string>
     <string name="modifyQuiz">Modify Quiz</string>
-   
+
+    <string name="timeLimitOption">Time Limit (optional)</string>
+    <string name="setActive">Set Active</string>
+    <string name="setInactive">Set Inactive</string>
+    <string name="newDueDate">New Due Date</string>
+    <string name="quizTitle">Quiz Title</string>
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="quizCode">Quiz Code</string>
+
+    <string name="avgTimetoAns">Average Time to Answer: </string>
+    <string name="questionStat">Question x Statistics</string>
+    <string name="hours">x hours</string>
+    <string name="percentSign">%</string>
+    <string name="returnToQuizStats">Return to Quiz Stats</string>
+
+    <string name="confirmCode">Example Confirmation Code</string>
+
+    <string name="quizCreateSucc">Quiz Created Successfully</string>
+    <string name="quizCodeIs">Your Quiz Code is...</string>
+    <string name="optionalGrade">Optional Grade</string>
+
+    <string name="quizConfirmNumbers">Quiz Confirmation Numbers</string>
+    <string name="studentName">Student Name</string>
+    <string name="confirmNumbers">Confirmation Numbers</string>
+
+    <string name="quizInfo">Quiz Information</string>
+
+
+    <string name="quizStats">Quiz Statistics</string>
+    <string name="sortBy">Sort By: </string>
+    <string name="viewConfirmNumbs">View Confirmation Numbers</string>
+
+    <string name="setting">Settings</string>
+
+
+
 
 
 

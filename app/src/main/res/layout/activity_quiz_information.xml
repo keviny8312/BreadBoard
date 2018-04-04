@@ -11,7 +11,7 @@
         android:id="@+id/QuizInfoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quiz Information"
+        android:text="@string/quizInfo"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
