@@ -12,7 +12,7 @@
         android:layout_width="39dp"
         android:layout_height="36dp"
         android:background="@null"
-        android:text="C?"
+        android:text="@string/correct"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -28,7 +28,7 @@
         android:layout_width="125dp"
         android:layout_height="37dp"
         android:background="@null"
-        android:text="Answers"
+        android:text="@string/answer"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,7 @@
         android:layout_width="400dp"
         android:layout_height="56dp"
         android:background="@null"
-        android:text="Adding Questions"
+        android:text="@string/addQuestion"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -58,7 +58,7 @@
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:background="@null"
-        android:text="Question"
+        android:text="@string/question"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +74,7 @@
         android:layout_height="125dp"
         android:background="@null"
         android:ems="10"
-        android:hint="Enter the question..."
+        android:hint="@string/enterQ"
         android:inputType="textPersonName"
         android:maxLines="5"
         android:textSize="24sp"
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 1"
+                    android:hint="@string/a1"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -136,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 2"
+                    android:hint="@string/a2"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 3"
+                    android:hint="@string/a3"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -176,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 4"
+                    android:hint="@string/a4"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -229,7 +229,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
-        android:text="Finish Quiz"
+        android:text="@string/finishQuiz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.239"
@@ -242,7 +242,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
-        android:text="Next Question"
+        android:text="@string/nextQuestion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.781"

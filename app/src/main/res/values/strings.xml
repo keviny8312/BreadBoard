@@ -31,6 +31,51 @@
     <string name="score">Score: </string>
     <string name="answerKey">View Answer Key</string>
 
+    <string name="addQuestion">Adding Questions</string>
+    <string name="question">Question</string>
+    <string name="answer">Answers</string>
+    <string name="correct">C?</string>
+    <string name="enterQ">Enter the question..</string>
+    <string name="a1">Answer 1</string>
+    <string name="a2">Answer 2</string>
+    <string name="a3">Answer 3</string>
+    <string name="a4">Answer 4</string>
+    <string name="finishQuiz">Finish Quiz</string>
+    <string name="nextQuestion">Next Question</string>
+
+    <string name="changeEmail">Change Email</string>
+    <string name="enterPW">Enter Password</string>
+    <string name="enterOldEM">Enter Old Email</string>
+    <string name="enterNewEM">Enter New Email</string>
+    <string name="confirmNewEM">Confirm New Email</string>
+    <string name="submitChanges">Submit Changes</string>
+
+    <string name="changeFontSize">Change Font Size</string>
+    <string name="selectFontSize">Select Font Size</string>
+    <string name="exampleText">Example Text</string>
+
+    <string name="changePW">Change Passoword</string>
+    <string name="enterOldPW">Enter Old Password</string>
+    <string name="enterNewPW">Enter New Password</string>
+    <string name="confirmNewPW">Confirm New Password</string>
+
+    <string name="createNewQuiz">Create New Quiz</string>
+    <string name="quizDueDate">Quiz Due Date</string>
+    <string name="showAnswers">Show Answers</string>
+    <string name="immediately">Immediately</string>
+    <string name="after">After: </string>
+    <string name="addQuestions">Add Questions</string>
+
+    <string name="loginAs">Login As: </string>
+    <string name="student">Student</string>
+    <string name="teacher">Teacher</string>
+
+    <string name="modifyQuestions">Modify Questions</string>
+    <string name="finishModifyQuestions">Finish Modifications</string>
+    <string name="modifyQuiz">Modify Quiz</string>
+   
+
+
 
     <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
 
