@@ -85,7 +85,7 @@ tools:context=".exampleQuiz">
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 1"
+                    android:hint="@string/a1"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -105,7 +105,7 @@ tools:context=".exampleQuiz">
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 2"
+                    android:hint="@string/a2"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -125,7 +125,7 @@ tools:context=".exampleQuiz">
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 3"
+                    android:hint="@string/a3"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -145,7 +145,7 @@ tools:context=".exampleQuiz">
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Answer 4"
+                    android:hint="@string/a4"
                     android:inputType="textPersonName" />
             </LinearLayout>
 
@@ -157,7 +157,7 @@ tools:context=".exampleQuiz">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:onClick="onButtonClick"
-    android:text="Finish Quiz"
+    android:text="@string/finishQuiz"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.239"
@@ -170,7 +170,7 @@ tools:context=".exampleQuiz">
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:onClick="onButtonClick"
-    android:text="Next Question"
+    android:text="@string/nextQuestion"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.781"

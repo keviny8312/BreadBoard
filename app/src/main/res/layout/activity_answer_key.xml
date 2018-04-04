@@ -12,7 +12,7 @@ tools:context=".AnswerKey">
     android:layout_width="400dp"
     android:layout_height="56dp"
     android:background="@null"
-    android:text="Answer Key"
+    android:text="@string/answerKeyHeader"
     android:textAlignment="center"
     android:textColor="#FFFFFF"
     android:textSize="30sp"
@@ -27,7 +27,7 @@ tools:context=".AnswerKey">
         android:layout_width="74dp"
         android:layout_height="59dp"
         android:background="@null"
-        android:text="Answer Selected"
+        android:text="@string/answerSelected"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,14 +67,14 @@ tools:context=".AnswerKey">
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 2" />
+                android:hint="@string/a1" />
 
             <TextView
                 android:id="@+id/RealAnswer2"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 1" />
+                android:hint="@string/a1" />
 
             <EditText
                 android:id="@+id/QuestionText2"
@@ -82,7 +82,7 @@ tools:context=".AnswerKey">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Question 2"
+                android:hint="@string/question"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -96,14 +96,14 @@ tools:context=".AnswerKey">
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 1" />
+                android:hint="@string/a2" />
 
             <TextView
                 android:id="@+id/RealAnswer1"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 2" />
+                android:hint="@string/a2" />
 
             <EditText
                 android:id="@+id/QuestionText1"
@@ -111,7 +111,7 @@ tools:context=".AnswerKey">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Question 1"
+                android:hint="@string/question"
                 android:inputType="textPersonName" />
 
         </LinearLayout>
@@ -126,14 +126,14 @@ tools:context=".AnswerKey">
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 3" />
+                android:hint="@string/a3" />
 
             <TextView
                 android:id="@+id/RealAnswer3"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 3" />
+                android:hint="@string/a3" />
 
             <EditText
                 android:id="@+id/QuestionText3"
@@ -141,7 +141,7 @@ tools:context=".AnswerKey">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Question 3"
+                android:hint="@string/question"
                 android:inputType="textPersonName" />
 
         </LinearLayout>
@@ -156,14 +156,14 @@ tools:context=".AnswerKey">
                 android:layout_width="105dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 4" />
+                android:hint="@string/a4" />
 
             <TextView
                 android:id="@+id/RealAnswer4"
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Answer 4" />
+                android:hint="@string/a4" />
 
             <EditText
                 android:id="@+id/QuestionText4"
@@ -171,7 +171,7 @@ tools:context=".AnswerKey">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Question 4"
+                android:hint="@string/question"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -185,7 +185,7 @@ tools:context=".AnswerKey">
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:onClick="onButtonClick"
-        android:text="Return to Quiz Details"
+        android:text="@string/returnToQuizDetails"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +202,7 @@ tools:context=".AnswerKey">
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Correct Answer"
+        android:text="@string/CorrectAnswer"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
