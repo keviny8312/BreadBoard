@@ -7,7 +7,7 @@
     <string name="or">or&#8230;</string>
     <string name="createNewAccount">Create new account</string>
 
-    <string name="numQuestions">Number of Questions</string>
+    <string name="numQuestions">Number of Questions: </string>
     <string name="quizName">Quiz Name: </string>
     <string name="className">Class: </string>
     <string name="timeLimit">Time Limit: </string>
@@ -17,6 +17,8 @@
     <string name="Bmodify">Modify</string>
     <string name="Bstats">Stats</string>
 
+    <string name="Bitchstat">Stats $1%s</string>
+
     <string name="logoDescription">logo</string>
     <string name="warningText">Warning:</string>
     <string name="confirmSubmission">Confirm Submission</string>
@@ -25,9 +27,10 @@
     <string name="clickToContinue">Click to Continue</string>
     <string name="quizSubmitted">Quiz Submitted Successfully!</string>
     <string name="confirmCodeIs">Your confirmation code is...</string>
-    <string name="dueDate">Due Date:</string>
-    <string name="timeLimit">Time Limit:</string>
-    <string name="numQuestions">Number of Questions:</string>
+    <string name="takeQuiz">Take Quiz</string>
+    <string name="score">Score: </string>
+    <string name="answerKey">View Answer Key</string>
+
 
     <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
 
