@@ -42,7 +42,11 @@
         <activity android:name=".questionStatistics" />
         <activity android:name=".quizStatistics" />
         <activity android:name=".quizConfirmationNumbers" />
-        <activity android:name=".studentGrades"></activity>
+        <activity android:name=".quizComplete" />
+        <activity android:name=".submitQuiz" />
+        <activity android:name=".preQuizInfo"/>
+        <activity android:name=".postQuizInfo"/>
+        <activity android:name=".warningPage"></activity>
     </application>
 
 </manifest>

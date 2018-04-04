@@ -49,6 +49,7 @@ public class newTeacherAccount extends AppCompatActivity {
             final String email = e.getText().toString();
             final String group = "TEACHER";
             final String pass = p.getText().toString();
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             mAuth = FirebaseAuth.getInstance();
             mAuth.createUserWithEmailAndPassword(email, pass)
@@ -62,9 +63,13 @@ public class newTeacherAccount extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
 
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                final FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("users/" + user.getUid());
                                 ref.setValue(new User(name, email, group));
+
+                                HashMap<String, Integer> quizNum = new HashMap<>();
+                                quizNum.put("quizNum", 0);
+                                ref = database.getReference("quiz/" + user.getUid());
+                                ref.setValue(quizNum);
 
                                 Intent i = new Intent(newTeacherAccount.this, TeacherHome.class);
                                 startActivity(i);
@@ -81,6 +86,13 @@ public class newTeacherAccount extends AppCompatActivity {
                             // ...
                         }
                     });
+            /*
+            FirebaseUser user = mAuth.getCurrentUser();
+            DatabaseReference ref = database.getReference("quiz/" + user.getUid());
+            HashMap<String, Integer> quizNum = new HashMap<>();
+            quizNum.put("quizNum", 0);
+            ref.setValue(quizNum);
+            */
         }
 
     }
