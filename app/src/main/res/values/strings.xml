@@ -117,6 +117,10 @@
 
     <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
 
+    <string name="QuestionNumber">Question </string>
+    <string name="TimeRemaining">Time Remaining:  </string>
+    <string name="QuizHeader">Quiz </string>
+    <string name="EnterQuestion">Enter the Question...  </string>
 
 
 </resources>
