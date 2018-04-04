@@ -29,14 +29,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Immediately" />
+                android:text="@string/immediately" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="After:" />
+                android:text="@string/after" />
 
         </RadioGroup>
     </RelativeLayout>
@@ -46,7 +46,7 @@
         android:layout_width="332dp"
         android:layout_height="44dp"
         android:ems="10"
-        android:hint="Quiz Name"
+        android:hint="@string/quizName"
         android:inputType="textCapWords"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
         android:layout_width="331dp"
         android:layout_height="44dp"
         android:ems="10"
-        android:hint="Quiz Due Date"
+        android:hint="@string/dueDate"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
         android:layout_width="131dp"
         android:layout_height="31dp"
         android:hint="Due Date"
-        android:text="Show answers?"
+        android:text="@string/showAnswers"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        android:text="Create New Quiz"
+        android:text="@string/createNewQuiz"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,7 +111,7 @@
         android:layout_width="159dp"
         android:layout_height="64dp"
         android:onClick="onButtonClick"
-        android:text="Add Questions"
+        android:text="@string/addQuestions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
