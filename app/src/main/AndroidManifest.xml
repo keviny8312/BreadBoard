@@ -41,7 +41,8 @@
         <activity android:name=".modifyQuestions" />
         <activity android:name=".questionStatistics" />
         <activity android:name=".quizStatistics" />
-        <activity android:name=".quizConfirmationNumbers"></activity>
+        <activity android:name=".quizConfirmationNumbers" />
+        <activity android:name=".studentGrades"></activity>
     </application>
 
 </manifest>
