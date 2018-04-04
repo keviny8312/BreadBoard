@@ -55,11 +55,11 @@ public class QuizInformation extends AppCompatActivity {
                         numQ = codeSnapshot.getValue(String.class);
                         TVnumQ.setText(res.getString(R.string.numQuestions, numQ));
                     }
-                    if(codeSnapshot.getKey().equals("class name")) {
+                    if(codeSnapshot.getKey().equals("className")) {
                         qClass = codeSnapshot.getValue(String.class);
-                        TVclass.setText(res.getString(R.string.className, "whoops"));
+                        TVclass.setText(res.getString(R.string.className, qClass));
                     }
-                    if(codeSnapshot.getKey().equals("time limit")) {
+                    if(codeSnapshot.getKey().equals("time")) {
                         time = codeSnapshot.getValue(String.class);
                         TVtime.setText(res.getString(R.string.timeLimit, time));
                     }
@@ -80,11 +80,18 @@ public class QuizInformation extends AppCompatActivity {
             startActivity(i);
         }
         if(v.getId() == R.id.gradesBTN) {
-            Intent i = new Intent(QuizInformation.this, quizStatistics.class);
+            Intent i = new Intent(QuizInformation.this, studentGrades.class);
             startActivity(i);
         }
         if(v.getId() == R.id.modifyQuizBTN) {
-
+            Intent i = new Intent(QuizInformation.this, modifyQuiz.class);
+            i.putExtra("quizCode", quizCode);
+            i.putExtra("name", name);
+            i.putExtra("dueDate", dueDate);
+            i.putExtra("class", qClass);
+            i.putExtra("time", time);
+            startActivity(i);
+            finish();
         }
     }
 }
