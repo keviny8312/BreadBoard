@@ -1,5 +1,6 @@
 package com.contigo2.cmsc355.breadboard;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class newTeacherAccount extends AppCompatActivity {
 
@@ -23,11 +29,11 @@ public class newTeacherAccount extends AppCompatActivity {
         setContentView(R.layout.activity_new_teacher_account);
 
         if(getIntent().hasExtra("email")) {
-            EditText e = (EditText)findViewById(R.id.teacher_email_nac);
+            EditText e = findViewById(R.id.teacher_email_nac);
             e.setText(getIntent().getStringExtra("email"));
         }
         if(getIntent().hasExtra("pass")) {
-            EditText p = (EditText)findViewById(R.id.teacher_password_nac);
+            EditText p = findViewById(R.id.teacher_password_nac);
             p.setText(getIntent().getStringExtra("pass"));
         }
 
@@ -36,10 +42,14 @@ public class newTeacherAccount extends AppCompatActivity {
     public void onButtonClick(View v) {
         if(v.getId() == R.id.cna_teacher) {
             //create acct in firebase
-            EditText e = (EditText)findViewById(R.id.teacher_email_nac);
-            EditText p = (EditText)findViewById(R.id.teacher_password_nac);
-            String email = e.getText().toString();
-            String pass = e.getText().toString();
+            EditText n = findViewById(R.id.teacher_name_nac);
+            EditText e = findViewById(R.id.teacher_email_nac);
+            EditText p = findViewById(R.id.teacher_password_nac);
+            final String name = n.getText().toString();
+            final String email = e.getText().toString();
+            final String group = "TEACHER";
+            final String pass = p.getText().toString();
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             mAuth = FirebaseAuth.getInstance();
             mAuth.createUserWithEmailAndPassword(email, pass)
@@ -51,7 +61,19 @@ public class newTeacherAccount extends AppCompatActivity {
                                 //Log.d(TAG, "createUserWithEmail:success");
                                 Toast.makeText(newTeacherAccount.this, "Account created!",
                                         Toast.LENGTH_SHORT).show();
+
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                DatabaseReference ref = database.getReference("users/" + user.getUid());
+                                ref.setValue(new User(name, email, group));
+
+                                HashMap<String, Integer> quizNum = new HashMap<>();
+                                quizNum.put("quizNum", 0);
+                                ref = database.getReference("quiz/" + user.getUid());
+                                ref.setValue(quizNum);
+
+                                Intent i = new Intent(newTeacherAccount.this, TeacherHome.class);
+                                startActivity(i);
+
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -64,6 +86,13 @@ public class newTeacherAccount extends AppCompatActivity {
                             // ...
                         }
                     });
+            /*
+            FirebaseUser user = mAuth.getCurrentUser();
+            DatabaseReference ref = database.getReference("quiz/" + user.getUid());
+            HashMap<String, Integer> quizNum = new HashMap<>();
+            quizNum.put("quizNum", 0);
+            ref.setValue(quizNum);
+            */
         }
 
     }

@@ -29,8 +29,8 @@ public class teacherLogin extends AppCompatActivity {
             // need to carry over email and password fields if they typed it in
 
             Intent i = new Intent(teacherLogin.this, newTeacherAccount.class);
-            EditText userEmail = (EditText)findViewById(R.id.email_field_teacher);
-            EditText userPass = (EditText)findViewById(R.id.password_field_teacher);
+            EditText userEmail = findViewById(R.id.email_field_teacher);
+            EditText userPass = findViewById(R.id.password_field_teacher);
             String email = userEmail.getText().toString();
             String pass = userPass.getText().toString();
             i.putExtra("email", email);
@@ -38,12 +38,13 @@ public class teacherLogin extends AppCompatActivity {
             startActivity(i);
         }
 
-        if(v.getId() == R.id.BstudentLogin) {
-            EditText e = (EditText)findViewById(R.id.email_field_student);
-            EditText p = (EditText)findViewById(R.id.password_field_student);
+        if(v.getId() == R.id.BteacherLogin) {
+            EditText e = findViewById(R.id.email_field_teacher);
+            EditText p = findViewById(R.id.password_field_teacher);
             String email = e.getText().toString();
-            String pass = e.getText().toString();
+            String pass = p.getText().toString();
 
+            mAuth = FirebaseAuth.getInstance();
             mAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -53,7 +54,11 @@ public class teacherLogin extends AppCompatActivity {
                                 //Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(teacherLogin.this, "Login successful!",
                                         Toast.LENGTH_SHORT).show();
-                                FirebaseUser user = mAuth.getCurrentUser();
+                                //FirebaseUser user = mAuth.getCurrentUser();
+
+                                Intent i = new Intent(teacherLogin.this, TeacherHome.class);
+                                startActivity(i);
+
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.

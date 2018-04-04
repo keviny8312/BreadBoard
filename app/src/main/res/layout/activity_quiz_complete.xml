@@ -5,55 +5,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context="com.contigo2.cmsc355.breadboard.TeacherHome">
+    tools:context="com.contigo2.cmsc355.breadboard.quizConfirmation">
 
     <Button
-        android:id="@+id/CNQ_BTN"
+        android:id="@+id/returnToDashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
-        android:text="Create New Quiz"
+        android:text="@string/returnToDash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
-
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="368dp"
-        android:layout_height="328dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.548" />
+        app:layout_constraintVertical_bias="0.917" />
 
     <TextView
-        android:id="@+id/WelcomeMessage"
+        android:id="@+id/textView"
+        android:layout_width="317dp"
+        android:layout_height="35dp"
+        android:text="@string/quizSubmitted"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.199" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:text="Welcome, Please Scan Your First Item"
-        android:textAlignment="textStart"
-        android:textSize="22sp"
+        android:text="@string/confirmCodeIs"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.158" />
+        app:layout_constraintVertical_bias="0.402" />
 
-    <Button
-        android:id="@+id/testButton"
-        android:layout_width="54dp"
-        android:layout_height="48dp"
-        android:onClick="onButtonClick"
+    <TextView
+        android:id="@+id/quizCodeField"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:text="FuckAssBro   8==D"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.6" />
 </android.support.constraint.ConstraintLayout>

@@ -5,75 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context="com.contigo2.cmsc355.breadboard.settingsPage">
+    tools:context="com.contigo2.cmsc355.breadboard.quizStatistics">
 
-    <Button
-        android:id="@+id/changeEmail"
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change Email"
-        android:textSize="24sp"
+        android:text="Quiz Statistics"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295" />
-
-    <Button
-        android:id="@+id/changePassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Password"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.479" />
-
-    <Button
-        android:id="@+id/changeFontSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Font Size"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.681" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Settings"
+        android:text="Sort by..."
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.131" />
+
+    <Spinner
+        android:id="@+id/sortByMenu"
+        android:layout_width="240dp"
+        android:layout_height="27dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
+
+    <ListView
+        android:id="@+id/quizQuestionList"
+        android:layout_width="350dp"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555">
+
+    </ListView>
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/button5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="ABOUT"
-        android:textSize="24sp"
+        android:layout_height="49dp"
+        android:text="View Confirmation Numbers "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.883" />
+        app:layout_constraintVertical_bias="0.969" />
 </android.support.constraint.ConstraintLayout>

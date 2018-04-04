@@ -7,26 +7,179 @@
     android:background="@drawable/login_background"
     tools:context="com.contigo2.cmsc355.breadboard.modifyQuiz">
 
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717">
+
+        <RadioGroup
+            android:id="@+id/Choices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="85dp" />
+
+                <TextView
+                    android:id="@+id/ImmediatelyField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Immediately"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="85dp" />
+
+                <EditText
+                    android:id="@+id/modifyDueDateField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="New Due Date"
+                    android:inputType="date" />
+
+            </LinearLayout>
+        </RadioGroup>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/quizModifyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modify Quiz"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.055" />
+
     <EditText
         android:id="@+id/quizTitleField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="159dp"
+        android:layout_marginTop="84dp"
         android:ems="10"
         android:hint="Quiz Title"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button11"
+    <EditText
+        android:id="@+id/quizDueDateField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="182dp"
-        android:layout_marginStart="97dp"
-        android:layout_marginLeft="97dp"
-        android:text="Button"
+        android:layout_marginTop="148dp"
+        android:ems="10"
+        android:hint="Due Date"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/quizTimeLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="204dp"
+        android:ems="10"
+        android:hint="Time Limit (optional)"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showAnswersField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Answers"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/setActiveBTN"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:text="Set Active"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.589" />
+
+    <Button
+        android:id="@+id/setInactiveBTN"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:text="Set Inactive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767" />
+
+    <Button
+        android:id="@+id/submitChangesBTNModifyQuiz"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="Submit Changes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <Button
+        android:id="@+id/modifyQuestionsModifyQuiz"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Modify Questions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.928"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.934" />
+
 </android.support.constraint.ConstraintLayout>
