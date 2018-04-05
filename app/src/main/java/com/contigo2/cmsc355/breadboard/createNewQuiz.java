@@ -30,8 +30,8 @@ public class createNewQuiz extends AppCompatActivity {
 
             EditText name = findViewById(R.id.quizTitleFieldCNQ);
             EditText dueDate = findViewById(R.id.quizDueDateCNQ);
-            EditText qClass = findViewById(R.id.classNameCNQ);
-            EditText time = findViewById(R.id.timeLimitCNQ);
+            EditText qClass = findViewById(R.id.quizClassCNQ);
+            EditText time = findViewById(R.id.quizTimeLimitCNQ);
             String quizName = name.getText().toString();
             String quizDueDate = dueDate.getText().toString();
             String quizClass = qClass.getText().toString();

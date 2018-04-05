@@ -130,5 +130,6 @@
     <string name="CorrectAnswer">Correct Answer </string>
     <string name="EnterQuestion">Enter the Question&#8230;</string>
 
+    <string name="timeRemaining">Time remaining: </string>
 
 </resources>

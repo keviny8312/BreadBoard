@@ -2,6 +2,7 @@ package com.contigo2.cmsc355.breadboard;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,7 @@ import java.util.Map;
 public class exampleQuiz extends AppCompatActivity {
     private String quizCode, questionNumString;
     private int questionNum, totalNumQuestions;
-
+    private long timeLimitMilliseconds;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,9 @@ public class exampleQuiz extends AppCompatActivity {
         final TextView ans2 = findViewById(R.id.answerText2);
         final TextView ans3 = findViewById(R.id.answerText3);
         final TextView ans4 = findViewById(R.id.answerText4);
+
+
+        final TextView timeRemainingField = findViewById(R.id.TimeRemaining);
 
         DatabaseReference questionRef = database.getReference("quiz/" + quizCode);
         ValueEventListener getQuizzes = new ValueEventListener() {
@@ -69,6 +73,31 @@ public class exampleQuiz extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {}
         };
         questionRef.addListenerForSingleValueEvent(getQuizzes);
+
+        //Here is the timer implementation
+
+        //Modify the number 30000, 30000 milliseconds = 30 seconds, so the time timit should be converted to miliseconds
+        //Change the 45 to the time it actually is limited to: pull from firebase.
+        timeLimitMilliseconds = 45 * 60 * 1000;
+        new CountDownTimer(30000, 1000){
+            public void onTick(long millisUntilFinished) {
+                int timeLeft = (int) millisUntilFinished / 1000;
+                String disp = "Time remaining " + String.format("%02d", timeLeft);
+                timeRemainingField.setText(disp);
+
+                //If 5 minutes left, go to the warning page
+                if(timeLeft == 300000) {
+                    Intent i = new Intent(exampleQuiz.this, warningPage.class);
+                    startActivity(i);
+                }
+            }
+
+            public void onFinish() {
+                //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
+                Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
+                startActivity(i);
+            }
+        }.start();
     }
 
     public void onButtonClick(View v) {
