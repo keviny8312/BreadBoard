@@ -65,7 +65,7 @@ public class TeacherHome extends ListActivity {
                         // fndbsgyivfeksh
                     }
                 };
-                quizRef.addListenerForSingleValueEvent(getQuizzes);
+                quizRef.addValueEventListener(getQuizzes);
 
 
             }

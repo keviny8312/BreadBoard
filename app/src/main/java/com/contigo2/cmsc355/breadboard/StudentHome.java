@@ -25,12 +25,13 @@ import java.util.Map;
 public class StudentHome extends ListActivity {
 
     ArrayList<String> listQuizzes = new ArrayList<>();
-
     ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getIntent().hasExtra("removeQuiz")) adapter.remove(getIntent().getStringExtra("removeQuiz"));
+
         setContentView(R.layout.activity_student_home);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listQuizzes);
@@ -55,7 +56,7 @@ public class StudentHome extends ListActivity {
                 @Override
                 public void onCancelled(DatabaseError databaseError) {}
             };
-            nameRef.addListenerForSingleValueEvent(getName);
+            nameRef.addValueEventListener(getName);
         }
 
         ListView list = findViewById(android.R.id.list);

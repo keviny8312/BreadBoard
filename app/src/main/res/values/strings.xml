@@ -12,10 +12,11 @@
     <string name="quizNameBlank">Quiz Name</string>
     <string name="className">Class: %1$s</string>
     <string name="classNameBlank">Class Name</string>
-    <string name="timeLimit">Time Limit: %1$s</string>
+    <string name="timeLimit">Time Limit: %1$s minutes</string>
     <string name="timeLimitBlank">Time Limit (Optional)</string>
     <string name="dueDate">Due Date: %1$s</string>
     <string name="dueDateBlank">Due Date</string>
+    <string name="averageGrade">Average: %1$f</string>
     <string name="Bdelete">Delete</string>
     <string name="Bgrades">Grades</string>
     <string name="Bmodify">Modify</string>
@@ -31,7 +32,7 @@
     <string name="quizSubmitted">Quiz Submitted Successfully!</string>
     <string name="confirmCodeIs">Your confirmation code is&#8230;</string>
     <string name="takeQuiz">Take Quiz</string>
-    <string name="score">Score: </string>
+    <string name="score">Score: %1$f</string>
     <string name="answerKey">View Answer Key</string>
     <string name="answerKeyHeader">Answer Key</string>
     <string name="answerSelected">Answer Selected</string>
@@ -106,7 +107,7 @@
 
     <string name="quizConfirmNumbers">Quiz Confirmation Numbers</string>
     <string name="studentName">Student Name</string>
-    <string name="confirmNumbers">Confirmation Numbers</string>
+    <string name="confirmNumbers">Confirmation Number</string>
 
     <string name="quizInfo">Quiz Information</string>
 

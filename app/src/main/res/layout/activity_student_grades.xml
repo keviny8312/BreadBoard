@@ -47,32 +47,21 @@
         app:layout_constraintVertical_bias="0.151" />
 
     <ListView
-        android:id="@+id/studentNamesList2"
-        android:layout_width="180dp"
+        android:id="@android:id/list"
+        android:layout_width="346dp"
         android:layout_height="380dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614" />
-
-    <ListView
-        android:id="@+id/studentScoresList"
-        android:layout_width="180dp"
-        android:layout_height="380dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.614" />
+        app:layout_constraintVertical_bias="0.609" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/returnToQuizDetails"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Return to quiz details"
+        android:onClick="onButtonClick"
+        android:text="@string/returnToQuizDetails"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.421"

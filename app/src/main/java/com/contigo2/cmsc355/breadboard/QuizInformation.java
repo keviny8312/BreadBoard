@@ -77,11 +77,15 @@ public class QuizInformation extends AppCompatActivity {
     public void onButtonClick(View v) {
         if(v.getId() == R.id.statsBTN) {
             Intent i = new Intent(QuizInformation.this, quizStatistics.class);
+            i.putExtra("quizCode", quizCode);
             startActivity(i);
+            finish();
         }
         if(v.getId() == R.id.gradesBTN) {
             Intent i = new Intent(QuizInformation.this, studentGrades.class);
+            i.putExtra("quizCode", quizCode);
             startActivity(i);
+            finish();
         }
         if(v.getId() == R.id.modifyQuizBTN) {
             Intent i = new Intent(QuizInformation.this, modifyQuiz.class);
@@ -90,6 +94,30 @@ public class QuizInformation extends AppCompatActivity {
             i.putExtra("dueDate", dueDate);
             i.putExtra("class", qClass);
             i.putExtra("time", time);
+            startActivity(i);
+            finish();
+        }
+        if(v.getId() == R.id.deleteQuizBTN) {
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            database.getReference("quiz/" + quizCode).removeValue();
+
+            DatabaseReference getQuizzes = database.getReference();
+            ValueEventListener deleteQuizzes = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot codeSnapshot: dataSnapshot.child("users/").getChildren()) {
+                        database.getReference("users/" + codeSnapshot.getKey() + "/finished/" + quizCode).removeValue();
+                        database.getReference("users/" + codeSnapshot.getKey() + "/quizzes/" + quizCode).removeValue();
+                        database.getReference("users/" + codeSnapshot.getKey() + "/answers/" + quizCode).removeValue();
+                        database.getReference("users/" + codeSnapshot.getKey() + "/confCodes/" + quizCode).removeValue();
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {}
+            };
+            getQuizzes.addListenerForSingleValueEvent(deleteQuizzes);
+
+            Intent i = new Intent(QuizInformation.this, TeacherHome.class);
             startActivity(i);
             finish();
         }
