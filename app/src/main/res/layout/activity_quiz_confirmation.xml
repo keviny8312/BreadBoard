@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
-        android:text="Return to Dashboard"
+        android:text="@string/returnToDash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -24,7 +24,7 @@
         android:id="@+id/textView"
         android:layout_width="297dp"
         android:layout_height="35dp"
-        android:text="Quiz Created Successfully!"
+        android:text="@string/quizCreateSucc"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The quiz code is..."
+        android:text="@string/quizCodeIs"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -49,10 +49,10 @@
         app:layout_constraintVertical_bias="0.402" />
 
     <TextView
-        android:id="@+id/quizCodeField"
+        android:id="@+id/quizConfirmationField"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:text="FuckAssBro"
+        android:text="@string/confirmCode"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,8 +69,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
-        android:text="optional grade"
+        android:text="@string/optionalGrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quizCodeField" />
+        app:layout_constraintTop_toBottomOf="@+id/quizConfirmationField" />
 </android.support.constraint.ConstraintLayout>

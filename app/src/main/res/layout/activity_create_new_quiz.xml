@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.779">
+        app:layout_constraintVertical_bias="0.813">
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -43,30 +43,30 @@
 
     <EditText
         android:id="@+id/quizTitleFieldCNQ"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
+        android:layout_width="332dp"
+        android:layout_height="40dp"
         android:ems="10"
-        android:hint="@string/quizName"
+        android:hint="@string/quizNameBlank"
         android:inputType="textCapWords"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.295" />
+        app:layout_constraintVertical_bias="0.14" />
 
     <EditText
         android:id="@+id/quizDueDateCNQ"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
+        android:layout_width="331dp"
+        android:layout_height="44dp"
         android:ems="10"
-        android:hint="@string/dueDate"
+        android:hint="@string/dueDateBlank"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/showAnswersFieldCNQ"
@@ -77,10 +77,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.695"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.656" />
+        app:layout_constraintVertical_bias="0.567" />
 
     <TextView
         android:id="@+id/CNQTitle"
@@ -111,29 +111,33 @@
         app:layout_constraintVertical_bias="0.968" />
 
     <EditText
-        android:id="@+id/classNameCNQ"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
+        android:id="@+id/quizClassCNQ"
+        android:layout_width="332dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="@string/className"
+        android:hint="@string/classNameBlank"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintVertical_bias="0.356" />
 
     <EditText
-        android:id="@+id/timeLimitCNQ"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
+        android:id="@+id/quizTimeLimitCNQ"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="time"
-        android:hint="@string/timeLimit"
+        android:hint="@string/timeLimitBlank"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.469" />
 
 </android.support.constraint.ConstraintLayout>

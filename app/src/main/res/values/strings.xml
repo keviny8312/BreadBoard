@@ -7,29 +7,35 @@
     <string name="or">or&#8230;</string>
     <string name="createNewAccount">Create new account</string>
 
-    <string name="numQuestions">Number of Questions: </string>
-    <string name="quizName">Quiz Name: </string>
-    <string name="className">Class: </string>
-    <string name="timeLimit">Time Limit: </string>
-    <string name="dueDate">Due Date: </string>
+    <string name="numQuestions">Number of Questions: %1$s</string>
+    <string name="quizName">Quiz Name: %1$s</string>
+    <string name="quizNameBlank">Quiz Name</string>
+    <string name="className">Class: %1$s</string>
+    <string name="classNameBlank">Class Name</string>
+    <string name="timeLimit">Time Limit: %1$s minutes</string>
+    <string name="timeLimitBlank">Time Limit (Optional)</string>
+    <string name="dueDate">Due Date: %1$s</string>
+    <string name="dueDateBlank">Due Date</string>
+    <string name="averageGrade">Average: %1$f</string>
     <string name="Bdelete">Delete</string>
-    <string name="Bquestions">Questions</string>
+    <string name="Bgrades">Grades</string>
     <string name="Bmodify">Modify</string>
     <string name="Bstats">Stats</string>
-
-    <string name="Bitchstat">Stats $1%s</string>
 
     <string name="logoDescription">logo</string>
     <string name="warningText">Warning:</string>
     <string name="confirmSubmission">Confirm Submission</string>
+    <string name="quizInformation">Quiz Information</string>
     <string name="returnToDash">Return to Dashboard</string>
     <string name="timeWarning">You have 5 minutes remaining to finish the quiz!</string>
     <string name="clickToContinue">Click to Continue</string>
     <string name="quizSubmitted">Quiz Submitted Successfully!</string>
-    <string name="confirmCodeIs">Your confirmation code is...</string>
+    <string name="confirmCodeIs">Your confirmation code is&#8230;</string>
     <string name="takeQuiz">Take Quiz</string>
-    <string name="score">Score: </string>
+    <string name="score">Score: %1$f</string>
     <string name="answerKey">View Answer Key</string>
+    <string name="answerKeyHeader">Answer Key</string>
+    <string name="answerSelected">Answer Selected</string>
 
     <string name="addQuestion">Adding Questions</string>
     <string name="question">Question</string>
@@ -54,7 +60,7 @@
     <string name="selectFontSize">Select Font Size</string>
     <string name="exampleText">Example Text</string>
 
-    <string name="changePW">Change Passoword</string>
+    <string name="changePW">Change Password</string>
     <string name="enterOldPW">Enter Old Password</string>
     <string name="enterNewPW">Enter New Password</string>
     <string name="confirmNewPW">Confirm New Password</string>
@@ -74,12 +80,55 @@
     <string name="finishModifyQuestions">Finish Modifications</string>
     <string name="modifyQuiz">Modify Quiz</string>
 
+    <string name="timeLimitOption">Time Limit (optional)</string>
+    <string name="setActive">Set Active</string>
+    <string name="setInactive">Set Inactive</string>
+    <string name="newDueDate">New Due Date</string>
+    <string name="quizTitle">Quiz Title</string>
 
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="quizCode">Quiz Code</string>
 
+    <string name="avgTimetoAns">Average Time to Answer: </string>
+    <string name="questionStat">Question x Statistics</string>
+    <string name="hours">x hours</string>
+    <string name="percentSign">%</string>
+    <string name="returnToQuizStats">Return to Quiz Stats</string>
+    <string name="returnToQuizDetails">Return to Quiz Details</string>
+    <string name="returnToQuiz">Return to Quiz</string>
 
+    <string name="confirmCode">Example Confirmation Code</string>
+
+    <string name="quizCreateSucc">Quiz Created Successfully</string>
+    <string name="quizCodeIs">Your Quiz Code is&#8230;</string>
+    <string name="optionalGrade">Optional Grade</string>
+
+    <string name="quizConfirmNumbers">Quiz Confirmation Numbers</string>
+    <string name="studentName">Student Name</string>
+    <string name="confirmNumbers">Confirmation Number</string>
+
+    <string name="quizInfo">Quiz Information</string>
+
+    <string name="quizStats">Quiz Statistics</string>
+    <string name="sortBy">Sort By: </string>
+    <string name="viewConfirmNumbs">View Confirmation Numbers</string>
+
+    <string name="setting">Settings</string>
 
     <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
 
+    <string name="enterNewQuizCode">Enter New Quiz Code</string>
+    <string name="newQuizCode">New Quiz Code...</string>
+
+    <string name="QuestionNumber">Question: </string>
+    <string name="CurrentQuestionNum">%1$d/</string>
+    <string name="TimeRemaining">Time Remaining:  </string>
+    <string name="QuizHeader">Quiz </string>
+    <string name="SubmitQuiz">Submit Quiz </string>
+    <string name="CorrectAnswer">Correct Answer </string>
+    <string name="EnterQuestion">Enter the Question&#8230;</string>
 
 
 </resources>

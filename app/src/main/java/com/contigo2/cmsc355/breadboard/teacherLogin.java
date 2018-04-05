@@ -55,7 +55,7 @@ public class teacherLogin extends AppCompatActivity {
                                 Toast.makeText(teacherLogin.this, "Login successful!",
                                         Toast.LENGTH_SHORT).show();
                                 //FirebaseUser user = mAuth.getCurrentUser();
-
+                                // TODO make sure only teachers are logging in here!!!!
                                 Intent i = new Intent(teacherLogin.this, TeacherHome.class);
                                 startActivity(i);
 

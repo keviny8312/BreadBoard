@@ -86,6 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
+        android:onClick="onButtonClick"
         android:text="@string/loginButton"
         app:layout_constraintBottom_toTopOf="@+id/login_alternative_student"
         app:layout_constraintEnd_toEndOf="parent"

@@ -14,7 +14,7 @@ public class quizConfirmation extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_confirmation);
         Quiz quiz = (Quiz)getIntent().getSerializableExtra("passQuiz");
 
-        TextView code = findViewById(R.id.quizCodeField);
+        TextView code = findViewById(R.id.quizConfirmationField);
         code.setText(quiz.getCode());
     }
 

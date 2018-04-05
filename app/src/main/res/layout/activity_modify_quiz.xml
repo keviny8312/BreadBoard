@@ -14,10 +14,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.717">
+        app:layout_constraintVertical_bias="0.784">
 
         <RadioGroup
             android:id="@+id/Choices"
@@ -36,10 +36,10 @@
 
                 <TextView
                     android:id="@+id/ImmediatelyField"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="Immediately"
+                    android:text="@string/immediately"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -56,11 +56,11 @@
 
                 <EditText
                     android:id="@+id/modifyDueDateField"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="New Due Date"
+                    android:hint="@string/newDueDate"
                     android:inputType="date" />
 
             </LinearLayout>
@@ -71,60 +71,59 @@
         android:id="@+id/quizModifyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modify Quiz"
+        android:layout_marginTop="8dp"
+        android:text="@string/modifyQuiz"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/quizTitleField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Quiz Title"
+        android:hint="@string/quizTitle"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/quizModifyTitle" />
 
     <EditText
         android:id="@+id/quizDueDateField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Due Date"
-        android:inputType="textPersonName"
+        android:hint="@string/dueDate"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/quizTitleField" />
 
     <EditText
         android:id="@+id/quizTimeLimit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Time Limit (optional)"
+        android:hint="@string/timeLimitOption"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/quizDueDateField" />
 
     <TextView
         android:id="@+id/showAnswersField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Answers"
+        android:text="@string/showAnswers"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,13 +131,14 @@
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <Button
         android:id="@+id/setActiveBTN"
         android:layout_width="135dp"
         android:layout_height="60dp"
-        android:text="Set Active"
+        android:onClick="onButtonClick"
+        android:text="@string/setActive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.883"
@@ -150,7 +150,8 @@
         android:id="@+id/setInactiveBTN"
         android:layout_width="135dp"
         android:layout_height="60dp"
-        android:text="Set Inactive"
+        android:onClick="onButtonClick"
+        android:text="@string/setInactive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.883"
@@ -162,7 +163,8 @@
         android:id="@+id/submitChangesBTNModifyQuiz"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:text="Submit Changes"
+        android:onClick="onButtonClick"
+        android:text="@string/submitChanges"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
@@ -174,12 +176,33 @@
         android:id="@+id/modifyQuestionsModifyQuiz"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="Modify Questions"
+        android:onClick="onButtonClick"
+        android:text="@string/modifyQuestions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.934" />
+
+    <EditText
+        android:id="@+id/quizClassName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/classNameBlank"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizTimeLimit"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

@@ -28,13 +28,17 @@ public class createNewQuiz extends AppCompatActivity {
 
             //TODO back button (everywhere)
 
-            EditText qn = findViewById(R.id.quizTitleFieldCNQ);
-            EditText qdd = findViewById(R.id.quizDueDateCNQ);
-            String quizName = qn.getText().toString();
-            String quizDueDate = qdd.getText().toString();
+            EditText name = findViewById(R.id.quizTitleFieldCNQ);
+            EditText dueDate = findViewById(R.id.quizDueDateCNQ);
+            EditText qClass = findViewById(R.id.quizClassCNQ);
+            EditText time = findViewById(R.id.quizTimeLimitCNQ);
+            String quizName = name.getText().toString();
+            String quizDueDate = dueDate.getText().toString();
+            String quizClass = qClass.getText().toString();
+            String quizTime = time.getText().toString();
 
             Intent i = new Intent(createNewQuiz.this, addQuestions.class);
-            i.putExtra("passQuiz", new Quiz(quizName, quizDueDate));
+            i.putExtra("passQuiz", new Quiz(quizName, quizDueDate, quizClass, quizTime));
 
             startActivity(i);
         }

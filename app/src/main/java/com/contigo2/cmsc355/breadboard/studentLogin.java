@@ -27,15 +27,16 @@ public class studentLogin extends AppCompatActivity {
 
     public void onButtonClick(View v) {
         if(v.getId() == R.id.BcreateNewAccount) {
-            // need to carry over email and password fields if they typed it in
-
             Intent i = new Intent(studentLogin.this, newStudentAccount.class);
+
             EditText e = findViewById(R.id.email_field_student);
             EditText p = findViewById(R.id.password_field_student);
+
             String email = e.getText().toString();
             String pass = p.getText().toString();
             i.putExtra("email", email);
             i.putExtra("pass", pass);
+
             startActivity(i);
         }
 
@@ -51,24 +52,17 @@ public class studentLogin extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                //Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(studentLogin.this, "Login successful!",
                                         Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
 
-                                //Intent i new Intent(studentLogin.this, ) // make a student home page kevin !!!!!!
-
-                                //updateUI(user);
+                                Intent i = new Intent(studentLogin.this, StudentHome.class);
+                                startActivity(i);
                             } else {
-                                // If sign in fails, display a message to the user.
-                                //Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Toast.makeText(studentLogin.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
                             }
 
-                            // ...
                         }
                     });
         }

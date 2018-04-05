@@ -11,7 +11,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Question x Statistics"
+        android:text="@string/questionStat"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Average Time To Answer:"
+        android:text="@string/avgTimetoAns"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +38,7 @@
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100000 hours"
+        android:text="@string/hours"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +73,7 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Choice 1"
+                android:text="@string/a1"
                 android:textAlignment="gravity" />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="%"
+                android:text="@string/percentSign"
                 android:textAlignment="gravity"
                 android:textSize="40sp" />
 
@@ -111,7 +111,7 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Choice 2" />
+                android:text="@string/a2" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -127,7 +127,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="%"
+                android:text="@string/percentSign"
                 android:textSize="40dp" />
 
         </LinearLayout>
@@ -149,7 +149,8 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Choice 3" />
+                android:text="Choice 3"
+                tools:text="@string/a3" />
 
             <TextView
                 android:id="@+id/textView15"
@@ -166,7 +167,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="%"
+                android:text="@string/percentSign"
                 android:textSize="40dp" />
 
         </LinearLayout>
@@ -187,7 +188,7 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Choice 4" />
+                android:text="@string/a4" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -204,7 +205,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="%"
+                android:text="@string/percentSign"
                 android:textSize="40dp" />
 
         </LinearLayout>
@@ -215,7 +216,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Return to Quiz Stats"
+        android:text="@string/returnToQuizStats"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -227,7 +228,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next Question"
+        android:text="@string/nextQuestion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.865"
