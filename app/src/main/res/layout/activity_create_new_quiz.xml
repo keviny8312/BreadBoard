@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.689">
+        app:layout_constraintVertical_bias="0.779">
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -43,8 +43,8 @@
 
     <EditText
         android:id="@+id/quizTitleFieldCNQ"
-        android:layout_width="332dp"
-        android:layout_height="44dp"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="@string/quizName"
         android:inputType="textCapWords"
@@ -56,8 +56,8 @@
 
     <EditText
         android:id="@+id/quizDueDateCNQ"
-        android:layout_width="331dp"
-        android:layout_height="44dp"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="@string/dueDate"
         android:inputType="date"
@@ -80,16 +80,7 @@
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
-
-    <ListView
-        android:layout_width="332dp"
-        android:layout_height="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.168" />
+        app:layout_constraintVertical_bias="0.656" />
 
     <TextView
         android:id="@+id/CNQTitle"
@@ -117,6 +108,32 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="0.968" />
+
+    <EditText
+        android:id="@+id/classNameCNQ"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/className"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <EditText
+        android:id="@+id/timeLimitCNQ"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:inputType="time"
+        android:hint="@string/timeLimit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
 
 </android.support.constraint.ConstraintLayout>
