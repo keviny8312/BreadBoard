@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +27,7 @@ public class quizStatistics extends ListActivity {
     private String quizCode;
     ArrayList<String> listQuizzes = new ArrayList<>();
     ArrayAdapter<String> adapter;
-
+    Spinner sortByMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,12 @@ public class quizStatistics extends ListActivity {
             i.putExtra("quizCode", quizCode);
             startActivity(i);
             finish();
+        }
+        if(v.getId() == R.id.sortByMenu){
+            sortByMenu = findViewById(R.id.sortByMenu);
+            ArrayAdapter<CharSequence> arrAdapter = ArrayAdapter.createFromResource(this, R.array.sort_by_choices, android.R.layout.simple_spinner_item);
+            arrAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            sortByMenu.setAdapter(arrAdapter);
         }
     }
 
@@ -78,5 +86,17 @@ public class quizStatistics extends ListActivity {
             public void onCancelled(DatabaseError databaseError) {}
         };
         quizRef.addListenerForSingleValueEvent(getGrades);
+    }
+    public void sortLista(){
+
+    }
+    public void sortListb(){
+
+    }
+    public void sortListc(){
+
+    }
+    public void sortListd(){
+
     }
 }

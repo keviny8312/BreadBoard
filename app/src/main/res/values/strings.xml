@@ -132,4 +132,12 @@
 
     <string name="timeRemaining">Time remaining: </string>
 
+
+    <string-array name="sort_by_choices">
+        <item>Average Time (High to low)</item>
+        <item>Average Time (Low to high)</item>
+        <item>Percent correct (High to low)</item>
+        <item>Percent correct (Low to high)</item>
+    </string-array>
+
 </resources>

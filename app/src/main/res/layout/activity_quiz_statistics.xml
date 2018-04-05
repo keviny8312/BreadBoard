@@ -37,8 +37,9 @@
 
     <Spinner
         android:id="@+id/sortByMenu"
-        android:layout_width="240dp"
-        android:layout_height="27dp"
+        android:layout_width="274dp"
+        android:layout_height="28dp"
+        android:entries="@array/sort_by_choices"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"

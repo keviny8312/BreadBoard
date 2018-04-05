@@ -78,17 +78,18 @@ public class exampleQuiz extends AppCompatActivity {
 
         //Modify the number 30000, 30000 milliseconds = 30 seconds, so the time timit should be converted to miliseconds
         //Change the 45 to the time it actually is limited to: pull from firebase.
-        timeLimitMilliseconds = 45 * 60 * 1000;
-        new CountDownTimer(30000, 1000){
+        timeLimitMilliseconds = 6 * 60 * 1000;
+        new CountDownTimer(timeLimitMilliseconds, 1000){
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) millisUntilFinished / 1000;
                 String disp = "Time remaining " + String.format("%02d", timeLeft);
                 timeRemainingField.setText(disp);
 
                 //If 5 minutes left, go to the warning page
-                if(timeLeft == 300000) {
+                if(timeLeft == 300) {
                     Intent i = new Intent(exampleQuiz.this, warningPage.class);
                     startActivity(i);
+
                 }
             }
 
@@ -96,6 +97,7 @@ public class exampleQuiz extends AppCompatActivity {
                 //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
                 Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
                 startActivity(i);
+                finish();
             }
         }.start();
     }

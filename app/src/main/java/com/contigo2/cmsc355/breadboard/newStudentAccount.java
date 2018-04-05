@@ -48,38 +48,44 @@ public class newStudentAccount extends AppCompatActivity {
             EditText p = findViewById(R.id.student_password_nac);
             EditText q = findViewById(R.id.student_init_quiz);
 
-            final String name = n.getText().toString();
-            final String email = e.getText().toString();
-            final String pass = p.getText().toString();
+            final String name = n.getText().toString().trim();
+            final String email = e.getText().toString().trim();
+            final String pass = p.getText().toString().trim();
             final String group = "STUDENT";
-            final String quiz = q.getText().toString();
+            final String quiz = q.getText().toString().trim();
+            if(name.equals("") || email.equals("") || pass.equals("") || quiz.equals("")){
+                Toast.makeText(newStudentAccount.this, "No fields should be blank!!!", Toast.LENGTH_LONG).show();
+            }
+            else{
+                mAuth = FirebaseAuth.getInstance();
+                Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, pass)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(newStudentAccount.this, "Account created!",
+                                            Toast.LENGTH_SHORT).show();
 
-            mAuth = FirebaseAuth.getInstance();
-            Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(newStudentAccount.this, "Account created!",
-                                        Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference ref = database.getReference("users/" + user.getUid());
+                                    ref.setValue(new User(name, email, group));
 
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                DatabaseReference ref = database.getReference("users/" + user.getUid());
-                                ref.setValue(new User(name, email, group));
+                                    Intent i = new Intent(newStudentAccount.this, StudentHome.class);
+                                    i.putExtra("quizCode", quiz);
+                                    startActivity(i);
 
-                                Intent i = new Intent(newStudentAccount.this, StudentHome.class);
-                                i.putExtra("quizCode", quiz);
-                                startActivity(i);
+                                } else {
+                                    Toast.makeText(newStudentAccount.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
 
-                            } else {
-                                Toast.makeText(newStudentAccount.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                // ...
                             }
+                        });
+            }
 
-                            // ...
-                        }
-                    });
+
         }
 
     }
