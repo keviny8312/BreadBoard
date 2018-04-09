@@ -32,8 +32,8 @@
                 android:text="@string/immediately" />
 
             <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="match_parent"
+                android:id="@+id/delayedAnswers"
+                android:layout_width="79dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/after" />
@@ -139,5 +139,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.469" />
+
+    <EditText
+        android:id="@+id/delayedAnswersDate"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.837" />
 
 </android.support.constraint.ConstraintLayout>

@@ -78,6 +78,7 @@ public class exampleQuiz extends AppCompatActivity {
 
         //Modify the number 30000, 30000 milliseconds = 30 seconds, so the time timit should be converted to miliseconds
         //Change the 45 to the time it actually is limited to: pull from firebase.
+        /*
         timeLimitMilliseconds = 6 * 60 * 1000;
         new CountDownTimer(timeLimitMilliseconds, 1000){
             public void onTick(long millisUntilFinished) {
@@ -99,7 +100,7 @@ public class exampleQuiz extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }.start();
+        }.start(); */
     }
 
     public void onButtonClick(View v) {

@@ -15,7 +15,7 @@
     <string name="timeLimit">Time Limit: %1$s minutes</string>
     <string name="timeLimitBlank">Time Limit (Optional)</string>
     <string name="dueDate">Due Date: %1$s</string>
-    <string name="dueDateBlank">Due Date</string>
+    <string name="dueDateBlank">Due Date (MM-DD-YYYY)</string>
     <string name="averageGrade">Average: %1$f</string>
     <string name="Bdelete">Delete</string>
     <string name="Bgrades">Grades</string>
