@@ -14,14 +14,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class newStudentAccount extends AppCompatActivity {
-
+    private boolean valid;
     private FirebaseAuth mAuth;
 
     @Override
@@ -53,10 +56,8 @@ public class newStudentAccount extends AppCompatActivity {
             final String pass = p.getText().toString().trim();
             final String group = "STUDENT";
             final String quiz = q.getText().toString().trim();
-            if(name.equals("") || email.equals("") || pass.equals("") || quiz.equals("")){
-                Toast.makeText(newStudentAccount.this, "No fields should be blank!!!", Toast.LENGTH_LONG).show();
-            }
-            else{
+
+            if(validInput()) {// && isValidQuizCode(quiz)) {
                 mAuth = FirebaseAuth.getInstance();
                 Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -89,5 +90,59 @@ public class newStudentAccount extends AppCompatActivity {
         }
 
     }
+
+    public boolean isValidQuizCode(final String quizCode) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference codeCheck = database.getReference("quiz");
+
+        ValueEventListener getQuizzes = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(quizCode)) valid = true;
+                else valid = false;
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        codeCheck.addListenerForSingleValueEvent(getQuizzes);
+
+        if(!valid) {
+            Toast.makeText(newStudentAccount.this, "Please enter a valid quiz code.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validInput() {
+        EditText n = findViewById(R.id.student_name_nac);
+        EditText e = findViewById(R.id.student_email_nac);
+        EditText p = findViewById(R.id.student_password_nac);
+        EditText q = findViewById(R.id.student_init_quiz);
+
+        String name = n.getText().toString().trim();
+        String email = e.getText().toString().trim();
+        String pass = p.getText().toString().trim();
+        String quiz = q.getText().toString().trim();
+
+        if(name.isEmpty()) {
+            Toast.makeText(newStudentAccount.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(email.isEmpty()) {
+            Toast.makeText(newStudentAccount.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(pass.isEmpty()) {
+            Toast.makeText(newStudentAccount.this, "Please enter a password.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(quiz.isEmpty()) {
+            Toast.makeText(newStudentAccount.this, "Please enter a quiz code.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+
+    }
+
 
 }

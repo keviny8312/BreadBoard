@@ -92,7 +92,8 @@ public class quizFinalReview extends AppCompatActivity {
                         String studentAnsPath = "users/" + user.getUid() + "/answers/" + quizCode + "/q" + i;
                         String correctAnsPath = "quiz/" + quizCode + "/questions/q" + i + "/correct";
 
-                        Toast.makeText(quizFinalReview.this, "ans:" + dataSnapshot.child(studentAnsPath).getValue().toString() + " correct: " + dataSnapshot.child(correctAnsPath).getValue().toString(), Toast.LENGTH_SHORT).show();
+                        // debugging answers, leave here for now
+                        //Toast.makeText(quizFinalReview.this, "ans:" + dataSnapshot.child(studentAnsPath).getValue().toString() + " correct: " + dataSnapshot.child(correctAnsPath).getValue().toString(), Toast.LENGTH_SHORT).show();
 
                         studentAns.add(dataSnapshot.child(studentAnsPath).getValue().toString());
 

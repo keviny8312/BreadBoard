@@ -109,6 +109,14 @@ public class modifyQuiz extends AppCompatActivity {
             i.putExtra("quizCode", quizCode);
             startActivity(i);
         }
+
+        if(v.getId() == R.id.modifyQuestions) {
+            Intent i = new Intent(modifyQuiz.this, modifyQuestions.class);
+            i.putExtra("quizCode", quizCode);
+            i.putExtra("questionNum", 0);
+            startActivity(i);
+            finish();
+        }
     }
 
     public boolean checkValidInput() {
