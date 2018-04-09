@@ -22,7 +22,7 @@ import java.util.Map;
 public class quizFinalReview extends AppCompatActivity {
 
     private String quizCode;
-
+    // TODO this needs to be replaced with array adapter (or something else dynamic !!)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ public class quizFinalReview extends AppCompatActivity {
 
                         studentAns.add(dataSnapshot.child(studentAnsPath).getValue().toString());
 
-                        if(studentAns.get(i).contains(dataSnapshot.child(correctAnsPath).getValue().toString())) correct++;
+                        if(dataSnapshot.child(correctAnsPath).getValue().toString().contains(studentAns.get(i))) correct++;
                         total++;
                         i++;
                     }

@@ -16,12 +16,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class postQuizInfo extends AppCompatActivity {
+    private String quizCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_quiz_info);
 
-        final String quizCode = getIntent().getStringExtra("quizCode");
+        quizCode = getIntent().getStringExtra("quizCode");
 
         final TextView title = findViewById(R.id.quizTitleField);
         final TextView dueDate = findViewById(R.id.quizDueDate);
@@ -41,7 +43,8 @@ public class postQuizInfo extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 title.setText(dataSnapshot.child("name").getValue().toString());
                 dueDate.setText(res.getString(R.string.dueDate, dataSnapshot.child("due date").getValue().toString()));
-                time.setText(res.getString(R.string.timeLimit, dataSnapshot.child("time").getValue().toString()));
+                if(dataSnapshot.child("time").getValue().toString().equals("0")) time.setText(res.getString(R.string.timeLimitNone));
+                else time.setText(res.getString(R.string.timeLimit, dataSnapshot.child("time").getValue().toString()));
                 score.setText(res.getString(R.string.score, Float.valueOf(dataSnapshot.child("grades/" + user.getUid()).getValue().toString())));
                 numQ.setText(res.getString(R.string.numQuestions, dataSnapshot.child("num questions").getValue().toString()));
                 qClass.setText(res.getString(R.string.className, dataSnapshot.child("className").getValue().toString()));
@@ -60,6 +63,10 @@ public class postQuizInfo extends AppCompatActivity {
         }
         if(v.getId() == R.id.answerKeyButton) {
             //TODO add field for teacher to set answer visibility, block as necessary
+            Intent i = new Intent(postQuizInfo.this, AnswerKey.class);
+            i.putExtra("quizCode", quizCode);
+            startActivity(i);
+            finish();
         }
     }
 }

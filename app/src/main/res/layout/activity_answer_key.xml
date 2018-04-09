@@ -63,55 +63,49 @@ tools:context=".AnswerKey">
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Answer2"
+                android:id="@+id/userAnswer1"
                 android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a1" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/RealAnswer2"
+                android:id="@+id/correctAnswer1"
                 android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a1" />
-
-            <EditText
-                android:id="@+id/QuestionText2"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="@string/question"
-                android:inputType="textPersonName" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/Answer1"
-                android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a2" />
-
-            <TextView
-                android:id="@+id/RealAnswer1"
-                android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a2" />
-
-            <EditText
                 android:id="@+id/QuestionText1"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="@string/question"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userAnswer2"
+                android:layout_width="105dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/correctAnswer2"
+                android:layout_width="115dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/QuestionText2"
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
                 android:inputType="textPersonName" />
 
         </LinearLayout>
@@ -122,26 +116,23 @@ tools:context=".AnswerKey">
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Answer3"
+                android:id="@+id/userAnswer3"
                 android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a3" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/RealAnswer3"
+                android:id="@+id/correctAnswer3"
                 android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a3" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:id="@+id/QuestionText3"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="@string/question"
                 android:inputType="textPersonName" />
 
         </LinearLayout>
@@ -152,26 +143,23 @@ tools:context=".AnswerKey">
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/Answer4"
+                android:id="@+id/userAnswer4"
                 android:layout_width="105dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a4" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/RealAnswer4"
+                android:id="@+id/correctAnswer4"
                 android:layout_width="115dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/a4" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:id="@+id/QuestionText4"
                 android:layout_width="230dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="@string/question"
                 android:inputType="textPersonName" />
         </LinearLayout>
 
@@ -179,7 +167,7 @@ tools:context=".AnswerKey">
 </LinearLayout>
 
     <Button
-        android:id="@+id/finishQuiz"
+        android:id="@+id/returnToQuizDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
