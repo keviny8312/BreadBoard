@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="@string/loginEmail"
                 android:inputType="textEmailAddress" />
 
         </LinearLayout>
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/loginPassword"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="19dp"
         android:onClick="onButtonClick"
-        android:text="Login"
+        android:text="@string/loginButton"
         app:layout_constraintBottom_toTopOf="@+id/login_alternative_teacher"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,9 +98,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="33dp"
-        android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:text="or..."
+        android:layout_marginStart="32dp"
+        android:text="@string/or"
         app:layout_constraintBottom_toTopOf="@+id/BcreateNewAccount"
         app:layout_constraintStart_toStartOf="@+id/BteacherLogin"
         app:layout_constraintTop_toBottomOf="@+id/BteacherLogin" />
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:onClick="onButtonClick"
-        android:text="Create New Account"
+        android:text="@string/createNewAccount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

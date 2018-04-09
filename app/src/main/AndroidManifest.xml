@@ -30,15 +30,21 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".createNewQuiz" />
         <activity android:name=".TeacherHome" />
-        <activity android:name=".addQuestions" />
+        <activity
+            android:name=".addQuestions"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".quizConfirmation" />
         <activity android:name=".settingsPage" />
         <activity android:name=".changeEmail" />
         <activity android:name=".changePassword" />
         <activity android:name=".changeFontSize" />
         <activity android:name=".QuizInformation" />
-        <activity android:name=".modifyQuiz" />
-        <activity android:name=".modifyQuestions" />
+        <activity
+            android:name=".modifyQuiz"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".modifyQuestions"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".questionStatistics" />
         <activity android:name=".quizStatistics" />
         <activity android:name=".quizConfirmationNumbers" />

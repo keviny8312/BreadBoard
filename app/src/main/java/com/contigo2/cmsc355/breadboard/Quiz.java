@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class Quiz implements Serializable{
-    private String name, dueDate, code, time, className;
+    private String name, dueDate, code, time, className, ansDate, active;
     private int numQuestions;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
@@ -28,6 +28,8 @@ public class Quiz implements Serializable{
         this.className = "default_class";
         this.numQuestions = 0;
         this.time = "0";
+        this.ansDate = "default_ans_date";
+        this.active = "false";
     }
 
     Quiz(String name, String dueDate) {
@@ -37,15 +39,19 @@ public class Quiz implements Serializable{
         this.className = "default_class";
         this.numQuestions = 0;
         this.time = "0";
+        this.ansDate = "default_ans_date";
+        this.active = "false";
     }
 
-    Quiz(String name, String dueDate, String className, String time) {
+    Quiz(String name, String dueDate, String className, String time, String ansDate, String active) {
         this.name = name;
         this.dueDate = dueDate;
         this.code = "default_code";
         this.className = className;
         this.numQuestions = 0;
         this.time = time;
+        this.ansDate = ansDate;
+        this.active = active;
     }
 
     public String getName() {
@@ -77,6 +83,14 @@ public class Quiz implements Serializable{
         else return questions.get(i);
     }
 
+    public String getAnsDate() {
+        return ansDate;
+    }
+
+    public String getActiveState() {
+        return active;
+    }
+
     public void addQuestion(QuizQuestion q) {
         questions.add(q);
         numQuestions++;
@@ -92,6 +106,8 @@ public class Quiz implements Serializable{
             values.put("time", this.getTime());
             values.put("className", this.getClassName());
             values.put("num questions", Integer.toString(this.getNumQuestions()));
+            values.put("answer date", this.getAnsDate());
+            values.put("active", this.getActiveState());
             myRef.updateChildren(values);
             // question info
             DatabaseReference qRef = myRef.child("/questions");

@@ -13,10 +13,14 @@
     <string name="className">Class: %1$s</string>
     <string name="classNameBlank">Class Name</string>
     <string name="timeLimit">Time Limit: %1$s minutes</string>
+    <string name="timeLimitNone">Time Limit: none</string>
     <string name="timeLimitBlank">Time Limit (Optional)</string>
     <string name="dueDate">Due Date: %1$s</string>
     <string name="dueDateBlank">Due Date (MM-DD-YYYY)</string>
+    <string name="delayedAnswersBlank">MM-DD-YYYY</string>
     <string name="averageGrade">Average: %1$f</string>
+    <string name="immediatelyActive">Quiz Active (Default)</string>
+    <string name="delayedActive">Quiz Inactive</string>
     <string name="Bdelete">Delete</string>
     <string name="Bgrades">Grades</string>
     <string name="Bmodify">Modify</string>

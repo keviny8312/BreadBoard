@@ -5,8 +5,10 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,7 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class QuizInformation extends AppCompatActivity {
-    private String quizCode = "", name = "", time = "", numQ = "", qClass = "", dueDate = "";
+    private String quizCode = "", name = "", time = "", numQ = "", qClass = "", dueDate = "",
+                   ansDate = "", active = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +64,19 @@ public class QuizInformation extends AppCompatActivity {
                     }
                     if(codeSnapshot.getKey().equals("time")) {
                         time = codeSnapshot.getValue(String.class);
-                        TVtime.setText(res.getString(R.string.timeLimit, time));
+                        if(time.equals("0")) TVtime.setText(res.getString(R.string.timeLimitNone));
+                        else TVtime.setText(res.getString(R.string.timeLimit, time));
+                    }
+                    if(codeSnapshot.getKey().equals("answer date")) {
+                        ansDate = codeSnapshot.getValue(String.class);
+                    }
+                    if(codeSnapshot.getKey().equals("active")) {
+                        active = codeSnapshot.getValue(String.class);
                     }
                 }
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // fndbsgyivfeksh
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         };
         getQuizInfo.addListenerForSingleValueEvent(listenQuizInfo);
 
@@ -94,6 +102,8 @@ public class QuizInformation extends AppCompatActivity {
             i.putExtra("dueDate", dueDate);
             i.putExtra("class", qClass);
             i.putExtra("time", time);
+            i.putExtra("ansDate", ansDate);
+            i.putExtra("active", active);
             startActivity(i);
             finish();
         }
