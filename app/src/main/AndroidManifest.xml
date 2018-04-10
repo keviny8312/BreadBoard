@@ -55,6 +55,7 @@
         <activity android:name=".preQuizInfo"/>
         <activity android:name=".postQuizInfo"/>
         <activity android:name=".warningPage" />
+        <activity android:name=".warningPageUnanswered" />
         <activity android:name=".exampleQuiz" />
         <activity android:name=".quizFinalReview" />
         <activity android:name=".AnswerKey"/>

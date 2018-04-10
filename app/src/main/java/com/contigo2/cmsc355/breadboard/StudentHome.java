@@ -113,6 +113,10 @@ public class StudentHome extends ListActivity {
             String newCode = ETnewCode.getText().toString();
             enterNewQuizCode(newCode);
         }
+        if(v.getId() == R.id.Bsettings) {
+            Intent i = new Intent(StudentHome.this, settingsPage.class);
+            startActivity(i);
+        }
     }
 
     public void updateQuizList() {

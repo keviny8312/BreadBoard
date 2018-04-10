@@ -45,7 +45,6 @@ public class quizStatistics extends ListActivity {
             Intent i = new Intent(quizStatistics.this, quizConfirmationNumbers.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
-            finish();
         }
         if(v.getId() == R.id.sortByMenu){
             sortByMenu = findViewById(R.id.sortByMenu);

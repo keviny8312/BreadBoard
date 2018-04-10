@@ -7,6 +7,8 @@
     <string name="or">or&#8230;</string>
     <string name="createNewAccount">Create new account</string>
 
+    <string name="settings">Settings</string>
+
     <string name="numQuestions">Number of Questions: %1$s</string>
     <string name="quizName">Quiz Name: %1$s</string>
     <string name="quizNameBlank">Quiz Name</string>
@@ -69,6 +71,8 @@
     <string name="enterNewPW">Enter New Password</string>
     <string name="confirmNewPW">Confirm New Password</string>
 
+    <string name="about">About</string>
+
     <string name="createNewQuiz">Create New Quiz</string>
     <string name="quizDueDate">Quiz Due Date</string>
     <string name="showAnswers">Show Answers</string>
@@ -121,10 +125,10 @@
 
     <string name="setting">Settings</string>
 
-    <string name="incompleteWarning">You will not receive credit for unanswered questions. Are you sure you want to submit?</string>
+    <string name="incompleteWarning">You will not receive credit for unanswered questions.</string>
 
     <string name="enterNewQuizCode">Enter New Quiz Code</string>
-    <string name="newQuizCode">New Quiz Code...</string>
+    <string name="newQuizCode">New Quiz Code&#8230;</string>
 
     <string name="QuestionNumber">Question: </string>
     <string name="CurrentQuestionNum">%1$d/</string>

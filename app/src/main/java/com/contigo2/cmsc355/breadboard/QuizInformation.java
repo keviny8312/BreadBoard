@@ -87,13 +87,11 @@ public class QuizInformation extends AppCompatActivity {
             Intent i = new Intent(QuizInformation.this, quizStatistics.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
-            finish();
         }
         if(v.getId() == R.id.gradesBTN) {
             Intent i = new Intent(QuizInformation.this, studentGrades.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
-            finish();
         }
         if(v.getId() == R.id.modifyQuizBTN) {
             Intent i = new Intent(QuizInformation.this, modifyQuiz.class);
@@ -105,7 +103,6 @@ public class QuizInformation extends AppCompatActivity {
             i.putExtra("ansDate", ansDate);
             i.putExtra("active", active);
             startActivity(i);
-            finish();
         }
         if(v.getId() == R.id.deleteQuizBTN) {
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -129,7 +126,6 @@ public class QuizInformation extends AppCompatActivity {
 
             Intent i = new Intent(QuizInformation.this, TeacherHome.class);
             startActivity(i);
-            finish();
         }
     }
 }

@@ -105,21 +105,21 @@ public class exampleQuiz extends AppCompatActivity {
 
     public void onButtonClick(View v) {
         if(v.getId() == R.id.nextQuestion) {
-            answerQuestion();
+            if(answerQuestion()) {
+                if(questionNum + 1 >= totalNumQuestions) {
+                    Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
+                    i.putExtra("quizCode", quizCode);
+                    startActivity(i);
+                }
+                else {
+                    Intent i = getIntent();
+                    i.putExtra("questionNum", questionNum + 1);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(i);
+                }
+            }
 
-            if(questionNum + 1 >= totalNumQuestions) {
-                Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
-                i.putExtra("quizCode", quizCode);
-                startActivity(i);
-                finish();
-            }
-            else {
-                Intent i = getIntent();
-                i.putExtra("questionNum", questionNum + 1);
-                finish();
-                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(i);
-            }
+
 
         }
         if(v.getId() == R.id.finishQuiz) {
@@ -130,7 +130,7 @@ public class exampleQuiz extends AppCompatActivity {
         }
     }
 
-    public void answerQuestion() {
+    public boolean answerQuestion() {
         RadioButton rb1 = findViewById(R.id.ChoiceBTN1);
         RadioButton rb2 = findViewById(R.id.ChoiceBTN2);
         RadioButton rb3 = findViewById(R.id.ChoiceBTN3);
@@ -141,6 +141,14 @@ public class exampleQuiz extends AppCompatActivity {
         if(rb3.isChecked()) choice = 3;
         if(rb4.isChecked()) choice = 4;
 
+        if(choice == 0) {
+            Intent i = new Intent(exampleQuiz.this, warningPageUnanswered.class);
+            i.putExtra("quizCode", quizCode);
+            i.putExtra("questionNum", questionNum);
+            startActivity(i);
+            return false;
+        }
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -149,5 +157,6 @@ public class exampleQuiz extends AppCompatActivity {
         Map<String, Object> answer = new HashMap<>();
         answer.put(questionNumString, Integer.toString(choice));
         quizRef.updateChildren(answer);
+        return true;
     }
 }

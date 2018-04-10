@@ -28,5 +28,10 @@ public class settingsPage extends AppCompatActivity {
             Intent i = new Intent(settingsPage.this, changeFontSize.class);
             startActivity(i);
         }
+
+        if(v.getId() == R.id.about) {
+            Intent i = new Intent(settingsPage.this, AboutApp.class);
+            startActivity(i);
+        }
     }
 }

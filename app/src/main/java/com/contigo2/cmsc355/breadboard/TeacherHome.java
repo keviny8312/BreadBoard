@@ -79,8 +79,9 @@ public class TeacherHome extends ListActivity {
             Intent i = new Intent(TeacherHome.this, createNewQuiz.class);
             startActivity(i);
         }
-        if(v.getId() == R.id.testButton) {
-            updateQuizList();
+        if(v.getId() == R.id.Bsettings) {
+            Intent i = new Intent(TeacherHome.this, settingsPage.class);
+            startActivity(i);
         }
     }
 
@@ -99,9 +100,7 @@ public class TeacherHome extends ListActivity {
                 }
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // fndbsgyivfeksh
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         };
         quizRef.addListenerForSingleValueEvent(getQuizzes);
     }
