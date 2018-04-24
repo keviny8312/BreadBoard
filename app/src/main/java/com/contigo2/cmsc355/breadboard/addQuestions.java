@@ -1,11 +1,14 @@
 package com.contigo2.cmsc355.breadboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,33 +30,35 @@ public class addQuestions extends AppCompatActivity {
 
     public void onButtonClick(View v) {
         if(v.getId() == R.id.finishQuiz) {
+            if(!emptyQuestion()) {
+                addCurrentQuestionToQuiz();
+                quiz.generateCode();
 
-            addCurrentQuestionToQuiz();
-            quiz.generateCode();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = mAuth.getCurrentUser();
+                DatabaseReference quizRef = database.getReference("/quiz");
+                quiz.submitQuizToDatabase(quizRef);
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            FirebaseUser user = mAuth.getCurrentUser();
-            DatabaseReference quizRef = database.getReference("/quiz");
-            quiz.submitQuizToDatabase(quizRef);
+                Intent i = new Intent(addQuestions.this, quizConfirmation.class);
+                i.putExtra("passQuiz", quiz);
 
-            Intent i = new Intent(addQuestions.this, quizConfirmation.class);
-            i.putExtra("passQuiz", quiz);
-
-            startActivity(i);
+                startActivity(i);
+            }
         }
 
         if(v.getId() == R.id.nextQuestion) {
-            //TODO check for empty questions
             //TODO dynamic number of answer choices
+            
+            if(!emptyQuestion()) {
+                addCurrentQuestionToQuiz();
 
-            addCurrentQuestionToQuiz();
-
-            Intent i = getIntent();
-            i.putExtra("passQuiz", quiz);
-            finish();
-            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(i);
+                Intent i = getIntent();
+                i.putExtra("passQuiz", quiz);
+                finish();
+                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(i);
+            }
         }
     }
 
@@ -84,5 +89,23 @@ public class addQuestions extends AppCompatActivity {
 
         QuizQuestion question = new QuizQuestion(questionText, answers, answers.length, correct);
         quiz.addQuestion(question);
+    }
+
+    public boolean emptyQuestion() {
+        EditText qText  = findViewById(R.id.questionText);
+        String question = qText.getText().toString();
+        if(question.isEmpty()) {
+            AlertDialog.Builder emptyQuestion = new AlertDialog.Builder(addQuestions.this);
+            emptyQuestion.setMessage(R.string.emptyQuestionWarning);
+            emptyQuestion.setTitle(R.string.alertTitle);
+            emptyQuestion.setPositiveButton(R.string.alertOK, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            emptyQuestion.create().show();
+            return true;
+        }
+        return false;
     }
 }

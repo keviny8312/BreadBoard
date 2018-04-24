@@ -43,6 +43,9 @@
     <string name="answerKeyHeader">Answer Key</string>
     <string name="answerSelected">Answer Selected</string>
 
+    <string name="alertTitle">Warning</string>
+    <string name="alertOK">OK</string>
+
     <string name="addQuestion">Adding Questions</string>
     <string name="question">Question</string>
     <string name="answer">Answers</string>
@@ -54,6 +57,7 @@
     <string name="a4">Answer 4</string>
     <string name="finishQuiz">Finish Quiz</string>
     <string name="nextQuestion">Next Question</string>
+    <string name="emptyQuestionWarning">You cannot have empty questions.</string>
 
     <string name="changeEmail">Change Email</string>
     <string name="enterPW">Enter Password</string>
