@@ -141,7 +141,7 @@
     <string name="QuestionNumber">Question: </string>
     <string name="CurrentQuestionNum">%1$d/</string>
     <string name="TotalQuestionNum">%1$d</string>
-    <string name="TimeRemaining">Time Remaining:  </string>
+    <string name="TimeRemaining">Time Remaining: %1$d:%2$d</string>
     <string name="QuizHeader">Quiz </string>
     <string name="SubmitQuiz">Submit Quiz </string>
     <string name="CorrectAnswer">Correct Answer </string>

@@ -20,14 +20,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class exampleQuiz extends AppCompatActivity {
     private String quizCode, questionNumString;
-    private int questionNum, totalNumQuestions, choice;
-    private long timeLimitMilliseconds;
-    public boolean finish;
+    private int questionNum, totalNumQuestions, choice, maxTimeLimit = 100;
+    private long timeLimitMilliseconds, timeLimitFromDatabase;
+    private final int MS_TO_S = 1000, S_TO_MIN = 60, MIN_TO_HR = 60, FIVE_MIN = 300;
+    public boolean finish, initTime;
+    public FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    public DatabaseReference userTime = database.getReference("users/" + uid + "/timers");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +42,9 @@ public class exampleQuiz extends AppCompatActivity {
         questionNum = getIntent().getIntExtra("questionNum", 0);
         questionNumString = "q" + questionNum;
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        createInitTimers();
+
+        database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -49,7 +57,6 @@ public class exampleQuiz extends AppCompatActivity {
         final TextView ans2 = findViewById(R.id.answerText2);
         final TextView ans3 = findViewById(R.id.answerText3);
         final TextView ans4 = findViewById(R.id.answerText4);
-
 
         final TextView timeRemainingField = findViewById(R.id.TimeRemaining);
 
@@ -81,16 +88,20 @@ public class exampleQuiz extends AppCompatActivity {
 
         //Modify the number 30000, 30000 milliseconds = 30 seconds, so the time timit should be converted to miliseconds
         //Change the 45 to the time it actually is limited to: pull from firebase.
-        /*
-        timeLimitMilliseconds = 6 * 60 * 1000;
-        new CountDownTimer(timeLimitMilliseconds, 1000){
+
+        // get time from database (initialize on start)
+
+        timeLimitMilliseconds = maxTimeLimit * S_TO_MIN * MS_TO_S;
+        new CountDownTimer(timeLimitMilliseconds, MS_TO_S){
             public void onTick(long millisUntilFinished) {
-                int timeLeft = (int) millisUntilFinished / 1000;
-                String disp = "Time remaining " + String.format("%02d", timeLeft);
-                timeRemainingField.setText(disp);
+                int timeLeft = (int) millisUntilFinished / MS_TO_S;
+
+                timeRemainingField.setText(getResources().getString(R.string.TimeRemaining, timeLeft/S_TO_MIN, timeLeft%S_TO_MIN));
+
+
 
                 //If 5 minutes left, go to the warning page
-                if(timeLeft == 300) {
+                if(timeLeft == FIVE_MIN) {
                     Intent i = new Intent(exampleQuiz.this, warningPage.class);
                     startActivity(i);
 
@@ -99,11 +110,11 @@ public class exampleQuiz extends AppCompatActivity {
 
             public void onFinish() {
                 //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
-                Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
-                startActivity(i);
-                finish();
+                //Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
+                //startActivity(i);
+                //finish();
             }
-        }.start(); */
+        }.start();
     }
 
     public void onButtonClick(View v) {
@@ -207,5 +218,56 @@ public class exampleQuiz extends AppCompatActivity {
         answer.put(questionNumString, Integer.toString(choice));
         quizRef.updateChildren(answer);
         return true;
+    }
+
+    public void createInitTimers() {
+        initTime = false;
+        DatabaseReference initTimers = database.getReference();
+        ValueEventListener setTimers = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot userTimes = dataSnapshot.child("users/" + uid + "/timers/" + quizCode);
+                if(!userTimes.hasChild("start time") || !userTimes.hasChild("end time")) {
+                    //Toast.makeText(exampleQuiz.this, "no init time fields found", Toast.LENGTH_SHORT).show();
+                    initTime = true;
+                }
+
+                if(initTime) {
+
+                    DataSnapshot maxTime = dataSnapshot.child("quiz/" + quizCode + "/time");
+                    maxTimeLimit = Integer.valueOf(maxTime.getValue(String.class));
+                    int maxTimeHours = maxTimeLimit/MIN_TO_HR;
+                    int maxTimeMinutes = maxTimeLimit%MIN_TO_HR;
+
+                    //Toast.makeText(exampleQuiz.this, "from db: " + maxTime + " hr: " + maxTimeHours + " min: " + maxTimeMinutes, Toast.LENGTH_SHORT).show();
+
+                    Calendar currentTime = Calendar.getInstance();
+                    int startHour = currentTime.get(Calendar.HOUR_OF_DAY);
+                    int endHour = startHour + maxTimeHours;
+                    int startMinutes = currentTime.get(Calendar.MINUTE);
+                    int endMinutes = startMinutes + maxTimeMinutes;
+                    if(endMinutes > MIN_TO_HR) {
+                        endMinutes %= MIN_TO_HR;
+                        endHour++;
+                    }
+                    String startTime = startHour + ":" + startMinutes;
+                    String endTime = endHour + ":" + endMinutes;
+
+                    Map<String, Object> initTimes = new HashMap<>();
+                    initTimes.put("start time", startTime);
+                    //Toast.makeText(exampleQuiz.this, String.valueOf(currentTime.HOUR_OF_DAY), Toast.LENGTH_SHORT).show();
+                    initTimes.put("end time", endTime);
+
+                    DatabaseReference newTimes = database.getReference("users/" + uid + "/timers/" + quizCode);
+                    newTimes.updateChildren(initTimes);
+
+                    //Toast.makeText(exampleQuiz.this, "start: " + startTime + " end: " + endTime, Toast.LENGTH_SHORT).show();
+
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        initTimers.addListenerForSingleValueEvent(setTimers);
     }
 }

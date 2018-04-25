@@ -50,7 +50,9 @@
         <activity android:name=".quizConfirmationNumbers" />
         <activity android:name=".quizComplete" />
         <activity android:name=".studentGrades" />
-        <activity android:name=".StudentHome" />
+        <activity
+            android:name=".StudentHome"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".preQuizInfo"/>
         <activity android:name=".postQuizInfo"/>
         <activity android:name=".warningPage" />
