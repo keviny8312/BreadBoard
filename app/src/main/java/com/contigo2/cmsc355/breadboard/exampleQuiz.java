@@ -1,8 +1,10 @@
 package com.contigo2.cmsc355.breadboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,8 +25,9 @@ import java.util.Map;
 
 public class exampleQuiz extends AppCompatActivity {
     private String quizCode, questionNumString;
-    private int questionNum, totalNumQuestions;
+    private int questionNum, totalNumQuestions, choice;
     private long timeLimitMilliseconds;
+    public boolean finish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +61,7 @@ public class exampleQuiz extends AppCompatActivity {
                 numQuestionsTotalTest = dataSnapshot.child("num questions").getValue().toString();
                 totalNumQuestions = Integer.valueOf(numQuestionsTotalTest);
                 qtxt.setText(dataSnapshot.child("questions").child(questionNumString).child("question").getValue().toString());
-                totQ.setText("" + totalNumQuestions);
+                totQ.setText(getResources().getString(R.string.totalQuestions, totalNumQuestions));
 
                 int i = 1;
                 for (DataSnapshot codeSnapshot: dataSnapshot.child("questions").child(questionNumString).child("answers").getChildren()) {
@@ -105,6 +108,7 @@ public class exampleQuiz extends AppCompatActivity {
 
     public void onButtonClick(View v) {
         if(v.getId() == R.id.nextQuestion) {
+            finish = false;
             if(answerQuestion()) {
                 if(questionNum + 1 >= totalNumQuestions) {
                     Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
@@ -114,7 +118,7 @@ public class exampleQuiz extends AppCompatActivity {
                 else {
                     Intent i = getIntent();
                     i.putExtra("questionNum", questionNum + 1);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(i);
                 }
             }
@@ -123,10 +127,11 @@ public class exampleQuiz extends AppCompatActivity {
 
         }
         if(v.getId() == R.id.finishQuiz) {
-            answerQuestion();
-            //TODO check if all questions answered
-            Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
-            startActivity(i);
+            finish = true;
+            if(answerQuestion()) {
+                Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
+                startActivity(i);
+            }
         }
     }
 
@@ -135,17 +140,61 @@ public class exampleQuiz extends AppCompatActivity {
         RadioButton rb2 = findViewById(R.id.ChoiceBTN2);
         RadioButton rb3 = findViewById(R.id.ChoiceBTN3);
         RadioButton rb4 = findViewById(R.id.ChoiceBTN4);
-        int choice = 0;
+        choice = 0;
         if(rb1.isChecked()) choice = 1;
         if(rb2.isChecked()) choice = 2;
         if(rb3.isChecked()) choice = 3;
         if(rb4.isChecked()) choice = 4;
 
         if(choice == 0) {
-            Intent i = new Intent(exampleQuiz.this, warningPageUnanswered.class);
-            i.putExtra("quizCode", quizCode);
-            i.putExtra("questionNum", questionNum);
-            startActivity(i);
+            //Intent i = new Intent(exampleQuiz.this, warningPageUnanswered.class);
+            //i.putExtra("quizCode", quizCode);
+            //i.putExtra("questionNum", questionNum);
+            //startActivity(i);
+            //return false;
+
+
+            AlertDialog.Builder unanswered = new AlertDialog.Builder(exampleQuiz.this);
+            unanswered.setMessage(R.string.incompleteWarning);
+            unanswered.setTitle(R.string.alertTitle);
+            unanswered.setPositiveButton(R.string.alertContinue, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    DatabaseReference quizRef = database.getReference("users/" + user.getUid() + "/answers/" + quizCode);
+
+                    Map<String, Object> answer = new HashMap<>();
+                    answer.put(questionNumString, Integer.toString(choice));
+                    quizRef.updateChildren(answer);
+
+                    dialog.dismiss();
+
+                    if(finish) {
+                        Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
+                        startActivity(i);
+                    }
+                    else {
+                        if(questionNum + 1 >= totalNumQuestions) {
+                            Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
+                            i.putExtra("quizCode", quizCode);
+                            startActivity(i);
+                        }
+                        else {
+                            Intent i = getIntent();
+                            i.putExtra("questionNum", questionNum + 1);
+                            //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            startActivity(i);
+                        }
+                    }
+                }
+            });
+            unanswered.setNegativeButton(R.string.alertBack, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.dismiss();
+                }
+            });
+            unanswered.create().show();
             return false;
         }
 

@@ -49,7 +49,6 @@
         <activity android:name=".quizStatistics" />
         <activity android:name=".quizConfirmationNumbers" />
         <activity android:name=".quizComplete" />
-        <activity android:name=".submitQuiz" />
         <activity android:name=".studentGrades" />
         <activity android:name=".StudentHome" />
         <activity android:name=".preQuizInfo"/>

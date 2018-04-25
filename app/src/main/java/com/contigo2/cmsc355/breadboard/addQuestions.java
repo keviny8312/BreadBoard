@@ -49,7 +49,7 @@ public class addQuestions extends AppCompatActivity {
 
         if(v.getId() == R.id.nextQuestion) {
             //TODO dynamic number of answer choices
-            
+
             if(!emptyQuestion()) {
                 addCurrentQuestionToQuiz();
 
