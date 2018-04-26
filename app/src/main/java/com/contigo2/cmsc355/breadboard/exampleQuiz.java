@@ -3,10 +3,12 @@ package com.contigo2.cmsc355.breadboard;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -24,15 +26,20 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Thread.sleep;
+
 public class exampleQuiz extends AppCompatActivity {
     private String quizCode, questionNumString;
+    private final String TAG = "eQuiz";
     private int questionNum, totalNumQuestions, choice, maxTimeLimit = 100;
     private long timeLimitMilliseconds, timeLimitFromDatabase;
-    private final int MS_TO_S = 1000, S_TO_MIN = 60, MIN_TO_HR = 60, FIVE_MIN = 300;
+    private final int S_TO_MS = 1000, MIN_TO_S = 60, HR_TO_MIN = 60, FIVE_MIN = 300, INVALID = 6969;
     public boolean finish, initTime;
+    public Map<String, Object> secondsRemaining = new HashMap<>();
     public FirebaseDatabase database = FirebaseDatabase.getInstance();
     public String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    public DatabaseReference userTime = database.getReference("users/" + uid + "/timers");
+    public DatabaseReference userTime = database.getReference("users/" + uid + "/timers/");
+    public CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,7 @@ public class exampleQuiz extends AppCompatActivity {
         questionNum = getIntent().getIntExtra("questionNum", 0);
         questionNumString = "q" + questionNum;
 
-        createInitTimers();
+        //createInitTimers();
 
         database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -90,22 +97,33 @@ public class exampleQuiz extends AppCompatActivity {
         //Change the 45 to the time it actually is limited to: pull from firebase.
 
         // get time from database (initialize on start)
-
-        timeLimitMilliseconds = maxTimeLimit * S_TO_MIN * MS_TO_S;
-        new CountDownTimer(timeLimitMilliseconds, MS_TO_S){
+        maxTimeLimit = getIntent().getIntExtra("initTime", INVALID);
+        int secondsCarry = Calendar.getInstance().get(Calendar.SECOND);
+        //TODO seconds are kinda off when switching
+        Log.d(TAG + " MTL before loop ", String.valueOf(maxTimeLimit));
+        timeLimitMilliseconds = maxTimeLimit * MIN_TO_S * S_TO_MS + secondsCarry * S_TO_MS;
+        timer = new CountDownTimer(timeLimitMilliseconds, S_TO_MS){
             public void onTick(long millisUntilFinished) {
-                int timeLeft = (int) millisUntilFinished / MS_TO_S;
+                int timeLeft = (int) millisUntilFinished / S_TO_MS;
+                Log.d(TAG + " timeLeft in loop ", String.valueOf(timeLeft));
 
-                timeRemainingField.setText(getResources().getString(R.string.TimeRemaining, timeLeft/S_TO_MIN, timeLeft%S_TO_MIN));
-
-
+                timeRemainingField.setText(getResources().getString(R.string.TimeRemaining, timeLeft/MIN_TO_S, timeLeft%MIN_TO_S));
+                //TODO maybe make this show hours too
 
                 //If 5 minutes left, go to the warning page
                 if(timeLeft == FIVE_MIN) {
-                    Intent i = new Intent(exampleQuiz.this, warningPage.class);
-                    startActivity(i);
-
+                    AlertDialog.Builder timeWarning = new AlertDialog.Builder(exampleQuiz.this);
+                    timeWarning.setMessage(R.string.timeWarning);
+                    timeWarning.setTitle(R.string.alertTitle);
+                    timeWarning.setPositiveButton(R.string.alertOK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    timeWarning.create().show();
                 }
+
+
             }
 
             public void onFinish() {
@@ -127,10 +145,24 @@ public class exampleQuiz extends AppCompatActivity {
                     startActivity(i);
                 }
                 else {
+                    Calendar currentTime = Calendar.getInstance();
+                    int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+                    int currentMinutes = currentTime.get(Calendar.MINUTE);
+                    //int currentSecond = currentTime.get(Calendar.SECOND);
+                    int endHour = getIntent().getIntExtra("endHour", INVALID);
+                    int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
+                    maxTimeLimit = (endHour - currentHour)*HR_TO_MIN + Math.abs(endMinutes - currentMinutes);
+                    maxTimeLimit--;
+
                     Intent i = getIntent();
                     i.putExtra("questionNum", questionNum + 1);
                     //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    i.putExtra("initTime", maxTimeLimit);
+                    //i.putExtra("seconds", currentSecond);
+                    i.putExtra("endHour", endHour);
+                    i.putExtra("endMinutes", endMinutes);
                     startActivity(i);
+                    timer.cancel();
                 }
             }
 
@@ -236,8 +268,8 @@ public class exampleQuiz extends AppCompatActivity {
 
                     DataSnapshot maxTime = dataSnapshot.child("quiz/" + quizCode + "/time");
                     maxTimeLimit = Integer.valueOf(maxTime.getValue(String.class));
-                    int maxTimeHours = maxTimeLimit/MIN_TO_HR;
-                    int maxTimeMinutes = maxTimeLimit%MIN_TO_HR;
+                    int maxTimeHours = maxTimeLimit/HR_TO_MIN;
+                    int maxTimeMinutes = maxTimeLimit%HR_TO_MIN;
 
                     //Toast.makeText(exampleQuiz.this, "from db: " + maxTime + " hr: " + maxTimeHours + " min: " + maxTimeMinutes, Toast.LENGTH_SHORT).show();
 
@@ -246,8 +278,8 @@ public class exampleQuiz extends AppCompatActivity {
                     int endHour = startHour + maxTimeHours;
                     int startMinutes = currentTime.get(Calendar.MINUTE);
                     int endMinutes = startMinutes + maxTimeMinutes;
-                    if(endMinutes > MIN_TO_HR) {
-                        endMinutes %= MIN_TO_HR;
+                    if(endMinutes > HR_TO_MIN) {
+                        endMinutes %= HR_TO_MIN;
                         endHour++;
                     }
                     String startTime = startHour + ":" + startMinutes;
@@ -261,7 +293,9 @@ public class exampleQuiz extends AppCompatActivity {
                     DatabaseReference newTimes = database.getReference("users/" + uid + "/timers/" + quizCode);
                     newTimes.updateChildren(initTimes);
 
-                    //Toast.makeText(exampleQuiz.this, "start: " + startTime + " end: " + endTime, Toast.LENGTH_SHORT).show();
+                    maxTimeLimit = maxTimeMinutes + HR_TO_MIN*maxTimeHours;
+                    Log.d(TAG + " MTL after create ", String.valueOf(maxTimeLimit));
+                    //Toast.makeText(exampleQuiz.this, "maxTimeLimit: " + maxTimeLimit, Toast.LENGTH_SHORT).show();
 
                 }
             }
