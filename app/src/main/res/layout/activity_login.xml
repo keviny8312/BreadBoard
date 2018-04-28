@@ -8,43 +8,40 @@
     tools:context="com.contigo2.cmsc355.breadboard.LoginActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="128dp"
-        android:layout_height="112dp"
-        android:layout_marginTop="65dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
     <Button
         android:id="@+id/BteacherLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
+
         android:text="@string/teacher"
-        app:layout_constraintBottom_toTopOf="@+id/BstudentLogin"
-        app:layout_constraintLeft_toLeftOf="@+id/BstudentLogin"
-        app:layout_constraintRight_toRightOf="@+id/BstudentLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.709"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
+
     <Button
         android:id="@+id/BstudentLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="98dp"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
         android:text="@string/student"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
@@ -54,12 +51,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="31dp"
-        android:layout_marginLeft="2dp"
         android:text="@string/loginAs"
+        android:textColor="#ffffff"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/BteacherLogin"
-        app:layout_constraintLeft_toLeftOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122"
+        app:srcCompat="@mipmap/bbicon" />
 
 </android.support.constraint.ConstraintLayout>
