@@ -26,7 +26,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.Thread.sleep;
 
 public class exampleQuiz extends AppCompatActivity {
     private String quizCode, questionNumString;
@@ -41,6 +40,7 @@ public class exampleQuiz extends AppCompatActivity {
     public String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     public DatabaseReference userTime = database.getReference("users/" + uid + "/timers/");
     public CountDownTimer timer;
+    public RadioButton rb1, rb2, rb3, rb4, rb[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,12 @@ public class exampleQuiz extends AppCompatActivity {
         questionNumString = "q" + questionNum;
 
         //createInitTimers();
+        rb1 = findViewById(R.id.ChoiceBTN1);
+        rb2 = findViewById(R.id.ChoiceBTN2);
+        rb3 = findViewById(R.id.ChoiceBTN3);
+        rb4 = findViewById(R.id.ChoiceBTN4);
+        rb = new RadioButton[]{rb1, rb2, rb3, rb4};
+        getPreviousAnswer();
 
         database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -226,11 +232,23 @@ public class exampleQuiz extends AppCompatActivity {
         }
     }
 
+    public void getPreviousAnswer() {
+        DatabaseReference ansDatabase = database.getReference("users/" + uid + "/answers/" + quizCode);
+        ValueEventListener getAnswer = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(questionNumString)) {
+                    String answer = dataSnapshot.child(questionNumString).getValue(String.class);
+                    rb[Integer.valueOf(answer)].setChecked(true);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        ansDatabase.addListenerForSingleValueEvent(getAnswer);
+    }
+
     public boolean answerQuestion() {
-        RadioButton rb1 = findViewById(R.id.ChoiceBTN1);
-        RadioButton rb2 = findViewById(R.id.ChoiceBTN2);
-        RadioButton rb3 = findViewById(R.id.ChoiceBTN3);
-        RadioButton rb4 = findViewById(R.id.ChoiceBTN4);
         choice = 0;
         if(rb1.isChecked()) choice = 1;
         if(rb2.isChecked()) choice = 2;

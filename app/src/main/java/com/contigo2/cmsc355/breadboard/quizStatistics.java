@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -28,9 +29,11 @@ import java.util.ArrayList;
 public class quizStatistics extends ListActivity {
     private String quizCode;
     public final String TAG = "quizStatistics";
+    public FirebaseDatabase database = FirebaseDatabase.getInstance();
     ArrayList<String> listQuizzes = new ArrayList<>();
     ArrayAdapter<String> adapter;
-    Spinner sortByMenu;
+    public Spinner sortByMenu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,18 @@ public class quizStatistics extends ListActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listQuizzes);
         setListAdapter(adapter);
 
-        updateList();
+        sortByMenu = findViewById(R.id.sortByMenu);
+        sortByMenu.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0) sortListTimeHighLow();
+                if(position == 1) sortListTimeLowHigh();
+                if(position == 2) sortListPercentHighLow();
+                if(position == 3) sortListPercentLowHigh();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {}
+        });
     }
 
     public void onButtonClick(View v) {
@@ -60,7 +74,7 @@ public class quizStatistics extends ListActivity {
     public void updateList() {
         final TextView TVaverage = findViewById(R.id.averageQuizGrade);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         final Resources res = getResources();
@@ -87,12 +101,12 @@ public class quizStatistics extends ListActivity {
                     runningTimeOnQuestion = 0;
                     totalStudents = 0;
                     for(DataSnapshot studentTime : question.getChildren()) {
-                        Log.d(TAG, "current student time: " + studentTime.getValue(Long.class));
+                        //Log.d(TAG, "current student time: " + studentTime.getValue(Long.class));
                         String studentTimeOnQuestion = String.valueOf(studentTime.getValue(Long.class));
                         runningTimeOnQuestion += Integer.valueOf(studentTimeOnQuestion);
                         totalStudents++;
                     }
-                    Log.d(TAG, "finished question " + totalQuestions);
+                    //Log.d(TAG, "finished question " + totalQuestions);
                     averageTimeOnQuestion = runningTimeOnQuestion / totalStudents;
                     adapter.add("Question " + (Integer.valueOf(question.getKey().substring(1)) + 1) + ": " + averageTimeOnQuestion + " seconds");
 
@@ -100,7 +114,7 @@ public class quizStatistics extends ListActivity {
                     totalQuestions++;
                 }
                 averageTimeTotal = runningTimeTotal / totalQuestions;
-                Log.d(TAG, "finished all times, average time " + averageTimeTotal);
+                //Log.d(TAG, "finished all times, average time " + averageTimeTotal);
                 TVaverage.setText(res.getString(R.string.averageGrade, averageTimeTotal));
 
             }
@@ -109,16 +123,96 @@ public class quizStatistics extends ListActivity {
         };
         quizRef.addListenerForSingleValueEvent(getGrades);
     }
-    public void sortLista(){
 
+    public void getTimes() {
+        adapter.clear();
+
+        final TextView TVaverage = findViewById(R.id.averageQuizGrade);
+        DatabaseReference timeRef = database.getReference();
+        ValueEventListener getTime = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int totalStudents, totalQuestions = 0;
+                double runningTimeOnQuestion, runningTimeTotal = 0, averageTimeOnQuestion, averageTimeTotal;
+                for(DataSnapshot question : dataSnapshot.child("quiz/" + quizCode + "/times").getChildren()) {
+                    runningTimeOnQuestion = 0;
+                    totalStudents = 0;
+                    for(DataSnapshot studentTime : question.getChildren()) {
+                        //Log.d(TAG, "current student time: " + studentTime.getValue(Long.class));
+                        String studentTimeOnQuestion = String.valueOf(studentTime.getValue(Long.class));
+                        runningTimeOnQuestion += Integer.valueOf(studentTimeOnQuestion);
+                        totalStudents++;
+                    }
+                    //Log.d(TAG, "finished question " + totalQuestions);
+                    averageTimeOnQuestion = runningTimeOnQuestion / totalStudents;
+                    adapter.add("Question " + (Integer.valueOf(question.getKey().substring(1)) + 1) + ": " + averageTimeOnQuestion + " seconds");
+
+                    runningTimeTotal += averageTimeOnQuestion;
+                    totalQuestions++;
+                }
+                averageTimeTotal = runningTimeTotal / totalQuestions;
+                //Log.d(TAG, "finished all times, average time " + averageTimeTotal);
+                TVaverage.setText(getResources().getString(R.string.averageGrade, averageTimeTotal));
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        timeRef.addListenerForSingleValueEvent(getTime);
     }
-    public void sortListb(){
 
+    public void getPercent() {
+        adapter.clear();
+
+        //final TextView TVaverage = findViewById(R.id.averageQuizGrade);
+
+        DatabaseReference percentRef = database.getReference();
+        ValueEventListener getPercent = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int numQuestions = Integer.valueOf(dataSnapshot.child("quiz/" + quizCode + "/num questions").getValue(String.class));
+
+                String questionNum, correctAnswer;
+                int totalStudents;
+                double runningTotalCorrect, percentCorrect;
+                for(int i = 0; i < numQuestions; i++) {
+                    questionNum = "q" + i;
+                    runningTotalCorrect = 0;
+                    totalStudents = 0;
+                    correctAnswer = dataSnapshot.child("quiz/" + quizCode + "/questions/" + questionNum + "/correct").getValue(String.class);
+                    for (DataSnapshot user: dataSnapshot.child("users").getChildren()) {
+                        if(user.hasChild("answers/" + quizCode + "/" + questionNum)) {
+                            String answer = user.child("answers/" + quizCode + "/" + questionNum).getValue(String.class);
+                            if(answer.equals(correctAnswer)) runningTotalCorrect++;
+                            totalStudents++;
+                        }
+                    }
+                    percentCorrect = (runningTotalCorrect / totalStudents)*100;
+                    adapter.add("Question " + (i + 1) + " accuracy: " + percentCorrect + "%");
+                }
+
+                //TVaverage.setText(getResources().getString(R.string.averageGrade, average));
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        percentRef.addListenerForSingleValueEvent(getPercent);
     }
-    public void sortListc(){
 
+    public void sortListTimeHighLow(){
+        getTimes();
+        // sort adapter
     }
-    public void sortListd(){
-
+    public void sortListTimeLowHigh(){
+        getTimes();
+        // sort adapter
+    }
+    public void sortListPercentHighLow(){
+        getPercent();
+        // sort adapter
+    }
+    public void sortListPercentLowHigh(){
+        getPercent();
+        // sort adapter
     }
 }
