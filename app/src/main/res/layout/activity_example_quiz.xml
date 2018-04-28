@@ -100,8 +100,9 @@
 
     <Button
         android:id="@+id/finishQuiz"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
         android:text="@string/finishQuiz"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -113,8 +114,9 @@
 
     <Button
         android:id="@+id/nextQuestion"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
         android:text="@string/nextQuestion"
         app:layout_constraintBottom_toBottomOf="parent"

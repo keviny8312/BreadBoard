@@ -8,12 +8,12 @@
     tools:context="com.contigo2.cmsc355.breadboard.createNewQuiz">
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="130dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintHorizontal_bias="0.764"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.784">

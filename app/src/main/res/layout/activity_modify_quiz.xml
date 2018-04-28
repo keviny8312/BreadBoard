@@ -9,15 +9,15 @@
 
     <LinearLayout
         android:id="@+id/linearLayout8"
-        android:layout_width="160dp"
-        android:layout_height="150dp"
+        android:layout_width="350dp"
+        android:layout_height="130dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784">
+        app:layout_constraintVertical_bias="0.727">
 
         <RadioGroup
             android:id="@+id/Choices"
@@ -26,15 +26,17 @@
 
             <RadioButton
                 android:id="@+id/immediateAns"
-                android:layout_width="wrap_content"
-                android:layout_height="85dp"
-                android:layout_weight="1" />
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_weight="1"
+                android:text="@string/immediately" />
 
             <RadioButton
                 android:id="@+id/newAnsDate"
-                android:layout_width="wrap_content"
-                android:layout_height="85dp"
-                android:layout_weight="1" />
+                android:layout_width="90dp"
+                android:layout_height="65dp"
+                android:layout_weight="1"
+                android:text="@string/after" />
 
         </RadioGroup>
     </LinearLayout>
@@ -47,6 +49,7 @@
         android:text="@string/modifyQuiz"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,17 +96,16 @@
 
     <TextView
         android:id="@+id/showAnswersField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
         android:text="@string/showAnswers"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/submitChangesBTNModifyQuiz"
@@ -111,6 +113,7 @@
         android:layout_height="50dp"
         android:onClick="onButtonClick"
         android:text="@string/submitChanges"
+        android:background="@drawable/roundbuttoncustom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.071"
@@ -124,6 +127,7 @@
         android:layout_height="wrap_content"
         android:onClick="onButtonClick"
         android:text="@string/modifyQuestions"
+        android:background="@drawable/roundbuttoncustom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.928"
@@ -153,12 +157,10 @@
 
     <EditText
         android:id="@+id/modifyAnsDateField"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="65dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -167,48 +169,28 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
-
-    <TextView
-        android:id="@+id/immediatelyText"
-        android:layout_width="116dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/immediately"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.65999997" />
+        app:layout_constraintVertical_bias="0.771" />
 
     <ToggleButton
         android:id="@+id/activeButton"
-        android:layout_width="138dp"
-        android:layout_height="58dp"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/roundbuttoncustom"
         android:text="ToggleButton"
         android:textOff="@string/delayedActive"
         android:textOn="@string/immediatelyActive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.724" />
+        app:layout_constraintVertical_bias="0.499" />
 
 </android.support.constraint.ConstraintLayout>
