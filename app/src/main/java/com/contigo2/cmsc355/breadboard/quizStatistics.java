@@ -3,8 +3,10 @@ package com.contigo2.cmsc355.breadboard;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 
 public class quizStatistics extends ListActivity {
     private String quizCode;
+    public final String TAG = "quizStatistics";
     ArrayList<String> listQuizzes = new ArrayList<>();
     ArrayAdapter<String> adapter;
     Spinner sortByMenu;
@@ -37,7 +40,7 @@ public class quizStatistics extends ListActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listQuizzes);
         setListAdapter(adapter);
 
-        updateGradesList();
+        updateList();
     }
 
     public void onButtonClick(View v) {
@@ -54,7 +57,7 @@ public class quizStatistics extends ListActivity {
         }
     }
 
-    public void updateGradesList() {
+    public void updateList() {
         final TextView TVaverage = findViewById(R.id.averageQuizGrade);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -66,20 +69,40 @@ public class quizStatistics extends ListActivity {
         ValueEventListener getGrades = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                /*
                 int total = 0;
-                double runningTotal = 0, average = 0;
-                for (DataSnapshot codeSnapshot: dataSnapshot.child("quiz/" + quizCode + "/grades").getChildren()) {
-                    String studentUID = codeSnapshot.getKey();
-                    String studentName = dataSnapshot.child("users/" + studentUID + "/name").getValue(String.class);
-                    String studentGrade = codeSnapshot.getValue(String.class);
-
+                double runningTotal = 0, average;
+                for (DataSnapshot grade: dataSnapshot.child("quiz/" + quizCode + "/grades").getChildren()) {
+                    String studentGrade = grade.getValue(String.class);
                     runningTotal += Float.valueOf(studentGrade);
-
-                    adapter.add(studentName + " - " + studentGrade);
                     total++;
                 }
                 average = runningTotal / total;
                 TVaverage.setText(res.getString(R.string.averageGrade, average));
+                */
+
+                int totalStudents, totalQuestions = 0;
+                double runningTimeOnQuestion, runningTimeTotal = 0, averageTimeOnQuestion, averageTimeTotal;
+                for(DataSnapshot question : dataSnapshot.child("quiz/" + quizCode + "/times").getChildren()) {
+                    runningTimeOnQuestion = 0;
+                    totalStudents = 0;
+                    for(DataSnapshot studentTime : question.getChildren()) {
+                        Log.d(TAG, "current student time: " + studentTime.getValue(Long.class));
+                        String studentTimeOnQuestion = String.valueOf(studentTime.getValue(Long.class));
+                        runningTimeOnQuestion += Integer.valueOf(studentTimeOnQuestion);
+                        totalStudents++;
+                    }
+                    Log.d(TAG, "finished question " + totalQuestions);
+                    averageTimeOnQuestion = runningTimeOnQuestion / totalStudents;
+                    adapter.add("Question " + (Integer.valueOf(question.getKey().substring(1)) + 1) + ": " + averageTimeOnQuestion + " seconds");
+
+                    runningTimeTotal += averageTimeOnQuestion;
+                    totalQuestions++;
+                }
+                averageTimeTotal = runningTimeTotal / totalQuestions;
+                Log.d(TAG, "finished all times, average time " + averageTimeTotal);
+                TVaverage.setText(res.getString(R.string.averageGrade, averageTimeTotal));
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}

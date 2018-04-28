@@ -33,6 +33,7 @@ public class exampleQuiz extends AppCompatActivity {
     private final String TAG = "eQuiz";
     private int questionNum, totalNumQuestions, choice, maxTimeLimit = 100;
     private long timeLimitMilliseconds, timeLimitFromDatabase;
+    private int startQuestionTime, endQuestionTime, questionTime = 0;
     private final int S_TO_MS = 1000, MIN_TO_S = 60, HR_TO_MIN = 60, FIVE_MIN = 300, INVALID = 6969;
     public boolean finish, initTime;
     public Map<String, Object> secondsRemaining = new HashMap<>();
@@ -98,18 +99,21 @@ public class exampleQuiz extends AppCompatActivity {
 
         // get time from database (initialize on start)
         maxTimeLimit = getIntent().getIntExtra("initTime", INVALID);
-        int secondsCarry = Calendar.getInstance().get(Calendar.SECOND);
+        int endSeconds = getIntent().getIntExtra("endSeconds", 59);
+        int secondsCarry = Math.abs(Calendar.getInstance().get(Calendar.SECOND) - endSeconds) % MIN_TO_S;
         //TODO seconds are kinda off when switching
+        //TODO storing seconds in database should fix this
         Log.d(TAG + " MTL before loop ", String.valueOf(maxTimeLimit));
+        startQuestionTime = maxTimeLimit * MIN_TO_S + secondsCarry;
         timeLimitMilliseconds = maxTimeLimit * MIN_TO_S * S_TO_MS + secondsCarry * S_TO_MS;
         timer = new CountDownTimer(timeLimitMilliseconds, S_TO_MS){
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) millisUntilFinished / S_TO_MS;
-                Log.d(TAG + " timeLeft in loop ", String.valueOf(timeLeft));
+                //Log.d(TAG + " timeLeft in loop ", String.valueOf(timeLeft));
 
+                endQuestionTime = timeLeft;
                 timeRemainingField.setText(getResources().getString(R.string.TimeRemaining, timeLeft/MIN_TO_S, timeLeft%MIN_TO_S));
                 //TODO maybe make this show hours too
-
                 //If 5 minutes left, go to the warning page
                 if(timeLeft == FIVE_MIN) {
                     AlertDialog.Builder timeWarning = new AlertDialog.Builder(exampleQuiz.this);
@@ -127,6 +131,24 @@ public class exampleQuiz extends AppCompatActivity {
             }
 
             public void onFinish() {
+                AlertDialog.Builder timeUp = new AlertDialog.Builder(exampleQuiz.this);
+                timeUp.setMessage(R.string.incompleteSubmit);
+                timeUp.setTitle(R.string.alertFinished);
+                timeUp.setPositiveButton(R.string.alertSubmit, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                timeUp.create().show();
+                //TODO default unanswered to 0 and submit all
+                Map<String, Object> answers = new HashMap<>();
+                for(questionNum = questionNum; questionNum < totalNumQuestions; questionNum++) {
+                    answers.put("q" + questionNum, "0");
+                }
+                DatabaseReference ans = database.getReference("users/" + uid + "/answers/" + quizCode);
+                ans.updateChildren(answers);
+                // this will get rid of all their previous answers !!! check for any before
+
                 //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
                 //Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
                 //startActivity(i);
@@ -140,25 +162,50 @@ public class exampleQuiz extends AppCompatActivity {
             finish = false;
             if(answerQuestion()) {
                 if(questionNum + 1 >= totalNumQuestions) {
+                    Log.d(TAG, "last question, updating question time");
+                    updateQuestionTime();
+                    Log.d(TAG, "finished updating question time");
+
+                    Calendar currentTime = Calendar.getInstance();
+                    int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+                    int currentMinutes = currentTime.get(Calendar.MINUTE);
+                    int endHour = getIntent().getIntExtra("endHour", INVALID);
+                    int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
+                    int endSeconds = getIntent().getIntExtra("endSeconds", INVALID);
+                    maxTimeLimit = (endHour - currentHour)*HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
+                    maxTimeLimit--;
+
                     Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
                     i.putExtra("quizCode", quizCode);
+                    i.putExtra("questionNum", questionNum + 1);
+                    i.putExtra("initTime", maxTimeLimit);
+                    i.putExtra("endHour", endHour);
+                    i.putExtra("endMinutes", endMinutes);
+                    i.putExtra("endSeconds", endSeconds);
                     startActivity(i);
                 }
                 else {
+                    updateQuestionTime();
+
                     Calendar currentTime = Calendar.getInstance();
                     int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
                     int currentMinutes = currentTime.get(Calendar.MINUTE);
                     //int currentSecond = currentTime.get(Calendar.SECOND);
                     int endHour = getIntent().getIntExtra("endHour", INVALID);
                     int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
-                    maxTimeLimit = (endHour - currentHour)*HR_TO_MIN + Math.abs(endMinutes - currentMinutes);
+                    int endSeconds = getIntent().getIntExtra("endSeconds", INVALID);
+                    maxTimeLimit = (endHour - currentHour)*HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
+                    Log.d(TAG, "endHour " + endHour + " currentHour " + currentHour);
+                    Log.d(TAG, "(endHour - currentHour)*HR_TO_MIN " + (endHour - currentHour)*HR_TO_MIN);
+                    Log.d(TAG, "Math.abs(endMinutes - currentMinutes) " + Math.abs(endMinutes - currentMinutes));
                     maxTimeLimit--;
+                    Log.d(TAG + " MTL before next", String.valueOf(maxTimeLimit));
 
                     Intent i = getIntent();
                     i.putExtra("questionNum", questionNum + 1);
                     //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     i.putExtra("initTime", maxTimeLimit);
-                    //i.putExtra("seconds", currentSecond);
+                    i.putExtra("endSeconds", endSeconds);
                     i.putExtra("endHour", endHour);
                     i.putExtra("endMinutes", endMinutes);
                     startActivity(i);
@@ -172,6 +219,7 @@ public class exampleQuiz extends AppCompatActivity {
         if(v.getId() == R.id.finishQuiz) {
             finish = true;
             if(answerQuestion()) {
+                updateQuestionTime();
                 Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
                 startActivity(i);
             }
@@ -303,5 +351,29 @@ public class exampleQuiz extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {}
         };
         initTimers.addListenerForSingleValueEvent(setTimers);
+    }
+
+    public void updateQuestionTime() {
+        //Log.d(TAG, "in update question time, questionNum " + questionNum);
+        final DatabaseReference questionTimeRef = FirebaseDatabase.getInstance().getReference("quiz/" + quizCode + "/times/q" + questionNum);
+        ValueEventListener getPreviousQuestionTime = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(uid)) {
+                    questionTime += dataSnapshot.child(uid).getValue(Integer.class);
+                    Log.d(TAG, "found previous question time, questionTime = " + questionTime);
+                }
+                questionTime += startQuestionTime - endQuestionTime;
+
+                Map<String, Object> questionTimeMap = new HashMap<>();
+                questionTimeMap.put(uid, questionTime);
+                questionTimeRef.updateChildren(questionTimeMap);
+                //Log.d(TAG, "updated children, time " + questionTime);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        questionTimeRef.addListenerForSingleValueEvent(getPreviousQuestionTime);
     }
 }

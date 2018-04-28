@@ -112,8 +112,9 @@ public class preQuizInfo extends AppCompatActivity {
                                 endMinutes %= MIN_TO_HR;
                                 endHour++;
                             }
-                            String startTime = startHour + ":" + startMinutes;
-                            String endTime = endHour + ":" + endMinutes;
+                            int endSeconds = currentTime.get(Calendar.SECOND);
+                            String startTime = startHour + ":" + startMinutes + ":" + endSeconds;
+                            String endTime = endHour + ":" + endMinutes + ":" + endSeconds;
 
                             Map<String, Object> initTimes = new HashMap<>();
                             initTimes.put("start time", startTime);
@@ -124,10 +125,15 @@ public class preQuizInfo extends AppCompatActivity {
                             newTimes.updateChildren(initTimes);
 
                             maxTimeLimit = maxTimeMinutes + MIN_TO_HR * maxTimeHours;
+                            maxTimeLimit--;
+
                             //Log.d(TAG + " MTL after create ", String.valueOf(maxTimeLimit));
                             //Toast.makeText(exampleQuiz.this, "maxTimeLimit: " + maxTimeLimit, Toast.LENGTH_SHORT).show();
 
                             Intent i = new Intent(preQuizInfo.this, exampleQuiz.class);
+                            i.putExtra("endHour", endHour);
+                            i.putExtra("endMinutes", endMinutes);
+                            i.putExtra("endSeconds", endSeconds);
                             i.putExtra("quizCode", quizCode);
                             i.putExtra("questionNum", 0);
                             i.putExtra("initTime", maxTimeLimit);
@@ -141,8 +147,10 @@ public class preQuizInfo extends AppCompatActivity {
                             //int currentSecond = currentTime.get(Calendar.SECOND);
                             String endTime = userTimes.child("end time").getValue(String.class);
                             int endHour = Integer.valueOf(endTime.substring(0, endTime.indexOf(':')));
-                            int endMinutes = Integer.valueOf(endTime.substring(endTime.indexOf(':') + 1));
-                            maxTimeLimit = (endHour - currentHour) * MIN_TO_HR + Math.abs(endMinutes - currentMinutes);
+                            //int endMinutes = Integer.valueOf(endTime.substring(endTime.indexOf(':') + 1));
+                            int endMinutes = Integer.valueOf(endTime.substring(endTime.indexOf(':') + 1, endTime.lastIndexOf(':')));
+                            int endSeconds = Integer.valueOf(endTime.substring(endTime.lastIndexOf(':') + 1));
+                            maxTimeLimit = (endHour - currentHour) * MIN_TO_HR - Math.abs(endMinutes - currentMinutes);
                             maxTimeLimit--;
 
                             Intent i = new Intent(preQuizInfo.this, exampleQuiz.class);
@@ -152,6 +160,7 @@ public class preQuizInfo extends AppCompatActivity {
                             //i.putExtra("seconds", currentSecond);
                             i.putExtra("endHour", endHour);
                             i.putExtra("endMinutes", endMinutes);
+                            i.putExtra("endSeconds", endSeconds);
                             startActivity(i);
                             finish();
                         }

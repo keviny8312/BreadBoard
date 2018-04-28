@@ -2,9 +2,11 @@ package com.contigo2.cmsc355.breadboard;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +30,11 @@ public class quizFinalReview extends AppCompatActivity {
     public boolean cont = false;
     public TextView q1, q2, q3, q4, q5, q6, q7, q8, q9, q10, qst[];
     public TextView a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, ans[];
+    public int maxTimeLimit, startQuestionTime, endQuestionTime;
+    public final int INVALID = 6969, MIN_TO_S = 60, S_TO_MS = 1000, HR_TO_MIN = 60, FIVE_MIN = 300;
+    public long timeLimitMilliseconds;
+    public CountDownTimer timer;
+    public TextView timeRemainingField;
     // TODO this needs to be replaced with array adapter (or something else dynamic !!)
 
     @Override
@@ -58,6 +66,8 @@ public class quizFinalReview extends AppCompatActivity {
         //a9 = findViewById(R.id.Answer9);
         //a10 = findViewById(R.id.Answer10);
         ans = new TextView[]{a1, a2, a3, a4};//, a5, a6, a7, a8, a9, a10};
+
+        timeRemainingField = findViewById(R.id.timeRemaining);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -92,18 +102,73 @@ public class quizFinalReview extends AppCompatActivity {
         };
         qstRef.addListenerForSingleValueEvent(getQuestions);
 
+        maxTimeLimit = getIntent().getIntExtra("initTime", INVALID);
+        int secondsCarry = Calendar.getInstance().get(Calendar.SECOND);
+        //TODO seconds are kinda off when switching
+        //Log.d(TAG + " MTL before loop ", String.valueOf(maxTimeLimit));
+        startQuestionTime = maxTimeLimit * MIN_TO_S + secondsCarry;
+        timeLimitMilliseconds = maxTimeLimit * MIN_TO_S * S_TO_MS + secondsCarry * S_TO_MS;
+        timer = new CountDownTimer(timeLimitMilliseconds, S_TO_MS){
+            public void onTick(long millisUntilFinished) {
+                int timeLeft = (int) millisUntilFinished / S_TO_MS;
+                //Log.d(TAG + " timeLeft in loop ", String.valueOf(timeLeft));
+
+                endQuestionTime = timeLeft;
+                timeRemainingField.setText(getResources().getString(R.string.TimeRemaining, timeLeft/MIN_TO_S, timeLeft%MIN_TO_S));
+                //TODO maybe make this show hours too
+
+                //If 5 minutes left, go to the warning page
+                if(timeLeft == FIVE_MIN) {
+                    AlertDialog.Builder timeWarning = new AlertDialog.Builder(quizFinalReview.this);
+                    timeWarning.setMessage(R.string.timeWarning);
+                    timeWarning.setTitle(R.string.alertTitle);
+                    timeWarning.setPositiveButton(R.string.alertOK, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+                    timeWarning.create().show();
+                }
+
+
+            }
+
+            public void onFinish() {
+                //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
+                //Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
+                //startActivity(i);
+                //finish();
+            }
+        }.start();
+
+
     }
 
     public void onButtonClick(View v) {
         if(v.getId() == R.id.submitQuiz) {
-            if(hasAnsweredAllQuestions()) submitQuiz();
+            if(hasAnsweredAllQuestions()) {
+                submitQuiz();
+                timer.cancel();
+            }
         }
         if(v.getId() == R.id.returnToQuiz) {
+            Calendar currentTime = Calendar.getInstance();
+            int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
+            int currentMinutes = currentTime.get(Calendar.MINUTE);
+            int endHour = getIntent().getIntExtra("endHour", INVALID);
+            int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
+            maxTimeLimit = (endHour - currentHour)*HR_TO_MIN + Math.abs(endMinutes - currentMinutes);
+            maxTimeLimit--;
+
             Intent i = new Intent(quizFinalReview.this, exampleQuiz.class);
             i.putExtra("quizCode", quizCode);
             i.putExtra("questionNum", 0);
+            i.putExtra("initTime", maxTimeLimit);
+            i.putExtra("endHour", endHour);
+            i.putExtra("endMinutes", endMinutes);
             startActivity(i);
             finish();
+            timer.cancel();
         }
     }
 

@@ -168,7 +168,7 @@ tools:context=".quizFinalReview">
         app:layout_constraintVertical_bias="0.969" />
 
     <TextView
-        android:id="@+id/TimeRemaining"
+        android:id="@+id/timeRemaining"
         android:layout_width="170dp"
         android:layout_height="43dp"
         android:layout_marginBottom="8dp"
@@ -176,7 +176,7 @@ tools:context=".quizFinalReview">
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="@string/TimeRemaining"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

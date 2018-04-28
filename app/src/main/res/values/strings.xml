@@ -37,6 +37,7 @@
     <string name="timeWarning">You have 5 minutes remaining to finish the quiz!</string>
     <string name="incompleteWarning">You will not receive credit for unanswered questions.</string>
     <string name="incompleteSubmission">You still have unanswered questions! Are you sure you want to submit?</string>
+    <string name="incompleteSubmit">You have run out of time. Your answers will be submitted as is.</string>
     <string name="clickToContinue">Click to Continue</string>
     <string name="quizSubmitted">Quiz Submitted Successfully!</string>
     <string name="confirmCodeIs">Your confirmation code is&#8230;</string>
@@ -47,6 +48,7 @@
     <string name="answerSelected">Answer Selected</string>
 
     <string name="alertTitle">Warning</string>
+    <string name="alertFinished">Out of Time</string>
     <string name="alertOK">OK</string>
     <string name="alertContinue">Continue</string>
     <string name="alertSubmit">Submit</string>
