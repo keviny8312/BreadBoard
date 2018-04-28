@@ -77,7 +77,7 @@
     <string name="changeFontSize">Change Font Size</string>
     <string name="selectFontSize">Select Font Size</string>
     <string name="exampleText">Example Text</string>
-
+    <string name="currentFontSize">Sample font size</string>
     <string name="changePW">Change Password</string>
     <string name="enterOldPW">Enter Old Password</string>
     <string name="enterNewPW">Enter New Password</string>
