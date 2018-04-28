@@ -61,11 +61,11 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.689" />
+        app:layout_constraintVertical_bias="0.681" />
 
     <Button
         android:id="@+id/submitNewEmailBTN"
-        android:layout_width="213dp"
+        android:layout_width="215dp"
         android:layout_height="wrap_content"
         android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"

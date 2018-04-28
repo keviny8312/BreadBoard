@@ -21,7 +21,7 @@
     <string name="dueDateBlank">Due Date (MM-DD-YYYY)</string>
     <string name="delayedAnswersBlank">MM-DD-YYYY</string>
     <string name="averageGrade">Average: %1$f</string>
-    <string name="immediatelyActive">Quiz Active (Default)</string>
+    <string name="immediatelyActive">Quiz Active</string>
     <string name="delayedActive">Quiz Inactive</string>
     <string name="Bdelete">Delete</string>
     <string name="Bgrades">Grades</string>
@@ -87,7 +87,7 @@
 
     <string name="createNewQuiz">Create New Quiz</string>
     <string name="quizDueDate">Quiz Due Date</string>
-    <string name="showAnswers">Show Answers</string>
+    <string name="showAnswers"><u>Show Answers</u></string>
     <string name="immediately">Immediately</string>
     <string name="after">After: </string>
     <string name="addQuestions">Add Questions</string>
