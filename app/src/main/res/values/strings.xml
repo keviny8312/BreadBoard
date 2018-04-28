@@ -56,8 +56,8 @@
 
     <string name="addQuestion">Adding Questions</string>
     <string name="question">Question</string>
-    <string name="answer">Answers</string>
-    <string name="correct">C?</string>
+    <string name="answer"><u>Answers</u></string>
+    <string name="correct"><u>Correct Answer?</u></string>
     <string name="enterQ">Enter the question&#8230;</string>
     <string name="a1">Answer 1</string>
     <string name="a2">Answer 2</string>
