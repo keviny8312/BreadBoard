@@ -18,6 +18,7 @@ public class warningPage extends AppCompatActivity {
         confirmBTN = findViewById(R.id.warningContinue);
     }
     public void onButtonClick(View view){
+        //Doesnt work, find out why
         if(view.getId() == R.id.warningContinue){
             super.onBackPressed();
         }
