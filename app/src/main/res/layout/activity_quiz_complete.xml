@@ -9,20 +9,20 @@
 
     <Button
         android:id="@+id/returnToDashboard"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
         android:text="@string/returnToDash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917" />
+        app:layout_constraintVertical_bias="0.895" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="317dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:text="@string/quizSubmitted"
         android:textColor="#FFFFFF"
@@ -40,13 +40,12 @@
         android:text="@string/confirmCodeIs"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintVertical_bias="0.409" />
 
     <TextView
         android:id="@+id/quizConfirmationField"
