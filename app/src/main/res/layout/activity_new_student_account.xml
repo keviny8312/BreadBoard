@@ -124,7 +124,7 @@
 
     <Button
         android:id="@+id/cna_student"
-        android:layout_width="205dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@drawable/roundbuttoncustom"

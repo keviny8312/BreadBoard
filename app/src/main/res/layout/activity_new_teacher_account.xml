@@ -10,15 +10,15 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="130dp"
-        android:layout_height="0dp"
+        android:layout_width="263dp"
+        android:layout_height="190dp"
         android:layout_marginBottom="40dp"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/bbicon" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -30,6 +30,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/cna_teacher"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
 
@@ -40,9 +41,9 @@
 
             <ImageView
                 android:id="@+id/name_icon_teacher"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_tag_faces_white_24dp" />
 
             <EditText
                 android:id="@+id/teacher_name_nac"
@@ -62,9 +63,9 @@
 
             <ImageView
                 android:id="@+id/email_icon_teacher"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_email_white" />
 
             <EditText
                 android:id="@+id/teacher_email_nac"
@@ -83,9 +84,9 @@
 
             <ImageView
                 android:id="@+id/password_icon_student"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_lock_white_24dp" />
 
             <EditText
                 android:id="@+id/teacher_password_nac"
@@ -101,9 +102,10 @@
 
     <Button
         android:id="@+id/cna_teacher"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="39dp"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
         android:text="@string/createNewAccount"
         app:layout_constraintBottom_toBottomOf="parent"
