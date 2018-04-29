@@ -100,7 +100,7 @@ public class preQuizInfo extends AppCompatActivity {
                             maxTimeLimit = Integer.valueOf(maxTime.getValue(String.class));
                             int maxTimeHours = maxTimeLimit / MIN_TO_HR;
                             int maxTimeMinutes = maxTimeLimit % MIN_TO_HR;
-
+                            int totalTimeLimit = maxTimeLimit;
                             //Toast.makeText(exampleQuiz.this, "from db: " + maxTime + " hr: " + maxTimeHours + " min: " + maxTimeMinutes, Toast.LENGTH_SHORT).show();
 
                             Calendar currentTime = Calendar.getInstance();
@@ -125,12 +125,13 @@ public class preQuizInfo extends AppCompatActivity {
                             newTimes.updateChildren(initTimes);
 
                             maxTimeLimit = maxTimeMinutes + MIN_TO_HR * maxTimeHours;
-                            maxTimeLimit--;
+                            //maxTimeLimit--;
 
                             //Log.d(TAG + " MTL after create ", String.valueOf(maxTimeLimit));
                             //Toast.makeText(exampleQuiz.this, "maxTimeLimit: " + maxTimeLimit, Toast.LENGTH_SHORT).show();
 
                             Intent i = new Intent(preQuizInfo.this, exampleQuiz.class);
+                            i.putExtra("totalTime", totalTimeLimit);
                             i.putExtra("endHour", endHour);
                             i.putExtra("endMinutes", endMinutes);
                             i.putExtra("endSeconds", endSeconds);

@@ -3,6 +3,7 @@ package com.contigo2.cmsc355.breadboard;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +28,7 @@ public class StudentHome extends ListActivity {
 
     ArrayList<String> listQuizzes = new ArrayList<>();
     ArrayAdapter<String> adapter;
+    public final String TAG = "StudentHome";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,24 +69,54 @@ public class StudentHome extends ListActivity {
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                FirebaseUser user = mAuth.getCurrentUser();
+                final FirebaseUser user = mAuth.getCurrentUser();
                 final int pos = position;
 
-                DatabaseReference quizRef = database.getReference("/users/" + user.getUid());
+                DatabaseReference quizRef = database.getReference();
                 ValueEventListener getQuizzes = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         int i = 0;
-                        for (DataSnapshot codeSnapshot: dataSnapshot.child("quizzes").getChildren()) {
+                        for (DataSnapshot codeSnapshot: dataSnapshot.child("users/" + user.getUid() + "/quizzes").getChildren()) {
                             if(i == pos) {
+                                Log.d(TAG, "entry " + pos + " clicked");
                                 String quizCode = codeSnapshot.getKey();
 
-                                if(dataSnapshot.child("finished").hasChild(quizCode)) {
+                                Calendar currentDate = Calendar.getInstance();
+                                int month = currentDate.get(Calendar.MONTH);
+                                int day   = currentDate.get(Calendar.DAY_OF_MONTH);
+                                int year  = currentDate.get(Calendar.YEAR);
+                                Log.d(TAG, "date  " + day + " " + month + " " + year);
+                                String dueDate = dataSnapshot.child("quiz/" + quizCode + "/due date").getValue(String.class);
+                                int dueMonth = Integer.valueOf(dueDate.substring(0, dueDate.indexOf('-')));
+                                int dueDay = Integer.valueOf(dueDate.substring(dueDate.indexOf('-') + 1, dueDate.lastIndexOf('-')));
+                                int dueYear = Integer.valueOf(dueDate.substring(dueDate.lastIndexOf('-') + 1));
+                                Log.d(TAG, "due date  " + dueDay + " " + dueMonth + " " + dueYear);
+                                if(dueYear < year || (dueYear == year && dueMonth < month) || (dueYear == year && dueMonth == month && dueDay < day)) {
+                                    Log.d(TAG, "past due!");
+                                    if(!dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
+                                        Log.d(TAG, "wasn't finished");
+                                        Map<String, Object> zero = new HashMap<>();
+                                        zero.put(user.getUid(), "0");
+                                        DatabaseReference zeroGrade = FirebaseDatabase.getInstance().getReference("quiz/" + quizCode + "/grades/");
+                                        zeroGrade.updateChildren(zero);
+                                        //TODO add to finished
+                                        Intent toPostQuizInfo = new Intent(StudentHome.this, postQuizInfo.class);
+                                        toPostQuizInfo.putExtra("quizCode", quizCode);
+                                        startActivity(toPostQuizInfo);
+                                        break;
+                                    }
+                                }
+
+                                else if(dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
+
+                                //if(dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
                                     Intent toPostQuizInfo = new Intent(StudentHome.this, postQuizInfo.class);
                                     toPostQuizInfo.putExtra("quizCode", quizCode);
                                     startActivity(toPostQuizInfo);
                                     break;
                                 }
+                                //else if(dataSnapshot.child("quiz/" + quizCode + "/due date").getValue(String.class))
                                 else {
                                     Intent toQuizInfo = new Intent(StudentHome.this, preQuizInfo.class);
                                     toQuizInfo.putExtra("quizCode", quizCode);
@@ -95,9 +128,7 @@ public class StudentHome extends ListActivity {
                         }
                     }
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // fndbsgyivfeksh
-                    }
+                    public void onCancelled(DatabaseError databaseError) {}
                 };
                 quizRef.addListenerForSingleValueEvent(getQuizzes);
 
@@ -134,9 +165,7 @@ public class StudentHome extends ListActivity {
                 }
             }
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // fndbsgyivfeksh
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         };
         quizRef.addListenerForSingleValueEvent(getQuizzes);
     }

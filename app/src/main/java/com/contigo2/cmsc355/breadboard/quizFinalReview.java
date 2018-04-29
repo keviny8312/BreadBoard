@@ -103,7 +103,10 @@ public class quizFinalReview extends AppCompatActivity {
         qstRef.addListenerForSingleValueEvent(getQuestions);
 
         maxTimeLimit = getIntent().getIntExtra("initTime", INVALID);
-        int secondsCarry = Calendar.getInstance().get(Calendar.SECOND);
+        if(maxTimeLimit == getIntent().getIntExtra("totalTime", INVALID)) maxTimeLimit--;
+        int endSeconds = getIntent().getIntExtra("endSeconds", 59);
+        int secondsCarry = MIN_TO_S - (Math.abs(Calendar.getInstance().get(Calendar.SECOND) - endSeconds) % MIN_TO_S);
+        //int secondsCarry = Calendar.getInstance().get(Calendar.SECOND);
         //TODO seconds are kinda off when switching
         //Log.d(TAG + " MTL before loop ", String.valueOf(maxTimeLimit));
         startQuestionTime = maxTimeLimit * MIN_TO_S + secondsCarry;
@@ -157,10 +160,15 @@ public class quizFinalReview extends AppCompatActivity {
             int currentMinutes = currentTime.get(Calendar.MINUTE);
             int endHour = getIntent().getIntExtra("endHour", INVALID);
             int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
-            maxTimeLimit = (endHour - currentHour)*HR_TO_MIN + Math.abs(endMinutes - currentMinutes);
-            maxTimeLimit--;
+            int hour = (endHour - currentHour);
+            if(hour > 0) hour--;
+            int min;
+            if(hour == 0) min = Math.abs(endMinutes - currentMinutes);
+            else min = HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
+            maxTimeLimit = hour*HR_TO_MIN + min;
 
             Intent i = new Intent(quizFinalReview.this, exampleQuiz.class);
+            i.putExtra("totalTime", getIntent().getIntExtra("totalTime", INVALID));
             i.putExtra("quizCode", quizCode);
             i.putExtra("questionNum", 0);
             i.putExtra("initTime", maxTimeLimit);

@@ -20,7 +20,7 @@
     <string name="dueDate">Due Date: %1$s</string>
     <string name="dueDateBlank">Due Date (MM-DD-YYYY)</string>
     <string name="delayedAnswersBlank">MM-DD-YYYY</string>
-    <string name="averageGrade">Average: %1$f</string>
+    <string name="averageGrade">Average: %1$.2f seconds</string>
     <string name="immediatelyActive">Quiz Active</string>
     <string name="delayedActive">Quiz Inactive</string>
     <string name="Bdelete">Delete</string>

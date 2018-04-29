@@ -105,8 +105,9 @@ public class exampleQuiz extends AppCompatActivity {
 
         // get time from database (initialize on start)
         maxTimeLimit = getIntent().getIntExtra("initTime", INVALID);
+        if(maxTimeLimit == getIntent().getIntExtra("totalTime", INVALID)) maxTimeLimit--;
         int endSeconds = getIntent().getIntExtra("endSeconds", 59);
-        int secondsCarry = Math.abs(Calendar.getInstance().get(Calendar.SECOND) - endSeconds) % MIN_TO_S;
+        int secondsCarry = MIN_TO_S - (Math.abs(Calendar.getInstance().get(Calendar.SECOND) - endSeconds) % MIN_TO_S);
         //TODO seconds are kinda off when switching
         //TODO storing seconds in database should fix this
         Log.d(TAG + " MTL before loop ", String.valueOf(maxTimeLimit));
@@ -178,10 +179,17 @@ public class exampleQuiz extends AppCompatActivity {
                     int endHour = getIntent().getIntExtra("endHour", INVALID);
                     int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
                     int endSeconds = getIntent().getIntExtra("endSeconds", INVALID);
-                    maxTimeLimit = (endHour - currentHour)*HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
-                    maxTimeLimit--;
+                    int hour = (endHour - currentHour);
+                    if(hour > 0) hour--;
+                    int min;
+                    if(hour == 0) min = Math.abs(endMinutes - currentMinutes);
+                    else min = HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
+                    Log.d(TAG, "hour: " + hour + " min: " + min);
+                    maxTimeLimit = hour*HR_TO_MIN + min;
+                    //maxTimeLimit--;
 
                     Intent i = new Intent(exampleQuiz.this, quizFinalReview.class);
+                    i.putExtra("totalTime", getIntent().getIntExtra("totalTime", INVALID));
                     i.putExtra("quizCode", quizCode);
                     i.putExtra("questionNum", questionNum + 1);
                     i.putExtra("initTime", maxTimeLimit);
@@ -189,6 +197,8 @@ public class exampleQuiz extends AppCompatActivity {
                     i.putExtra("endMinutes", endMinutes);
                     i.putExtra("endSeconds", endSeconds);
                     startActivity(i);
+                    finish();
+                    timer.cancel();
                 }
                 else {
                     updateQuestionTime();
@@ -200,14 +210,23 @@ public class exampleQuiz extends AppCompatActivity {
                     int endHour = getIntent().getIntExtra("endHour", INVALID);
                     int endMinutes = getIntent().getIntExtra("endMinutes", INVALID);
                     int endSeconds = getIntent().getIntExtra("endSeconds", INVALID);
-                    maxTimeLimit = (endHour - currentHour)*HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
+                    int hour = (endHour - currentHour);
+                    if(hour > 0) hour--;
+                    int min;
+                    if(hour == 0) min = Math.abs(endMinutes - currentMinutes);
+                    else min = HR_TO_MIN - Math.abs(endMinutes - currentMinutes);
+                    int totalTimeLimit = getIntent().getIntExtra("totalTime", INVALID);
+                    //maxTimeLimit = hour*HR_TO_MIN + min;
+                    maxTimeLimit = hour*HR_TO_MIN + min;
+                    if(maxTimeLimit == totalTimeLimit) maxTimeLimit--;
                     Log.d(TAG, "endHour " + endHour + " currentHour " + currentHour);
                     Log.d(TAG, "(endHour - currentHour)*HR_TO_MIN " + (endHour - currentHour)*HR_TO_MIN);
                     Log.d(TAG, "Math.abs(endMinutes - currentMinutes) " + Math.abs(endMinutes - currentMinutes));
-                    maxTimeLimit--;
+                    //maxTimeLimit--;
                     Log.d(TAG + " MTL before next", String.valueOf(maxTimeLimit));
 
                     Intent i = getIntent();
+                    i.putExtra("totalTime", getIntent().getIntExtra("totalTime", INVALID));
                     i.putExtra("questionNum", questionNum + 1);
                     //i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     i.putExtra("initTime", maxTimeLimit);
@@ -215,6 +234,7 @@ public class exampleQuiz extends AppCompatActivity {
                     i.putExtra("endHour", endHour);
                     i.putExtra("endMinutes", endMinutes);
                     startActivity(i);
+                    finish();
                     timer.cancel();
                 }
             }
@@ -239,7 +259,7 @@ public class exampleQuiz extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(questionNumString)) {
                     String answer = dataSnapshot.child(questionNumString).getValue(String.class);
-                    rb[Integer.valueOf(answer)].setChecked(true);
+                    rb[Integer.valueOf(answer) - 1].setChecked(true);
                 }
             }
             @Override
