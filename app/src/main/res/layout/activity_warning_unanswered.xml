@@ -6,54 +6,50 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
     tools:context="com.contigo2.cmsc355.breadboard.warningPageUnanswered"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="25dp">
 
     <Button
         android:id="@+id/warningContinue"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40sp"
-        android:layout_marginTop="8dp"
+        android:background="@drawable/roundbuttoncustom"
         android:onClick="onButtonClick"
         android:text="@string/clickToContinue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.884" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="265dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="100dp"
-        android:textSize="35sp"
+        android:layout_height="50dp"
         android:autoText="false"
+        android:gravity="center"
         android:text="@string/warningText"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.094" />
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="207dp"
-        android:layout_height="126dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
-        android:text="@string/incompleteWarning"
+        android:layout_width="280dp"
+        android:layout_height="230dp"
+        android:gravity="center"
+        android:text="@string/incompleteWarning22222"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

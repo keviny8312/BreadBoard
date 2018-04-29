@@ -29,16 +29,21 @@
     <string name="Bstats">Stats</string>
 
     <string name="logoDescription">logo</string>
-    <string name="warningText">Warning:</string>
+    <string name="warningText">Warning!!!</string>
     <string name="confirmSubmission">Confirm Submission</string>
     <string name="totalQuestions">%1$d</string>
     <string name="quizInformation">Quiz Information</string>
     <string name="returnToDash">Return to Dashboard</string>
     <string name="timeWarning">You have 5 minutes remaining to finish the quiz!</string>
+
+
+    <string name="incompleteWarning22222">*inhales* UNEXPECTED ITEM IN THE BAGGING AREA!!!!</string>
+
+
     <string name="incompleteWarning">You will not receive credit for unanswered questions.</string>
     <string name="incompleteSubmission">You still have unanswered questions! Are you sure you want to submit?</string>
     <string name="incompleteSubmit">You have run out of time. Your answers will be submitted as is.</string>
-    <string name="clickToContinue">Click to Continue</string>
+    <string name="clickToContinue">I understand. Continue!</string>
     <string name="quizSubmitted">Quiz Submitted Successfully!</string>
     <string name="confirmCodeIs">Your confirmation code is&#8230;</string>
     <string name="takeQuiz">Take Quiz</string>
@@ -153,6 +158,9 @@
     <string name="postQuizInfo"> Here some things you should know: </string>
     <string name="preQuizInfo"> Take this quiz? </string>
 
+    <string name="welcomeMessage">Welcome, x, here are your quizzes.</string>
+    <string name="newCode">Got a new code? Enter it here:</string>
+    <string name="noAcc">Dont have an account? Click here</string>
 
 
     <string-array name="sort_by_choices">
