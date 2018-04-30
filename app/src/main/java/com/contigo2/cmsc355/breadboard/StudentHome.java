@@ -31,7 +31,7 @@ public class StudentHome extends ListActivity {
     public final String TAG = "StudentHome";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // student home page
         super.onCreate(savedInstanceState);
         if(getIntent().hasExtra("removeQuiz")) adapter.remove(getIntent().getStringExtra("removeQuiz"));
 
@@ -141,18 +141,18 @@ public class StudentHome extends ListActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.CNQ_BTN) {
+        if(v.getId() == R.id.CNQ_BTN) {                 // add new quiz using quiz code
             EditText ETnewCode = findViewById(R.id.newQuizCode);
             String newCode = ETnewCode.getText().toString();
             enterNewQuizCode(newCode);
         }
-        if(v.getId() == R.id.Bsettings) {
+        if(v.getId() == R.id.Bsettings) {               // go to settings
             Intent i = new Intent(StudentHome.this, settingsPage.class);
             startActivity(i);
         }
     }
 
-    public void updateQuizList() {
+    public void updateQuizList() {                      // update list with changes
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -172,7 +172,7 @@ public class StudentHome extends ListActivity {
         quizRef.addListenerForSingleValueEvent(getQuizzes);
     }
 
-    public void enterNewQuizCode(String code) {
+    public void enterNewQuizCode(String code) {         // enter new quiz code into list
         final String tempCode = code;
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

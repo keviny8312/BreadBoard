@@ -20,13 +20,13 @@ public class studentLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // login as student
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_login);
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.BcreateNewAccount) {
+        if(v.getId() == R.id.BcreateNewAccount) {                   // go to create new account
             Intent i = new Intent(studentLogin.this, newStudentAccount.class);
 
             EditText e = findViewById(R.id.email_field_student);
@@ -40,7 +40,7 @@ public class studentLogin extends AppCompatActivity {
             startActivity(i);
         }
 
-        if(v.getId() == R.id.BstudentLogin) {
+        if(v.getId() == R.id.BstudentLogin) {                       // login with student info
             EditText e = findViewById(R.id.email_field_student);
             EditText p = findViewById(R.id.password_field_student);
             String email = e.getText().toString();

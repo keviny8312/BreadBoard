@@ -37,7 +37,7 @@ public class quizFinalReview extends AppCompatActivity {
     public TextView timeRemainingField;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // review student's answers before submission
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_final_review);
         quizCode = getIntent().getStringExtra("quizCode");
@@ -140,13 +140,13 @@ public class quizFinalReview extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.submitQuiz) {
+        if(v.getId() == R.id.submitQuiz) {              // submit quiz
             if(hasAnsweredAllQuestions()) {
                 submitQuiz();
                 timer.cancel();
             }
         }
-        if(v.getId() == R.id.returnToQuiz) {
+        if(v.getId() == R.id.returnToQuiz) {            // return to quiz
             Calendar currentTime = Calendar.getInstance();
             int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
             int currentMinutes = currentTime.get(Calendar.MINUTE);
@@ -200,7 +200,7 @@ public class quizFinalReview extends AppCompatActivity {
         }
 
         return true;
-    }
+    }   // check if all questions answered, warn if not
 
     public void submitQuiz() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -244,5 +244,5 @@ public class quizFinalReview extends AppCompatActivity {
         i.putExtra("quizCode", quizCode);
         startActivity(i);
         finish();
-    }
+    }                   // submit answers to database
 }

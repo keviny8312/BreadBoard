@@ -21,7 +21,7 @@ public class Quiz implements Serializable{
     private int numQuestions;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
-    Quiz() {
+    Quiz() {                                    // quiz object with details and questions
         this.name = "default_name";
         this.dueDate = "default_due_date";
         this.code = "default_code";

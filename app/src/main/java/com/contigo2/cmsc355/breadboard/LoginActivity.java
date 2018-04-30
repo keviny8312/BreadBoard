@@ -12,18 +12,18 @@ import org.w3c.dom.Text;
 public class LoginActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {    // login for either teacher or student
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.BteacherLogin) {
+        if(v.getId() == R.id.BteacherLogin) {               // login for teacher
             Intent i = new Intent(LoginActivity.this, teacherLogin.class);
             startActivity(i);
         }
-        if(v.getId() == R.id.BstudentLogin) {
+        if(v.getId() == R.id.BstudentLogin) {               // login for student
             Intent i = new Intent(LoginActivity.this, studentLogin.class);
             startActivity(i);
         }

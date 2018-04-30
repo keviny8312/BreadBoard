@@ -25,7 +25,7 @@ public class modifyQuestions extends AppCompatActivity {
     private int questionNum, totalNumQuestions;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // change current question
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_questions);
 
@@ -37,7 +37,7 @@ public class modifyQuestions extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.modifyNextQuestion) {
+        if(v.getId() == R.id.modifyNextQuestion) {              // change current question then go to next
             updateCurrentQuestion();
 
             if(questionNum + 1 >= totalNumQuestions) {
@@ -63,7 +63,7 @@ public class modifyQuestions extends AppCompatActivity {
         }
     }
 
-    public void updateCurrentQuestion() {
+    public void updateCurrentQuestion() {                       // make question changes in database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -102,7 +102,7 @@ public class modifyQuestions extends AppCompatActivity {
 
     }
 
-    public void setPreviousValues() {
+    public void setPreviousValues() {                           // get previous question data from database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();

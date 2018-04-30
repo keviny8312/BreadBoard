@@ -9,7 +9,7 @@ public class QuizQuestion implements Serializable{
     private int numAnswers;
     private ArrayList<Integer> correct;
 
-    QuizQuestion() {
+    QuizQuestion() {                    // quiz question structure, has question and up to 4 answers
         question = "default_question";
         answers = new String[]{"ans1", "ans2", "ans3", "ans4"};
         numAnswers = 4;

@@ -30,7 +30,7 @@ public class preQuizInfo extends AppCompatActivity {
     DatabaseReference userTime = database.getReference("users/" + uid + "/timers");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // view quiz details before attempt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_quiz_info);
 
@@ -76,7 +76,7 @@ public class preQuizInfo extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.takeQuizButton) {
+        if(v.getId() == R.id.takeQuizButton) {              // begin quiz
             if(!time.equals("0")) {
                 initTime = false;
                 DatabaseReference initTimers = database.getReference();

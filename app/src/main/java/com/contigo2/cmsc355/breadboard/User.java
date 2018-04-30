@@ -4,7 +4,7 @@ public class User {
     private String name, email, group;
     private int fontSize;
 
-    User() {
+    User() {                            // user object, stores name, email, group, and font size
         name = null;
         email = null;
         group = null;

@@ -24,7 +24,7 @@ public class newTeacherAccount extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // create new teacher account
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_teacher_account);
 
@@ -39,7 +39,7 @@ public class newTeacherAccount extends AppCompatActivity {
 
     }
 
-    public void onButtonClick(View v) {
+    public void onButtonClick(View v) {                             // create new account with info
         if(v.getId() == R.id.cna_teacher) {
             EditText n = findViewById(R.id.teacher_name_nac);
             EditText e = findViewById(R.id.teacher_email_nac);

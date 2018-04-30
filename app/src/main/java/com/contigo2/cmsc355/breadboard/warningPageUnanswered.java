@@ -7,7 +7,7 @@ import android.view.View;
 
 public class warningPageUnanswered extends AppCompatActivity{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // deprecated
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warning_unanswered);
     }

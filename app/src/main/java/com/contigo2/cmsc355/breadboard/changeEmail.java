@@ -26,7 +26,7 @@ public class changeEmail extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.submitNewEmailBTN) {
+        if(v.getId() == R.id.submitNewEmailBTN) {                   // change email in firebase
             EditText ETpass = findViewById(R.id.confirmPassEmail);
             EditText ETnewEmail = findViewById(R.id.newEmail);
             EditText ETcnfEmail = findViewById(R.id.confirmNewEmail);
@@ -55,7 +55,7 @@ public class changeEmail extends AppCompatActivity {
         }
     }
 
-    public boolean isValidInput(String pass, String email, String cnfEmail, FirebaseUser user) {
+    public boolean isValidInput(String pass, String email, String cnfEmail, FirebaseUser user) {    // check for valid input fields
         if(pass.isEmpty()) {
             Toast.makeText(changeEmail.this, "Please enter your password.", Toast.LENGTH_SHORT).show();
             return false;

@@ -8,7 +8,7 @@ import android.widget.Button;
 public class warningPage extends AppCompatActivity {
     Button confirmBTN;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // deprecated
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warning_page);
         confirmBTN = findViewById(R.id.warningContinue);

@@ -19,13 +19,13 @@ public class teacherLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // login as teacher
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_login);
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.BcreateNewAccount) {
+        if(v.getId() == R.id.BcreateNewAccount) {                   // create new teacher account
 
             EditText userEmail = findViewById(R.id.email_field_teacher);
             EditText userPass = findViewById(R.id.password_field_teacher);
@@ -40,7 +40,7 @@ public class teacherLogin extends AppCompatActivity {
             startActivity(i);
         }
 
-        if(v.getId() == R.id.BteacherLogin) {
+        if(v.getId() == R.id.BteacherLogin) {                       // login with teacher info
             EditText e = findViewById(R.id.email_field_teacher);
             EditText p = findViewById(R.id.password_field_teacher);
             String email = e.getText().toString();

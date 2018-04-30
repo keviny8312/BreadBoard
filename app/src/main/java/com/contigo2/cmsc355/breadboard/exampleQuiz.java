@@ -3,7 +3,6 @@ package com.contigo2.cmsc355.breadboard;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class exampleQuiz extends AppCompatActivity {
     private String quizCode, questionNumString;
@@ -43,7 +40,7 @@ public class exampleQuiz extends AppCompatActivity {
     public RadioButton rb1, rb2, rb3, rb4, rb[];
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // load current question from database and display
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_example_quiz);
         quizCode = getIntent().getStringExtra("quizCode");
@@ -155,7 +152,7 @@ public class exampleQuiz extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.nextQuestion) {
+        if(v.getId() == R.id.nextQuestion) {        // go to next question if not on last, else go to quiz review
             finish = false;
             if(answerQuestion()) {
                 if(questionNum + 1 >= totalNumQuestions) {
@@ -237,7 +234,7 @@ public class exampleQuiz extends AppCompatActivity {
         }
     }
 
-    public void getPreviousAnswer() {
+    public void getPreviousAnswer() {                           // get previous answers from database
         DatabaseReference ansDatabase = database.getReference("users/" + uid + "/answers/" + quizCode);
         ValueEventListener getAnswer = new ValueEventListener() {
             @Override
@@ -321,9 +318,9 @@ public class exampleQuiz extends AppCompatActivity {
         answer.put(questionNumString, Integer.toString(choice));
         quizRef.updateChildren(answer);
         return true;
-    }
+    }                       // push answer to database
 
-    public void updateQuestionTime() {
+    public void updateQuestionTime() {                          // push time taken for question to database
         final DatabaseReference questionTimeRef = FirebaseDatabase.getInstance().getReference("quiz/" + quizCode + "/times/q" + questionNum);
         ValueEventListener getPreviousQuestionTime = new ValueEventListener() {
             @Override

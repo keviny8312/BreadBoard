@@ -24,7 +24,7 @@ public class postQuizInfo extends AppCompatActivity {
     public final String TAG = "pQuiz";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // display quiz info after attempt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_quiz_info);
 
@@ -69,7 +69,7 @@ public class postQuizInfo extends AppCompatActivity {
                 Log.d(TAG, "current date " + currentMonth + " " + currentDay + " " + currentYear);
 
                 if(answerYear > currentYear || (answerYear == currentYear && answerMonth > currentMonth) || (answerYear == currentYear && answerMonth == currentMonth && answerDay > currentDay)) {
-                    answerKey.setEnabled(false);
+                    answerKey.setEnabled(false);            // disable answer key if too early
                 }
             }
 
@@ -80,11 +80,11 @@ public class postQuizInfo extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.returnToDashButton) {
+        if(v.getId() == R.id.returnToDashButton) {              // return to dashboard
             Intent i = new Intent(postQuizInfo.this, StudentHome.class);
             startActivity(i);
         }
-        if(v.getId() == R.id.answerKeyButton) {
+        if(v.getId() == R.id.answerKeyButton) {                 // view answer key if available
             Intent i = new Intent(postQuizInfo.this, AnswerKey.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);

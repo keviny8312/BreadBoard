@@ -36,7 +36,7 @@ public class AnswerKey extends AppCompatActivity {
         }
     }
 
-    public void populateTextFields() {
+    public void populateTextFields() {                      // get answers from database and put into textviews
         TextView TVq1  = findViewById(R.id.QuestionText1);
         TextView TVq2  = findViewById(R.id.QuestionText2);
         TextView TVq3  = findViewById(R.id.QuestionText3);

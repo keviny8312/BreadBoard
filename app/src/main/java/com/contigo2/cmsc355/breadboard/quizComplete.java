@@ -18,7 +18,7 @@ import java.util.Random;
 public class quizComplete extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // finish quiz and display confirmation code
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_complete);
 
@@ -45,14 +45,14 @@ public class quizComplete extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.returnToDashboard) {
+        if(v.getId() == R.id.returnToDashboard) {               // return to dashboard
             Intent i = new Intent(quizComplete.this, StudentHome.class);
             startActivity(i);
             finish();
         }
     }
 
-    public String generateConfirmationCode() {
+    public String generateConfirmationCode() {                  // generate a confirmation code
         final String alphanum = "0123456789ABCDE";
         final int len = alphanum.length();
         final int CODE_LENGTH = 8;

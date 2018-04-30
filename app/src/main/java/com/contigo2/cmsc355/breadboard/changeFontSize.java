@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class changeFontSize extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // doesn't work :(
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_font_size);
     }
