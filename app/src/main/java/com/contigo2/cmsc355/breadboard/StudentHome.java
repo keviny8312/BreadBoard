@@ -83,7 +83,7 @@ public class StudentHome extends ListActivity {
                                 String quizCode = codeSnapshot.getKey();
 
                                 Calendar currentDate = Calendar.getInstance();
-                                int month = currentDate.get(Calendar.MONTH);
+                                int month = currentDate.get(Calendar.MONTH) + 1;
                                 int day   = currentDate.get(Calendar.DAY_OF_MONTH);
                                 int year  = currentDate.get(Calendar.YEAR);
                                 Log.d(TAG, "date  " + day + " " + month + " " + year);
@@ -101,6 +101,12 @@ public class StudentHome extends ListActivity {
                                         DatabaseReference zeroGrade = FirebaseDatabase.getInstance().getReference("quiz/" + quizCode + "/grades/");
                                         zeroGrade.updateChildren(zero);
                                         //TODO add to finished
+
+                                        DatabaseReference addFinished = FirebaseDatabase.getInstance().getReference("users/" + user.getUid() + "/finished/" + quizCode);
+                                        Map<String, Object> finished = new HashMap<>();
+                                        finished.put(quizCode, "0");
+                                        addFinished.updateChildren(finished);
+
                                         Intent toPostQuizInfo = new Intent(StudentHome.this, postQuizInfo.class);
                                         toPostQuizInfo.putExtra("quizCode", quizCode);
                                         startActivity(toPostQuizInfo);

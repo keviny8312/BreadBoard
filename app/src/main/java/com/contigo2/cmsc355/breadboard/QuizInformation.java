@@ -27,6 +27,8 @@ public class QuizInformation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_information);
         quizCode = getIntent().getStringExtra("quizCode");
+        TextView TVquizCode = findViewById(R.id.quizCode);
+        TVquizCode.setText(getResources().getString(R.string.quizCodeField, quizCode));
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
