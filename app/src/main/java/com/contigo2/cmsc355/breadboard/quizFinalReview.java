@@ -35,7 +35,6 @@ public class quizFinalReview extends AppCompatActivity {
     public long timeLimitMilliseconds;
     public CountDownTimer timer;
     public TextView timeRemainingField;
-    // TODO this needs to be replaced with array adapter (or something else dynamic !!)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class quizFinalReview extends AppCompatActivity {
         q2 = findViewById(R.id.question2);
         q3 = findViewById(R.id.question3);
         q4 = findViewById(R.id.question4);
-        // TODO more than 4 questions lol!!!!
         //q5 = findViewById(R.id.question5);
         //q6 = findViewById(R.id.question6);
         //q7 = findViewById(R.id.question7);

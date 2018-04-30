@@ -157,9 +157,10 @@ public class exampleQuiz extends AppCompatActivity {
                 // this will get rid of all their previous answers !!! check for any before
 
                 //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
-                //Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
-                //startActivity(i);
-                //finish();
+                Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
+                i.putExtra("quizCode", quizCode);
+                startActivity(i);
+                finish();
             }
         }.start();
     }
