@@ -39,7 +39,6 @@ public class modifyQuestions extends AppCompatActivity {
     public void onButtonClick(View v) {
         if(v.getId() == R.id.modifyNextQuestion) {
             updateCurrentQuestion();
-            //TODO add more questions than initial quiz had
 
             if(questionNum + 1 >= totalNumQuestions) {
                 Intent i = new Intent(modifyQuestions.this, QuizInformation.class);
@@ -131,7 +130,6 @@ public class modifyQuestions extends AppCompatActivity {
                 totalNumQuestions = Integer.valueOf(numQuestionsTotalTest);
                 qtxt.setText(dataSnapshot.child("questions").child(questionNumString).child("question").getValue(String.class));
                 totQ.setText("" + totalNumQuestions);
-                //totQ.setText(res.getString(R.string.TotalQuestionNum, totalNumQuestions));
 
                 int i = 1;
                 for (DataSnapshot codeSnapshot: dataSnapshot.child("questions").child(questionNumString).child("answers").getChildren()) {

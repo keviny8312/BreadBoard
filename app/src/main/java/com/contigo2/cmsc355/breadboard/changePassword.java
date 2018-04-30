@@ -67,15 +67,6 @@ public class changePassword extends AppCompatActivity {
             Toast.makeText(changePassword.this, "New passwords must match.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        /*
-        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), pass);
-        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.d(TAG, "User re-authenticated.");
-            }
-        });
-        */
         return true;
     }
 }

@@ -71,59 +71,6 @@ public class quizStatistics extends ListActivity {
         }
     }
 
-    public void updateList() {
-        final TextView TVaverage = findViewById(R.id.averageQuizGrade);
-
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        final Resources res = getResources();
-
-        DatabaseReference quizRef = database.getReference();
-        ValueEventListener getGrades = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                /*
-                int total = 0;
-                double runningTotal = 0, average;
-                for (DataSnapshot grade: dataSnapshot.child("quiz/" + quizCode + "/grades").getChildren()) {
-                    String studentGrade = grade.getValue(String.class);
-                    runningTotal += Float.valueOf(studentGrade);
-                    total++;
-                }
-                average = runningTotal / total;
-                TVaverage.setText(res.getString(R.string.averageGrade, average));
-                */
-
-                int totalStudents, totalQuestions = 0;
-                double runningTimeOnQuestion, runningTimeTotal = 0, averageTimeOnQuestion, averageTimeTotal;
-                for(DataSnapshot question : dataSnapshot.child("quiz/" + quizCode + "/times").getChildren()) {
-                    runningTimeOnQuestion = 0;
-                    totalStudents = 0;
-                    for(DataSnapshot studentTime : question.getChildren()) {
-                        //Log.d(TAG, "current student time: " + studentTime.getValue(Long.class));
-                        String studentTimeOnQuestion = String.valueOf(studentTime.getValue(Long.class));
-                        runningTimeOnQuestion += Integer.valueOf(studentTimeOnQuestion);
-                        totalStudents++;
-                    }
-                    //Log.d(TAG, "finished question " + totalQuestions);
-                    averageTimeOnQuestion = runningTimeOnQuestion / totalStudents;
-                    adapter.add("Question " + (Integer.valueOf(question.getKey().substring(1)) + 1) + ": " + averageTimeOnQuestion + " seconds");
-
-                    runningTimeTotal += averageTimeOnQuestion;
-                    totalQuestions++;
-                }
-                averageTimeTotal = runningTimeTotal / totalQuestions;
-                //Log.d(TAG, "finished all times, average time " + averageTimeTotal);
-                TVaverage.setText(res.getString(R.string.averageGrade, averageTimeTotal));
-
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
-        quizRef.addListenerForSingleValueEvent(getGrades);
-    }
-
     public void getTimes() {
         adapter.clear();
 

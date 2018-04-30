@@ -18,7 +18,6 @@ public class warningPageUnanswered extends AppCompatActivity{
             i.putExtra("questionNum", getIntent().getStringExtra("questionNum"));
             startActivity(i);
             finish();
-            //super.onBackPressed();
         }
     }
 

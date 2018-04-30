@@ -21,10 +21,7 @@ import java.util.ArrayList;
 public class TeacherHome extends ListActivity {
 
     ArrayList<String> listQuizzes = new ArrayList<>();
-
     ArrayAdapter<String> adapter;
-
-    int numQuizzes = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +58,7 @@ public class TeacherHome extends ListActivity {
                         }
                     }
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // fndbsgyivfeksh
-                    }
+                    public void onCancelled(DatabaseError databaseError) {}
                 };
                 quizRef.addValueEventListener(getQuizzes);
 

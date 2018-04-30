@@ -57,7 +57,7 @@ public class newStudentAccount extends AppCompatActivity {
             final String group = "STUDENT";
             final String quiz = q.getText().toString().trim();
 
-            if(validInput()) {// && isValidQuizCode(quiz)) {
+            if(validInput()) {
                 mAuth = FirebaseAuth.getInstance();
                 Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -89,28 +89,6 @@ public class newStudentAccount extends AppCompatActivity {
 
         }
 
-    }
-
-    public boolean isValidQuizCode(final String quizCode) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference codeCheck = database.getReference("quiz");
-
-        ValueEventListener getQuizzes = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(quizCode)) valid = true;
-                else valid = false;
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
-        codeCheck.addListenerForSingleValueEvent(getQuizzes);
-
-        if(!valid) {
-            Toast.makeText(newStudentAccount.this, "Please enter a valid quiz code.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
     }
 
     public boolean validInput() {

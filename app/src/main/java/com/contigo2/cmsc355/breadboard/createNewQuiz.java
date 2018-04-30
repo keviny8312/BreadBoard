@@ -41,7 +41,6 @@ public class createNewQuiz extends AppCompatActivity {
     public void onButtonClick(View v) {
         if (v.getId() == R.id.addQuestions) {
 
-            //TODO back button (everywhere)
             EditText name = findViewById(R.id.quizTitleFieldCNQ);
             EditText dueDate = findViewById(R.id.quizDueDateCNQ);
             EditText qClass = findViewById(R.id.quizClassCNQ);
@@ -70,9 +69,6 @@ public class createNewQuiz extends AppCompatActivity {
 
                 startActivity(i);
             }
-
-            //TODO now actually put the answer key time into database (and make them viewable)
-
         }
     }
 

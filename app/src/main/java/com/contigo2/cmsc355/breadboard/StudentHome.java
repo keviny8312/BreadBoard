@@ -100,7 +100,6 @@ public class StudentHome extends ListActivity {
                                         zero.put(user.getUid(), "0");
                                         DatabaseReference zeroGrade = FirebaseDatabase.getInstance().getReference("quiz/" + quizCode + "/grades/");
                                         zeroGrade.updateChildren(zero);
-                                        //TODO add to finished
 
                                         DatabaseReference addFinished = FirebaseDatabase.getInstance().getReference("users/" + user.getUid() + "/finished/" + quizCode);
                                         Map<String, Object> finished = new HashMap<>();
@@ -114,15 +113,12 @@ public class StudentHome extends ListActivity {
                                     }
                                 }
 
-                                else if(dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
-
-                                //if(dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
+                                else if(dataSnapshot.child("users/" + user.getUid() + "/finished").hasChild(quizCode)) {
                                     Intent toPostQuizInfo = new Intent(StudentHome.this, postQuizInfo.class);
                                     toPostQuizInfo.putExtra("quizCode", quizCode);
                                     startActivity(toPostQuizInfo);
                                     break;
                                 }
-                                //else if(dataSnapshot.child("quiz/" + quizCode + "/due date").getValue(String.class))
                                 else {
                                     Intent toQuizInfo = new Intent(StudentHome.this, preQuizInfo.class);
                                     toQuizInfo.putExtra("quizCode", quizCode);

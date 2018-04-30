@@ -41,7 +41,6 @@ public class newTeacherAccount extends AppCompatActivity {
 
     public void onButtonClick(View v) {
         if(v.getId() == R.id.cna_teacher) {
-            //create acct in firebase
             EditText n = findViewById(R.id.teacher_name_nac);
             EditText e = findViewById(R.id.teacher_email_nac);
             EditText p = findViewById(R.id.teacher_password_nac);
@@ -65,31 +64,16 @@ public class newTeacherAccount extends AppCompatActivity {
                                 DatabaseReference ref = database.getReference("users/" + user.getUid());
                                 ref.setValue(new User(name, email, group));
 
-                                /*
-                                HashMap<String, Integer> quizNum = new HashMap<>();
-                                quizNum.put("quizNum", 0);
-                                ref = database.getReference("quiz/" + user.getUid());
-                                ref.setValue(quizNum);
-                                */
-
                                 Intent i = new Intent(newTeacherAccount.this, TeacherHome.class);
                                 startActivity(i);
 
-                            } else {
+                            }
+                            else {
                                 Toast.makeText(newTeacherAccount.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                             }
-
-                            // ...
                         }
                     });
-            /*
-            FirebaseUser user = mAuth.getCurrentUser();
-            DatabaseReference ref = database.getReference("quiz/" + user.getUid());
-            HashMap<String, Integer> quizNum = new HashMap<>();
-            quizNum.put("quizNum", 0);
-            ref.setValue(quizNum);
-            */
         }
 
     }

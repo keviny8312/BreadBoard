@@ -52,15 +52,11 @@ public class teacherLogin extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(teacherLogin.this, "Login successful!",
-                                        Toast.LENGTH_SHORT).show();
-                                //FirebaseUser user = mAuth.getCurrentUser();
-                                // TODO make sure only teachers are logging in here!!!!
+                                Toast.makeText(teacherLogin.this, "Login successful!", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(teacherLogin.this, TeacherHome.class);
                                 startActivity(i);
                             } else {
-                                Toast.makeText(teacherLogin.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(teacherLogin.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -85,7 +85,6 @@ public class postQuizInfo extends AppCompatActivity {
             startActivity(i);
         }
         if(v.getId() == R.id.answerKeyButton) {
-            //TODO add field for teacher to set answer visibility, block as necessary
             Intent i = new Intent(postQuizInfo.this, AnswerKey.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
