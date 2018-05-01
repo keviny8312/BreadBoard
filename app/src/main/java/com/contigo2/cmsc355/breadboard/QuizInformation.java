@@ -112,7 +112,6 @@ public class QuizInformation extends AppCompatActivity {
             database.getReference("users/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/quizzes/" + quizCode).removeValue();
 
             DatabaseReference getQuizzes = database.getReference();
-            /*
             ValueEventListener deleteQuizzes = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -127,11 +126,11 @@ public class QuizInformation extends AppCompatActivity {
                 public void onCancelled(DatabaseError databaseError) {}
             };
             getQuizzes.addListenerForSingleValueEvent(deleteQuizzes);
-            */
 
-            Intent i = new Intent(QuizInformation.this, TeacherHome.class);
-            startActivity(i);
             finish();
+            Intent n = new Intent(this, TeacherHome.class);
+            startActivity(n);
+
         }
     }
 }

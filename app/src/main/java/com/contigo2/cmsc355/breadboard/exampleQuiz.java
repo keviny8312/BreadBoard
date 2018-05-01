@@ -143,7 +143,7 @@ public class exampleQuiz extends AppCompatActivity {
                 ans.updateChildren(answers);
 
                 //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
-                Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
+                Intent i = new Intent(exampleQuiz.this, quizComplete.class);
                 i.putExtra("quizCode", quizCode);
                 startActivity(i);
                 finish();

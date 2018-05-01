@@ -129,7 +129,7 @@ public class quizFinalReview extends AppCompatActivity {
                 });
                 timeUp.create().show();
 
-                Intent i = new Intent(quizFinalReview.this, quizConfirmation.class);
+                Intent i = new Intent(quizFinalReview.this, quizComplete.class);
                 i.putExtra("quizCode", quizCode);
                 startActivity(i);
                 finish();

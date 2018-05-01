@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,10 +79,12 @@ public class TeacherHome extends ListActivity {
         if(v.getId() == R.id.Bsettings) {           // go to settings
             Intent i = new Intent(TeacherHome.this, settingsPage.class);
             startActivity(i);
-            finish();
         }
         if(v.getId() == R.id.logout) {
             Intent i = new Intent(TeacherHome.this, LoginActivity.class);
+            finishAffinity();
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(TeacherHome.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
             startActivity(i);
             finish();
         }
@@ -92,7 +95,7 @@ public class TeacherHome extends ListActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        DatabaseReference quizRef = database.getReference("/users/" + user.getUid() + "/quizzes");
+        DatabaseReference quizRef = database.getReference("users/" + user.getUid() + "/quizzes");
         ValueEventListener getQuizzes = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -34,6 +34,7 @@
             android:name=".addQuestions"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".quizConfirmation" />
+        <activity android:name=".AboutApp" />
         <activity android:name=".settingsPage" />
         <activity android:name=".changeEmail" />
         <activity android:name=".changePassword" />

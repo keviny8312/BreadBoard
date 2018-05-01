@@ -41,7 +41,9 @@ public class StudentHome extends ListActivity {
         setListAdapter(adapter);
 
         final String initCode = getIntent().getStringExtra("quizCode");
+        boolean init = false;
         if(initCode != null) {
+            init = true;
             final Map<String, Object> addQuiz = new HashMap<>();
 
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -137,7 +139,7 @@ public class StudentHome extends ListActivity {
             }
         });
 
-        updateQuizList();
+        if(!init) updateQuizList();
     }
 
     public void onButtonClick(View v) {
@@ -150,8 +152,11 @@ public class StudentHome extends ListActivity {
             Intent i = new Intent(StudentHome.this, settingsPage.class);
             startActivity(i);
         }
-        if(v.getId() == R.id.logout) {
+        if(v.getId() == R.id.logout) {                  // logout
             Intent i = new Intent(StudentHome.this, LoginActivity.class);
+            finishAffinity();
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(StudentHome.this, "You have been logged out.", Toast.LENGTH_SHORT).show();
             startActivity(i);
             finish();
         }
