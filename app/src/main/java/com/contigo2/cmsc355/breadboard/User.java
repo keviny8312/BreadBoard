@@ -4,21 +4,21 @@ public class User {
     private String name, email, group;
     private int fontSize;
 
-    User() {                            // user object, stores name, email, group, and font size
+    public User() {                            // user object, stores name, email, group, and font size
         name = null;
         email = null;
         group = null;
         fontSize = 12;
     }
 
-    User(String n, String e, String g) {
+    public User(String n, String e, String g) {
         name = n;
         email = e;
         group = g;
         fontSize = 12;
     }
 
-    User(String n, String e, String g, int f) {
+    public User(String n, String e, String g, int f) {
         name = n;
         email = e;
         group = g;
