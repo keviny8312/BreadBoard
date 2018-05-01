@@ -21,7 +21,7 @@ public class Quiz implements Serializable{
     private int numQuestions;
     private ArrayList<QuizQuestion> questions = new ArrayList<>();
 
-    Quiz() {                                    // quiz object with details and questions
+    public Quiz() {                                    // quiz object with details and questions
         this.name = "default_name";
         this.dueDate = "default_due_date";
         this.code = "default_code";
@@ -32,7 +32,7 @@ public class Quiz implements Serializable{
         this.active = "false";
     }
 
-    Quiz(String name, String dueDate) {
+    public Quiz(String name, String dueDate) {
         this.name = name;
         this.dueDate = dueDate;
         this.code = "default_code";
@@ -43,7 +43,7 @@ public class Quiz implements Serializable{
         this.active = "false";
     }
 
-    Quiz(String name, String dueDate, String className, String time, String ansDate, String active) {
+    public Quiz(String name, String dueDate, String className, String time, String ansDate, String active) {
         this.name = name;
         this.dueDate = dueDate;
         this.code = "default_code";
