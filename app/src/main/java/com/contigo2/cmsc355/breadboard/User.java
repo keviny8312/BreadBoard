@@ -1,10 +1,10 @@
 package com.contigo2.cmsc355.breadboard;
 
 public class User {
-    private String name, email, group;      // likely not going to use name/email
-    private int fontSize;                   // since they are handled by firebase auth
-                                            // placeholders for now
-    User() {
+    private String name, email, group;
+    private int fontSize;
+
+    User() {                            // user object, stores name, email, group, and font size
         name = null;
         email = null;
         group = null;

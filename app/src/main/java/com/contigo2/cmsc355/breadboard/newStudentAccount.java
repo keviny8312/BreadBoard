@@ -28,7 +28,7 @@ public class newStudentAccount extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // create new student account
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_student_account);
 
@@ -43,7 +43,7 @@ public class newStudentAccount extends AppCompatActivity {
 
     }
 
-    public void onButtonClick(View v) {
+    public void onButtonClick(View v) {                             // create new account with info
         if(v.getId() == R.id.cna_student) {
             //create acct in firebase
             EditText n = findViewById(R.id.student_name_nac);
@@ -57,7 +57,7 @@ public class newStudentAccount extends AppCompatActivity {
             final String group = "STUDENT";
             final String quiz = q.getText().toString().trim();
 
-            if(validInput()) {// && isValidQuizCode(quiz)) {
+            if(validInput()) {
                 mAuth = FirebaseAuth.getInstance();
                 Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -80,8 +80,6 @@ public class newStudentAccount extends AppCompatActivity {
                                     Toast.makeText(newStudentAccount.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
-
-                                // ...
                             }
                         });
             }
@@ -91,29 +89,7 @@ public class newStudentAccount extends AppCompatActivity {
 
     }
 
-    public boolean isValidQuizCode(final String quizCode) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference codeCheck = database.getReference("quiz");
-
-        ValueEventListener getQuizzes = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(quizCode)) valid = true;
-                else valid = false;
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
-        };
-        codeCheck.addListenerForSingleValueEvent(getQuizzes);
-
-        if(!valid) {
-            Toast.makeText(newStudentAccount.this, "Please enter a valid quiz code.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validInput() {
+    public boolean validInput() {                                   // check for valid input fields
         EditText n = findViewById(R.id.student_name_nac);
         EditText e = findViewById(R.id.student_email_nac);
         EditText p = findViewById(R.id.student_password_nac);

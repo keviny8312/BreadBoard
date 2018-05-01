@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class questionStatistics extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // deprecated
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question_statistics);
     }

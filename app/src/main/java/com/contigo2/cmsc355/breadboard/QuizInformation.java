@@ -23,10 +23,12 @@ public class QuizInformation extends AppCompatActivity {
                    ansDate = "", active = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // show quiz details to teacher
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_information);
         quizCode = getIntent().getStringExtra("quizCode");
+        TextView TVquizCode = findViewById(R.id.quizCode);
+        TVquizCode.setText(getResources().getString(R.string.quizCodeField, quizCode));
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -83,17 +85,17 @@ public class QuizInformation extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.statsBTN) {
+        if(v.getId() == R.id.statsBTN) {            // view quiz stats
             Intent i = new Intent(QuizInformation.this, quizStatistics.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
         }
-        if(v.getId() == R.id.gradesBTN) {
+        if(v.getId() == R.id.gradesBTN) {           // view quiz grades
             Intent i = new Intent(QuizInformation.this, studentGrades.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
         }
-        if(v.getId() == R.id.modifyQuizBTN) {
+        if(v.getId() == R.id.modifyQuizBTN) {       // modify quiz
             Intent i = new Intent(QuizInformation.this, modifyQuiz.class);
             i.putExtra("quizCode", quizCode);
             i.putExtra("name", name);
@@ -104,7 +106,7 @@ public class QuizInformation extends AppCompatActivity {
             i.putExtra("active", active);
             startActivity(i);
         }
-        if(v.getId() == R.id.deleteQuizBTN) {
+        if(v.getId() == R.id.deleteQuizBTN) {       // delete quiz from database
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             database.getReference("quiz/" + quizCode).removeValue();
 

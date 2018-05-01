@@ -35,10 +35,9 @@ public class quizFinalReview extends AppCompatActivity {
     public long timeLimitMilliseconds;
     public CountDownTimer timer;
     public TextView timeRemainingField;
-    // TODO this needs to be replaced with array adapter (or something else dynamic !!)
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // review student's answers before submission
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_final_review);
         quizCode = getIntent().getStringExtra("quizCode");
@@ -46,26 +45,13 @@ public class quizFinalReview extends AppCompatActivity {
         q2 = findViewById(R.id.question2);
         q3 = findViewById(R.id.question3);
         q4 = findViewById(R.id.question4);
-        // TODO more than 4 questions lol!!!!
-        //q5 = findViewById(R.id.question5);
-        //q6 = findViewById(R.id.question6);
-        //q7 = findViewById(R.id.question7);
-        //q8 = findViewById(R.id.question8);
-        //q9 = findViewById(R.id.question9);
-        //q10 = findViewById(R.id.question10);
-        qst = new TextView[]{q1, q2, q3, q4};//, q5, q6, q7, q8, q9, q10};
+        qst = new TextView[]{q1, q2, q3, q4};
 
         a1 = findViewById(R.id.Answer1);
         a2 = findViewById(R.id.Answer2);
         a3 = findViewById(R.id.Answer3);
         a4 = findViewById(R.id.Answer4);
-        //a5 = findViewById(R.id.Answer5);
-        //a6 = findViewById(R.id.Answer6);
-        //a7 = findViewById(R.id.Answer7);
-        //a8 = findViewById(R.id.Answer8);
-        //a9 = findViewById(R.id.Answer9);
-        //a10 = findViewById(R.id.Answer10);
-        ans = new TextView[]{a1, a2, a3, a4};//, a5, a6, a7, a8, a9, a10};
+        ans = new TextView[]{a1, a2, a3, a4};
 
         timeRemainingField = findViewById(R.id.timeRemaining);
 
@@ -106,19 +92,15 @@ public class quizFinalReview extends AppCompatActivity {
         if(maxTimeLimit == getIntent().getIntExtra("totalTime", INVALID)) maxTimeLimit--;
         int endSeconds = getIntent().getIntExtra("endSeconds", 59);
         int secondsCarry = MIN_TO_S - (Math.abs(Calendar.getInstance().get(Calendar.SECOND) - endSeconds) % MIN_TO_S);
-        //int secondsCarry = Calendar.getInstance().get(Calendar.SECOND);
-        //TODO seconds are kinda off when switching
-        //Log.d(TAG + " MTL before loop ", String.valueOf(maxTimeLimit));
+
         startQuestionTime = maxTimeLimit * MIN_TO_S + secondsCarry;
         timeLimitMilliseconds = maxTimeLimit * MIN_TO_S * S_TO_MS + secondsCarry * S_TO_MS;
         timer = new CountDownTimer(timeLimitMilliseconds, S_TO_MS){
             public void onTick(long millisUntilFinished) {
                 int timeLeft = (int) millisUntilFinished / S_TO_MS;
-                //Log.d(TAG + " timeLeft in loop ", String.valueOf(timeLeft));
 
                 endQuestionTime = timeLeft;
                 timeRemainingField.setText(getResources().getString(R.string.TimeRemaining, timeLeft/MIN_TO_S, timeLeft%MIN_TO_S));
-                //TODO maybe make this show hours too
 
                 //If 5 minutes left, go to the warning page
                 if(timeLeft == FIVE_MIN) {
@@ -137,10 +119,20 @@ public class quizFinalReview extends AppCompatActivity {
             }
 
             public void onFinish() {
-                //Forces the user to go to the quiz confirmation page, and submits quiz contents regardless of whether or not questions have been answered
-                //Intent i = new Intent(exampleQuiz.this, quizConfirmation.class);
-                //startActivity(i);
-                //finish();
+                AlertDialog.Builder timeUp = new AlertDialog.Builder(quizFinalReview.this);
+                timeUp.setMessage(R.string.incompleteSubmit);
+                timeUp.setTitle(R.string.alertFinished);
+                timeUp.setPositiveButton(R.string.alertSubmit, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+                timeUp.create().show();
+
+                Intent i = new Intent(quizFinalReview.this, quizConfirmation.class);
+                i.putExtra("quizCode", quizCode);
+                startActivity(i);
+                finish();
             }
         }.start();
 
@@ -148,13 +140,13 @@ public class quizFinalReview extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.submitQuiz) {
+        if(v.getId() == R.id.submitQuiz) {              // submit quiz
             if(hasAnsweredAllQuestions()) {
                 submitQuiz();
                 timer.cancel();
             }
         }
-        if(v.getId() == R.id.returnToQuiz) {
+        if(v.getId() == R.id.returnToQuiz) {            // return to quiz
             Calendar currentTime = Calendar.getInstance();
             int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
             int currentMinutes = currentTime.get(Calendar.MINUTE);
@@ -208,7 +200,7 @@ public class quizFinalReview extends AppCompatActivity {
         }
 
         return true;
-    }
+    }   // check if all questions answered, warn if not
 
     public void submitQuiz() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -223,9 +215,6 @@ public class quizFinalReview extends AppCompatActivity {
                 for(DataSnapshot ans : dataSnapshot.child("quiz/" + quizCode + "/questions").getChildren()) {
                     String studentAnsPath = "users/" + user.getUid() + "/answers/" + quizCode + "/q" + i;
                     String correctAnsPath = "quiz/" + quizCode + "/questions/q" + i + "/correct";
-
-                    // debugging answers, leave here for now
-                    //Toast.makeText(quizFinalReview.this, "ans:" + dataSnapshot.child(studentAnsPath).getValue().toString() + " correct: " + dataSnapshot.child(correctAnsPath).getValue().toString(), Toast.LENGTH_SHORT).show();
 
                     studentAns.add(dataSnapshot.child(studentAnsPath).getValue().toString());
 
@@ -255,5 +244,5 @@ public class quizFinalReview extends AppCompatActivity {
         i.putExtra("quizCode", quizCode);
         startActivity(i);
         finish();
-    }
+    }                   // submit answers to database
 }

@@ -31,7 +31,7 @@ public class StudentHome extends ListActivity {
     public final String TAG = "StudentHome";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // student home page
         super.onCreate(savedInstanceState);
         if(getIntent().hasExtra("removeQuiz")) adapter.remove(getIntent().getStringExtra("removeQuiz"));
 
@@ -83,7 +83,7 @@ public class StudentHome extends ListActivity {
                                 String quizCode = codeSnapshot.getKey();
 
                                 Calendar currentDate = Calendar.getInstance();
-                                int month = currentDate.get(Calendar.MONTH);
+                                int month = currentDate.get(Calendar.MONTH) + 1;
                                 int day   = currentDate.get(Calendar.DAY_OF_MONTH);
                                 int year  = currentDate.get(Calendar.YEAR);
                                 Log.d(TAG, "date  " + day + " " + month + " " + year);
@@ -100,7 +100,12 @@ public class StudentHome extends ListActivity {
                                         zero.put(user.getUid(), "0");
                                         DatabaseReference zeroGrade = FirebaseDatabase.getInstance().getReference("quiz/" + quizCode + "/grades/");
                                         zeroGrade.updateChildren(zero);
-                                        //TODO add to finished
+
+                                        DatabaseReference addFinished = FirebaseDatabase.getInstance().getReference("users/" + user.getUid() + "/finished/" + quizCode);
+                                        Map<String, Object> finished = new HashMap<>();
+                                        finished.put(quizCode, "0");
+                                        addFinished.updateChildren(finished);
+
                                         Intent toPostQuizInfo = new Intent(StudentHome.this, postQuizInfo.class);
                                         toPostQuizInfo.putExtra("quizCode", quizCode);
                                         startActivity(toPostQuizInfo);
@@ -108,15 +113,12 @@ public class StudentHome extends ListActivity {
                                     }
                                 }
 
-                                else if(dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
-
-                                //if(dataSnapshot.child("users/" + user.getUid() + "finished").hasChild(quizCode)) {
+                                else if(dataSnapshot.child("users/" + user.getUid() + "/finished").hasChild(quizCode)) {
                                     Intent toPostQuizInfo = new Intent(StudentHome.this, postQuizInfo.class);
                                     toPostQuizInfo.putExtra("quizCode", quizCode);
                                     startActivity(toPostQuizInfo);
                                     break;
                                 }
-                                //else if(dataSnapshot.child("quiz/" + quizCode + "/due date").getValue(String.class))
                                 else {
                                     Intent toQuizInfo = new Intent(StudentHome.this, preQuizInfo.class);
                                     toQuizInfo.putExtra("quizCode", quizCode);
@@ -139,18 +141,18 @@ public class StudentHome extends ListActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.CNQ_BTN) {
+        if(v.getId() == R.id.CNQ_BTN) {                 // add new quiz using quiz code
             EditText ETnewCode = findViewById(R.id.newQuizCode);
             String newCode = ETnewCode.getText().toString();
             enterNewQuizCode(newCode);
         }
-        if(v.getId() == R.id.Bsettings) {
+        if(v.getId() == R.id.Bsettings) {               // go to settings
             Intent i = new Intent(StudentHome.this, settingsPage.class);
             startActivity(i);
         }
     }
 
-    public void updateQuizList() {
+    public void updateQuizList() {                      // update list with changes
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -170,7 +172,7 @@ public class StudentHome extends ListActivity {
         quizRef.addListenerForSingleValueEvent(getQuizzes);
     }
 
-    public void enterNewQuizCode(String code) {
+    public void enterNewQuizCode(String code) {         // enter new quiz code into list
         final String tempCode = code;
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

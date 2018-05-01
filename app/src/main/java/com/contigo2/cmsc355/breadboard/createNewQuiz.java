@@ -1,36 +1,19 @@
 package com.contigo2.cmsc355.breadboard;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class createNewQuiz extends AppCompatActivity {
-
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +22,8 @@ public class createNewQuiz extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if (v.getId() == R.id.addQuestions) {
+        if (v.getId() == R.id.addQuestions) {                       // create quiz with current data, then go to add questions
 
-            //TODO back button (everywhere)
             EditText name = findViewById(R.id.quizTitleFieldCNQ);
             EditText dueDate = findViewById(R.id.quizDueDateCNQ);
             EditText qClass = findViewById(R.id.quizClassCNQ);
@@ -70,13 +52,10 @@ public class createNewQuiz extends AppCompatActivity {
 
                 startActivity(i);
             }
-
-            //TODO now actually put the answer key time into database (and make them viewable)
-
         }
     }
 
-    public boolean checkValidInput() {
+    public boolean checkValidInput() {                          // check for valid input fields
         EditText name = findViewById(R.id.quizTitleFieldCNQ);
         EditText dueDate = findViewById(R.id.quizDueDateCNQ);
         EditText qClass = findViewById(R.id.quizClassCNQ);
@@ -121,7 +100,7 @@ public class createNewQuiz extends AppCompatActivity {
         return true;
     }
 
-    public boolean isNumeric(String s) {
+    public boolean isNumeric(String s) {    // check if string is a number
         try {
             Integer.parseInt(s);
             return true;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 public class quizConfirmation extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // complete quiz creation and display quiz code
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_confirmation);
         Quiz quiz = (Quiz)getIntent().getSerializableExtra("passQuiz");
@@ -18,7 +18,7 @@ public class quizConfirmation extends AppCompatActivity {
         code.setText(quiz.getCode());
     }
 
-    public void onButtonClick(View v) {
+    public void onButtonClick(View v) {                         // return to dashboard
         if(v.getId() == R.id.returnToDashboard) {
             Intent i = new Intent(quizConfirmation.this, TeacherHome.class);
             startActivity(i);

@@ -30,7 +30,7 @@ public class modifyQuiz extends AppCompatActivity {
     private RadioButton RBimmediateAns, RBnewDate;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // change quiz details
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_quiz);
 
@@ -68,7 +68,7 @@ public class modifyQuiz extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.submitChangesBTNModifyQuiz) {
+        if(v.getId() == R.id.submitChangesBTNModifyQuiz) {          // submit changes to database
             if(!checkValidInput()) return;
 
             name = ETtitle.getText().toString();
@@ -110,7 +110,7 @@ public class modifyQuiz extends AppCompatActivity {
             startActivity(i);
         }
 
-        if(v.getId() == R.id.modifyQuestions) {
+        if(v.getId() == R.id.modifyQuestions) {                 // or modify questions themselves
             Intent i = new Intent(modifyQuiz.this, modifyQuestions.class);
             i.putExtra("quizCode", quizCode);
             i.putExtra("questionNum", 0);
@@ -119,7 +119,7 @@ public class modifyQuiz extends AppCompatActivity {
         }
     }
 
-    public boolean checkValidInput() {
+    public boolean checkValidInput() {                          // check for valid input fields
         if(ETtitle.getText().toString().isEmpty()) {
             Toast.makeText(modifyQuiz.this, "Please name the quiz.", Toast.LENGTH_SHORT).show();
             return false;
@@ -156,7 +156,7 @@ public class modifyQuiz extends AppCompatActivity {
         return true;
     }
 
-    public boolean isNumeric(String s) {
+    public boolean isNumeric(String s) {                                // check if string is number
         try {
             Integer.parseInt(s);
             return true;

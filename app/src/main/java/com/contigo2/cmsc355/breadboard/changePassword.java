@@ -21,7 +21,7 @@ public class changePassword extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.submitNewPasswordField) {
+        if(v.getId() == R.id.submitNewPasswordField) {                  // change password in firebase
             EditText EToldPass = findViewById(R.id.oldPasswordField);
             EditText ETnewPass = findViewById(R.id.newPasswordField);
             EditText ETcnfPass = findViewById(R.id.confirmNewPasswordField);
@@ -50,7 +50,7 @@ public class changePassword extends AppCompatActivity {
         }
     }
 
-    public boolean isValidInput(String oldPass, String newPass, String cnfPass, FirebaseUser user) {
+    public boolean isValidInput(String oldPass, String newPass, String cnfPass, FirebaseUser user) {    // check for valid input fields
         if(oldPass.isEmpty()) {
             Toast.makeText(changePassword.this, "Please enter your current password.", Toast.LENGTH_SHORT).show();
             return false;
@@ -67,15 +67,6 @@ public class changePassword extends AppCompatActivity {
             Toast.makeText(changePassword.this, "New passwords must match.", Toast.LENGTH_SHORT).show();
             return false;
         }
-        /*
-        AuthCredential credential = EmailAuthProvider.getCredential(user.getEmail(), pass);
-        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.d(TAG, "User re-authenticated.");
-            }
-        });
-        */
         return true;
     }
 }

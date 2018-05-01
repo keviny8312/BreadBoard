@@ -24,7 +24,7 @@ public class studentGrades extends ListActivity {
     ArrayAdapter<String> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {            // view student grades
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_grades);
         quizCode = getIntent().getStringExtra("quizCode");
@@ -36,7 +36,7 @@ public class studentGrades extends ListActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.returnToQuizDetails) {
+        if(v.getId() == R.id.returnToQuizDetails) {                 // return to quiz details
             Intent i = new Intent(studentGrades.this, QuizInformation.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
@@ -44,7 +44,7 @@ public class studentGrades extends ListActivity {
         }
     }
 
-    public void updateGradesList() {
+    public void updateGradesList() {                                // update list with grades
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference quizRef = database.getReference();

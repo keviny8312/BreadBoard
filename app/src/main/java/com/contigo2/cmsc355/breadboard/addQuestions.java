@@ -29,7 +29,7 @@ public class addQuestions extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.finishQuiz) {
+        if(v.getId() == R.id.finishQuiz) {          // finish and create quiz
             if(!emptyQuestion()) {
                 addCurrentQuestionToQuiz();
                 quiz.generateCode();
@@ -47,9 +47,7 @@ public class addQuestions extends AppCompatActivity {
             }
         }
 
-        if(v.getId() == R.id.nextQuestion) {
-            //TODO dynamic number of answer choices
-
+        if(v.getId() == R.id.nextQuestion) {        // move to next question
             if(!emptyQuestion()) {
                 addCurrentQuestionToQuiz();
 
@@ -62,7 +60,7 @@ public class addQuestions extends AppCompatActivity {
         }
     }
 
-    public void addCurrentQuestionToQuiz() {
+    public void addCurrentQuestionToQuiz() {        // take data and add to quiz
         EditText qText  = findViewById(R.id.questionText);
         EditText aText1 = findViewById(R.id.answerText1);
         EditText aText2 = findViewById(R.id.answerText2);
@@ -91,7 +89,7 @@ public class addQuestions extends AppCompatActivity {
         quiz.addQuestion(question);
     }
 
-    public boolean emptyQuestion() {
+    public boolean emptyQuestion() {                // check for empty questions
         EditText qText  = findViewById(R.id.questionText);
         String question = qText.getText().toString();
         if(question.isEmpty()) {

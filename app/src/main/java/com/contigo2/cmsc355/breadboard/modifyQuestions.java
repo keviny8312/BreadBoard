@@ -25,7 +25,7 @@ public class modifyQuestions extends AppCompatActivity {
     private int questionNum, totalNumQuestions;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // change current question
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_questions);
 
@@ -37,9 +37,8 @@ public class modifyQuestions extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.modifyNextQuestion) {
+        if(v.getId() == R.id.modifyNextQuestion) {              // change current question then go to next
             updateCurrentQuestion();
-            //TODO add more questions than initial quiz had
 
             if(questionNum + 1 >= totalNumQuestions) {
                 Intent i = new Intent(modifyQuestions.this, QuizInformation.class);
@@ -64,7 +63,7 @@ public class modifyQuestions extends AppCompatActivity {
         }
     }
 
-    public void updateCurrentQuestion() {
+    public void updateCurrentQuestion() {                       // make question changes in database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -103,7 +102,7 @@ public class modifyQuestions extends AppCompatActivity {
 
     }
 
-    public void setPreviousValues() {
+    public void setPreviousValues() {                           // get previous question data from database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -131,7 +130,6 @@ public class modifyQuestions extends AppCompatActivity {
                 totalNumQuestions = Integer.valueOf(numQuestionsTotalTest);
                 qtxt.setText(dataSnapshot.child("questions").child(questionNumString).child("question").getValue(String.class));
                 totQ.setText("" + totalNumQuestions);
-                //totQ.setText(res.getString(R.string.TotalQuestionNum, totalNumQuestions));
 
                 int i = 1;
                 for (DataSnapshot codeSnapshot: dataSnapshot.child("questions").child(questionNumString).child("answers").getChildren()) {

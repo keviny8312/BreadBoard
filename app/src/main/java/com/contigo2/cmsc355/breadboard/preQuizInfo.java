@@ -30,7 +30,7 @@ public class preQuizInfo extends AppCompatActivity {
     DatabaseReference userTime = database.getReference("users/" + uid + "/timers");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // view quiz details before attempt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_quiz_info);
 
@@ -51,7 +51,6 @@ public class preQuizInfo extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot codeSnapshot: dataSnapshot.getChildren()) {
-                    if(codeSnapshot.getKey().equals("code"));
                     if(codeSnapshot.getKey().equals("due date")) {
                         dueDate = codeSnapshot.getValue(String.class);
                         TVdueDate.setText(res.getString(R.string.dueDate, dueDate));
@@ -63,10 +62,6 @@ public class preQuizInfo extends AppCompatActivity {
                     if(codeSnapshot.getKey().equals("num questions")) {
                         numQ = codeSnapshot.getValue(String.class);
                         TVnumQ.setText(res.getString(R.string.numQuestions, numQ));
-                    }
-                    if(codeSnapshot.getKey().equals("className")) {
-                        //qClass = codeSnapshot.getValue(String.class);
-                        //TVclass.setText(res.getString(R.string.className, qClass));
                     }
                     if(codeSnapshot.getKey().equals("time")) {
                         time = codeSnapshot.getValue(String.class);
@@ -81,7 +76,7 @@ public class preQuizInfo extends AppCompatActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.takeQuizButton) {
+        if(v.getId() == R.id.takeQuizButton) {              // begin quiz
             if(!time.equals("0")) {
                 initTime = false;
                 DatabaseReference initTimers = database.getReference();
@@ -90,7 +85,6 @@ public class preQuizInfo extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         DataSnapshot userTimes = dataSnapshot.child("users/" + uid + "/timers/" + quizCode);
                         if (!userTimes.hasChild("start time") || !userTimes.hasChild("end time")) {
-                            //Toast.makeText(exampleQuiz.this, "no init time fields found", Toast.LENGTH_SHORT).show();
                             initTime = true;
                         }
 
@@ -101,7 +95,6 @@ public class preQuizInfo extends AppCompatActivity {
                             int maxTimeHours = maxTimeLimit / MIN_TO_HR;
                             int maxTimeMinutes = maxTimeLimit % MIN_TO_HR;
                             int totalTimeLimit = maxTimeLimit;
-                            //Toast.makeText(exampleQuiz.this, "from db: " + maxTime + " hr: " + maxTimeHours + " min: " + maxTimeMinutes, Toast.LENGTH_SHORT).show();
 
                             Calendar currentTime = Calendar.getInstance();
                             int startHour = currentTime.get(Calendar.HOUR_OF_DAY);
@@ -118,17 +111,12 @@ public class preQuizInfo extends AppCompatActivity {
 
                             Map<String, Object> initTimes = new HashMap<>();
                             initTimes.put("start time", startTime);
-                            //Toast.makeText(exampleQuiz.this, String.valueOf(currentTime.HOUR_OF_DAY), Toast.LENGTH_SHORT).show();
                             initTimes.put("end time", endTime);
 
                             DatabaseReference newTimes = database.getReference("users/" + uid + "/timers/" + quizCode);
                             newTimes.updateChildren(initTimes);
 
                             maxTimeLimit = maxTimeMinutes + MIN_TO_HR * maxTimeHours;
-                            //maxTimeLimit--;
-
-                            //Log.d(TAG + " MTL after create ", String.valueOf(maxTimeLimit));
-                            //Toast.makeText(exampleQuiz.this, "maxTimeLimit: " + maxTimeLimit, Toast.LENGTH_SHORT).show();
 
                             Intent i = new Intent(preQuizInfo.this, exampleQuiz.class);
                             i.putExtra("totalTime", totalTimeLimit);
@@ -145,10 +133,8 @@ public class preQuizInfo extends AppCompatActivity {
                             Calendar currentTime = Calendar.getInstance();
                             int currentHour = currentTime.get(Calendar.HOUR_OF_DAY);
                             int currentMinutes = currentTime.get(Calendar.MINUTE);
-                            //int currentSecond = currentTime.get(Calendar.SECOND);
                             String endTime = userTimes.child("end time").getValue(String.class);
                             int endHour = Integer.valueOf(endTime.substring(0, endTime.indexOf(':')));
-                            //int endMinutes = Integer.valueOf(endTime.substring(endTime.indexOf(':') + 1));
                             int endMinutes = Integer.valueOf(endTime.substring(endTime.indexOf(':') + 1, endTime.lastIndexOf(':')));
                             int endSeconds = Integer.valueOf(endTime.substring(endTime.lastIndexOf(':') + 1));
                             maxTimeLimit = (endHour - currentHour) * MIN_TO_HR - Math.abs(endMinutes - currentMinutes);
@@ -158,7 +144,6 @@ public class preQuizInfo extends AppCompatActivity {
                             i.putExtra("quizCode", quizCode);
                             i.putExtra("questionNum", 0);
                             i.putExtra("initTime", maxTimeLimit);
-                            //i.putExtra("seconds", currentSecond);
                             i.putExtra("endHour", endHour);
                             i.putExtra("endMinutes", endMinutes);
                             i.putExtra("endSeconds", endSeconds);

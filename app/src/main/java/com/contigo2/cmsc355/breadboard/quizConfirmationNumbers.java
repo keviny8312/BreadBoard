@@ -26,7 +26,7 @@ public class quizConfirmationNumbers extends ListActivity {
     ArrayAdapter<String> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // show confirmation codes for everyone that took quiz
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_confirmation_numbers);
         quizCode = getIntent().getStringExtra("quizCode");
@@ -37,7 +37,7 @@ public class quizConfirmationNumbers extends ListActivity {
         updateConfirmationNumberList();
     }
 
-    public void onButtonClick(View v) {
+    public void onButtonClick(View v) {                         // return to quiz statistics
         if(v.getId() == R.id.returnToStats) {
             Intent i = new Intent(quizConfirmationNumbers.this, quizStatistics.class);
             i.putExtra("quizCode", quizCode);
@@ -46,7 +46,7 @@ public class quizConfirmationNumbers extends ListActivity {
         }
     }
 
-    public void updateConfirmationNumberList() {
+    public void updateConfirmationNumberList() {                // update list of confirmation numbers
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 

@@ -21,13 +21,10 @@ import java.util.ArrayList;
 public class TeacherHome extends ListActivity {
 
     ArrayList<String> listQuizzes = new ArrayList<>();
-
     ArrayAdapter<String> adapter;
 
-    int numQuizzes = 0;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {                // teacher homepage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_home);
 
@@ -61,9 +58,7 @@ public class TeacherHome extends ListActivity {
                         }
                     }
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        // fndbsgyivfeksh
-                    }
+                    public void onCancelled(DatabaseError databaseError) {}
                 };
                 quizRef.addValueEventListener(getQuizzes);
 
@@ -75,17 +70,17 @@ public class TeacherHome extends ListActivity {
     }
 
     public void onButtonClick(View v) {
-        if(v.getId() == R.id.CNQ_BTN) {
+        if(v.getId() == R.id.CNQ_BTN) {             // go to create new quiz
             Intent i = new Intent(TeacherHome.this, createNewQuiz.class);
             startActivity(i);
         }
-        if(v.getId() == R.id.Bsettings) {
+        if(v.getId() == R.id.Bsettings) {           // go to settings
             Intent i = new Intent(TeacherHome.this, settingsPage.class);
             startActivity(i);
         }
     }
 
-    public void updateQuizList() {
+    public void updateQuizList() {                  // update quiz list with current quizzes
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();

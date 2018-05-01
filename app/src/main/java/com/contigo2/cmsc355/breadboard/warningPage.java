@@ -5,20 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by tenni_000 on 4/3/2018.
- */
-
 public class warningPage extends AppCompatActivity {
     Button confirmBTN;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {        // deprecated
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_warning_page);
         confirmBTN = findViewById(R.id.warningContinue);
     }
     public void onButtonClick(View view){
-        //Doesnt work, find out why
         if(view.getId() == R.id.warningContinue){
             super.onBackPressed();
         }
