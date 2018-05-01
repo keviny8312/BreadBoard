@@ -38,6 +38,7 @@ public class teacherLogin extends AppCompatActivity {
             i.putExtra("email", email);
             i.putExtra("pass", pass);
             startActivity(i);
+            
         }
 
         if(v.getId() == R.id.BteacherLogin) {
