@@ -38,7 +38,6 @@
         android:layout_height="37dp"
         android:gravity="center"
         android:text="@string/welcomeMessage"
-        android:textAlignment="textStart"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
 
@@ -87,6 +86,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundbuttoncustom"
+        android:onClick="onButtonClick"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
 
     <TextView
         android:id="@+id/textView26"

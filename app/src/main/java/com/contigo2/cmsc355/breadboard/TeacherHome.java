@@ -73,10 +73,17 @@ public class TeacherHome extends ListActivity {
         if(v.getId() == R.id.CNQ_BTN) {             // go to create new quiz
             Intent i = new Intent(TeacherHome.this, createNewQuiz.class);
             startActivity(i);
+            finish();
         }
         if(v.getId() == R.id.Bsettings) {           // go to settings
             Intent i = new Intent(TeacherHome.this, settingsPage.class);
             startActivity(i);
+            finish();
+        }
+        if(v.getId() == R.id.logout) {
+            Intent i = new Intent(TeacherHome.this, LoginActivity.class);
+            startActivity(i);
+            finish();
         }
     }
 

@@ -60,16 +60,16 @@ public class AnswerKey extends AppCompatActivity {
 
         ValueEventListener getKey = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {             // TODO careful!!!
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 int numQuestions = Integer.valueOf(dataSnapshot.child("quiz/" + quizCode + "/num questions").getValue(String.class));
-                for(int i = 0; i < numQuestions; i++) {                                  // only up to 4 q's!!!
+                for(int i = 0; i < numQuestions; i++) {
                     String question = dataSnapshot.child("quiz/" + quizCode + "/questions/q" + i + "/question").getValue(String.class);
                     String userAns = dataSnapshot.child("users/" + user.getUid() + "/answers/" + quizCode + "/q" + i).getValue(String.class);
                     String corrAns = dataSnapshot.child("quiz/" + quizCode + "/questions/q" + i + "/correct").getValue(String.class);
 
                     TVq[i].setText(question);
                     TVua[i].setText(userAns);
-                    if(corrAns.length() <= 1) TVca[i].setText(userAns);
+                    if(corrAns.length() <= 1) TVca[i].setText(corrAns);
                     else {
                         String corrAnsFormatted = "";
                         corrAnsFormatted += corrAns.charAt(0);

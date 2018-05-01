@@ -108,6 +108,7 @@ public class modifyQuiz extends AppCompatActivity {
             Intent i = new Intent(modifyQuiz.this, QuizInformation.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
+            finish();
         }
 
         if(v.getId() == R.id.modifyQuestions) {                 // or modify questions themselves

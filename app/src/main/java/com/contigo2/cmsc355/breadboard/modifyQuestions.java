@@ -60,6 +60,7 @@ public class modifyQuestions extends AppCompatActivity {
             Intent i = new Intent(modifyQuestions.this, QuizInformation.class);
             i.putExtra("quizCode", quizCode);
             startActivity(i);
+            finish();
         }
     }
 

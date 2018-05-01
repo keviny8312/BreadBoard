@@ -96,7 +96,7 @@ public class quizStatistics extends ListActivity {
                     totalQuestions++;
                 }
                 averageTimeTotal = runningTimeTotal / totalQuestions;
-                TVaverage.setText(getResources().getString(R.string.averageGrade, averageTimeTotal));
+                TVaverage.setText(getResources().getString(R.string.averageTime, averageTimeTotal));
 
             }
             @Override
@@ -108,6 +108,7 @@ public class quizStatistics extends ListActivity {
     public void getPercent() {                              // get percentage correct from all students from database
         adapter.clear();
 
+        final TextView TVaverage = findViewById(R.id.averageQuizGrade);
         DatabaseReference percentRef = database.getReference();
         ValueEventListener getPercent = new ValueEventListener() {
             @Override
@@ -116,22 +117,28 @@ public class quizStatistics extends ListActivity {
 
                 String questionNum, correctAnswer;
                 int totalStudents;
-                double runningTotalCorrect, percentCorrect;
+                double runningTotalCorrect, percentCorrect, percentTotal = 0, percentAverageTotal;
                 for(int i = 0; i < numQuestions; i++) {
                     questionNum = "q" + i;
                     runningTotalCorrect = 0;
                     totalStudents = 0;
                     correctAnswer = dataSnapshot.child("quiz/" + quizCode + "/questions/" + questionNum + "/correct").getValue(String.class);
-                    for (DataSnapshot user: dataSnapshot.child("users").getChildren()) {
+                    for(DataSnapshot user: dataSnapshot.child("users").getChildren()) {
                         if(user.hasChild("answers/" + quizCode + "/" + questionNum)) {
+
                             String answer = user.child("answers/" + quizCode + "/" + questionNum).getValue(String.class);
-                            if(answer.equals(correctAnswer)) runningTotalCorrect++;
+                            Log.d(TAG, "questionNum " + questionNum + " answer " + answer + " correct " + correctAnswer);
+                            if(correctAnswer.contains(answer)) runningTotalCorrect++;
                             totalStudents++;
                         }
                     }
                     percentCorrect = (runningTotalCorrect / totalStudents)*100;
                     adapter.add("Question " + (i + 1) + " accuracy: " + percentCorrect + "%");
+                    percentTotal += percentCorrect;
                 }
+
+                percentAverageTotal = percentTotal / numQuestions;
+                TVaverage.setText(getResources().getString(R.string.averageGraded, percentAverageTotal) + "%");
 
             }
             @Override

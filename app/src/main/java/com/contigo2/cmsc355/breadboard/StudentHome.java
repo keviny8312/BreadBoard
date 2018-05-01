@@ -150,6 +150,11 @@ public class StudentHome extends ListActivity {
             Intent i = new Intent(StudentHome.this, settingsPage.class);
             startActivity(i);
         }
+        if(v.getId() == R.id.logout) {
+            Intent i = new Intent(StudentHome.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     public void updateQuizList() {                      // update list with changes
